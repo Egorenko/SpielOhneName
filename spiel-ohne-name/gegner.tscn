@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://n75wlovkaa4p"]
+
+[ext_resource type="Script" uid="uid://bt5gu04km5k21" path="res://gegner.gd" id="1_v5qxm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_co84x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvgt1"]
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Mob" type="RigidBody2D" parent="."]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_v5qxm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mob"]
+sprite_frames = SubResource("SpriteFrames_co84x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob"]
+shape = SubResource("CapsuleShape2D_tvgt1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Mob"]
