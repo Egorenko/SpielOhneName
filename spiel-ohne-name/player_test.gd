@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 # TODO sprint
 	if Input.is_action_just_pressed("Shift"):
 		if change :
-			$Sprite2D_test.material.shader = load("res://assets/test_shader.gdshader")
+			#$Sprite2D_test.material.shader = load("res://assets/test_shader.gdshader")
 			'var test = sprite.get_instance_shader_parameter("colors")
 			#test[2] = 255.0
 			print(test)
@@ -195,7 +195,7 @@ func process_attack(startPos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 			#$atk_area/atk_view.rotate(PI * -0.5)#upper end to player
 		else:
 			move_rotate_sprite($atk_area/atk_view, $Sprite2D_test.global_position, offset, midLine_rotation, PI * 0.25)
-			$atk_area/atk_view.texture = load("res://20251126test_swort_small+diagonal.png")
+			$atk_area/atk_view.texture = load("res://assets/20251126test_swort_small+diagonal.png")
 			#$atk_area/atk_view.rotate(PI * 0.25)#handle to player
 	return
 

@@ -9,4 +9,4 @@
 position = Vector2(224, 144)
 
 [node name="Node2D" parent="." instance=ExtResource("2_tlwt5")]
-position = Vector2(12, 11)
+position = Vector2(0, 1)
