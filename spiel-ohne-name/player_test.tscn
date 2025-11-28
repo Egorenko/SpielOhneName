@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhbc35r5teduh"]
+
+[ext_resource type="Script" path="res://player_test.gd" id="1_ij6vw"]
+[ext_resource type="Texture2D" uid="uid://di85v0vkc7ij6" path="res://assets/20251103test_charF.png" id="2_e0b2u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44cfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
+size = Vector2(16, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnirw"]
+
+[node name="player" type="CharacterBody2D"]
+disable_mode = 2
+motion_mode = 1
+script = ExtResource("1_ij6vw")
+
+[node name="Sprite2D_test" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+material = SubResource("ShaderMaterial_44cfe")
+position = Vector2(3.0517578e-05, 0)
+scale = Vector2(1.0375713, 1)
+texture = ExtResource("2_e0b2u")
+
+[node name="body_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_ij6vw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="atk_area" type="Area2D" parent="."]
+
+[node name="atk_shape" type="CollisionShape2D" parent="atk_area"]
+shape = SubResource("RectangleShape2D_mnirw")
+disabled = true
+
+[node name="atk_view" type="Sprite2D" parent="atk_area"]
+texture_filter = 1
+
+[node name="test" type="CollisionPolygon2D" parent="atk_area"]
+visible = false
+polygon = PackedVector2Array(0, 0, 30, -30, 30, 29)
+disabled = true
+
+[node name="atk_ray" type="Line2D" parent="atk_area"]
+points = PackedVector2Array(0, 0)
+width = 3.0

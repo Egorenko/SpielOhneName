@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duferjiihnyia"
-path="res://.godot/imported/DungeonSpriteAtlas.png-29fa2df884198bc7b6d72741a5071f3d.ctex"
+uid="uid://7xkha00wfj3r"
+path="res://.godot/imported/20251022test_floorD.png-5f1167b67205158cfd753c0a1624e78b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DungeonSpriteAtlas.png"
-dest_files=["res://.godot/imported/DungeonSpriteAtlas.png-29fa2df884198bc7b6d72741a5071f3d.ctex"]
+source_file="res://assets/20251022test_floorD.png"
+dest_files=["res://.godot/imported/20251022test_floorD.png-5f1167b67205158cfd753c0a1624e78b.ctex"]
 
 [params]
 
