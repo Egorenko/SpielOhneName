@@ -22,9 +22,10 @@ var atk_noise:float = 2.5#max distance a vertex can diviate from start-end-line
 var atk_ex_noise:float = 0.6#percentage of equality between start/end (1 -> perfect in middle | 0.0 -> distance to sstart/end irrelevant)
 var atk_ex_maxdis:float = 50#max distance most farthest away vertex is allowed to have
 var atk_ex_mindis:float = 10#min distance most closest vertex needs to have (seperate from atk_noise)
+
 # |PI| left ; 0 right ; PI/2 down ; -PI/2 up
 # [3 .. -3]
-var rotation_noise:float = 1.0
+var rotation_noise:float = 0.7
 
 func _physics_process(delta: float) -> void:
 #TODO dodge

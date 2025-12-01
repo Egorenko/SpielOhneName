@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2t5x6sqsf7gd"]
+[gd_scene load_steps=5 format=3 uid="uid://dstrijlp5om61"]
 
-[ext_resource type="Script" path="res://tile_map.gd" id="2_e0an3"]
-[ext_resource type="Texture2D" uid="uid://dfhq2kf1y86wy" path="res://assets/Overworldspriteatlas.png" id="2_p5pve"]
+[ext_resource type="Script" uid="uid://cceuckwg2xy87" path="res://tile_map.gd" id="2_e0an3"]
+[ext_resource type="Texture2D" uid="uid://bmcvq1i660g2i" path="res://assets/Overworldspriteatlas.png" id="2_p5pve"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urblq"]
 texture = ExtResource("2_p5pve")
@@ -10,6 +10,7 @@ texture = ExtResource("2_p5pve")
 0:1/0 = 0
 1:1/0 = 0
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
 2:1/0 = 0
 3:1/0 = 0
