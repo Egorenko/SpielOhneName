@@ -28,19 +28,24 @@ var atk_ex_mindis:float = 10#min distance most closest vertex needs to have (sep
 var rotation_noise:float = 0.7
 
 func _physics_process(delta: float) -> void:
+
 #TODO dodge
 	if Input.is_action_just_pressed("Ctrl"):
 		pass
+
 #attack
 	if Input.is_action_just_released("LMB"):#if stop reset
 		print("STOP")
 		if atk_vertces_count_min <= atk_vertces.size():#try process
 			print("WORK EARLY")
 			processShape(atk_vertces, atk_noise, atk_ex_noise)
+		else :
+			print("CLEAR")
 		atk_vertces.clear()
 		test_tick = 30
 		check = true
 		$atk_area/atk_ray.clear_points()
+		#add to line
 	if Input.is_action_pressed("LMB") and check:#while hold
 		test_tick-= 1#count timer
 		if(test_tick >= 0):#if timer not end
@@ -164,7 +169,9 @@ func processShape(array:Array[Vector2], line_noise:float, ex_noise:float) -> int
 		correctLine.default_color = Color(0.0,255.0,0.0,255.0)
 		get_parent().add_child(correctLine)
 		print("ARCH")
+		process_attack($Sprite2D_test.global_position, 1, correctLine)
 		return 1#1 = NOT straight
+	print("DID NOT FIND SHAPE")
 	return -1
 
 #-------------------------------------------------------------------------------
@@ -176,25 +183,21 @@ func process_attack(startPos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 	var midLine:Vector2 = atk_shape.get_point_position(0) -  atk_shape.get_point_position(atk_shape.get_point_count()-1)#direct line from start to end -> middle line
 	var mid:Vector2 = atk_shape.get_point_position(atk_shape.get_point_count()-1) + midLine*0.5#middle of attackline
 	var midLine_rotation:float = atk_shape.get_point_position(0).angle_to_point(atk_shape.get_point_position(atk_shape.get_point_count()-1))
+	var char_to_mid:Vector2 = mid - startPos#vector for angle player to middle of attackline
 
+#line
 	if(atk_type == 0):
-		var char_to_mid:Vector2 = mid - startPos#vector for angle player to middle of attackline
-#output
-		'print("\n","test line")
-		print(midLine_rotation)
-		print(atk_shape.global_rotation,"\n")
-		print(PI * 0.5 - rotation_noise)
-		print(abs(char_to_mid.angle_to(midLine)))
-		print(PI * 0.5 + rotation_noise)'
-#
 		if (PI * 0.5 - rotation_noise <= abs(char_to_mid.angle_to(midLine))) and (abs(char_to_mid.angle_to(midLine)) <= PI * 0.5 + rotation_noise):
 			move_rotate_sprite($atk_area/atk_view, $Sprite2D_test.global_position, offset, $Sprite2D_test.get_angle_to(mid), PI * -0.5)
-			$atk_area/atk_view.texture = load("res://assets/20251126test_shield_smallF.png")
-			#$atk_area/atk_view.rotate(PI * -0.5)#upper end to player
+			$atk_area/atk_view.texture = load("res://assets/20251126test_shield_smallF.png")#upper end to player
 		else:
 			move_rotate_sprite($atk_area/atk_view, $Sprite2D_test.global_position, offset, midLine_rotation, PI * 0.25)
-			$atk_area/atk_view.texture = load("res://assets/20251126test_swort_small+diagonal.png")
-			#$atk_area/atk_view.rotate(PI * 0.25)#handle to player
+			$atk_area/atk_view.texture = load("res://assets/20251126test_swort_small+diagonal.png")#handle to player
+
+#arch
+	if(atk_type == 1):
+		move_rotate_sprite($atk_area/atk_view, $Sprite2D_test.global_position, offset, $Sprite2D_test.get_angle_to(mid), PI * 0.25)
+		$atk_area/atk_view.texture = load("res://assets/20251126test_wand_nature_blue_small+diagonal.png")
 	return
 
 #-------------------------------------------------------------------------------
