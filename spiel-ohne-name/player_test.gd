@@ -24,7 +24,7 @@ var atk_ex_maxdis:float = 50#max distance most farthest away vertex is allowed t
 var atk_ex_mindis:float = 10#min distance most closest vertex needs to have (seperate from atk_noise)
 # |PI| left ; 0 right ; PI/2 down ; -PI/2 up
 # [3 .. -3]
-var rotation_noise:float = 0.2
+var rotation_noise:float = 1.0
 
 func _physics_process(delta: float) -> void:
 #TODO dodge
