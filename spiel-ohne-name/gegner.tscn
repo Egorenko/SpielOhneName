@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://n75wlovkaa4p"]
 
 [ext_resource type="Script" uid="uid://bt5gu04km5k21" path="res://gegner.gd" id="1_co84x"]
-[ext_resource type="Texture2D" uid="uid://bngtkd2naoyhu" path="res://assets/20251103test_charF.png" id="2_tvgt1"]
+[ext_resource type="Texture2D" uid="uid://c6v2nj0oqjqg6" path="res://assets/20251103test_charF.png" id="2_tvgt1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t3vge"]
 animations = [{

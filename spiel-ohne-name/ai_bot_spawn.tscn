@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c52ogx0dyo721"]
+
+[ext_resource type="Script" uid="uid://bmbmd4ywildou" path="res://ai_bot_spawn.gd" id="1_iltar"]
+
+[node name="AIBotSpawn" type="Node2D"]
+script = ExtResource("1_iltar")
