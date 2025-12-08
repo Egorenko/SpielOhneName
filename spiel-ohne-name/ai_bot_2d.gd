@@ -1,68 +1,49 @@
-extends Sprite2D
+extends CharacterBody2D
+class_name Enemy
 
-var ai:UtilityAIAgent
-var sensor_distance_to_target:UtilityAISensor
-var current_action:UtilityAIAction
-var speed:float
-var target_position:Vector2
+@export var speed: float = 50.0
 
-signal picked_up_item
+@onready var nav: NavigationAgent2D = $NavigationAgent2D
+@onready var player: CharacterBody2D = %player
 
 
-func _ready():
-	ai = $UtilityAIAgent
-	sensor_distance_to_target = $UtilityAIAgent/DistanceToTarget
-	current_action = null
-	speed = 0.0
-	target_position = Vector2.ZERO
+func _ready() -> void:
+	call_deferred("_setup_navigation")
+	nav.velocity_computed.connect(_velocity_computed)
 
 
-func _process(delta):
-	# Sense
-	var vec_to_target = target_position - position 
-	var distance = vec_to_target.length()
-	sensor_distance_to_target.sensor_value = distance / 1000.0
-	
-	# Think
-	ai.evaluate_options(delta)
-	ai.update_current_behaviour()
-	
-	# Act
-	if current_action == null:
+func _setup_navigation() -> void:
+	# NavigationServer muss erst einen Frame syncen
+	await get_tree().physics_frame
+	if player:
+		nav.target_position = player.global_position
+
+
+func _physics_process(delta: float) -> void:
+	if not player:
 		return
-	
-	# Update the position
-	position += delta * speed * vec_to_target.normalized()
-	
-	# Update otherwise based on current action.
-	if current_action.name == "Move":
-		if distance <= 4.0:
-			current_action.is_finished = true
-	elif current_action.name == "Pickup":
-		emit_signal("picked_up_item")
-		current_action.is_finished = true
+
+	# Ziel jedes Frame aktualisieren
+	nav.target_position = player.global_position
+
+	if not nav.is_navigation_finished():
+		_move_towards_target()
+	else:
+		velocity = Vector2.ZERO
+
+	move_and_slide()
 
 
+func _move_towards_target() -> void:
+	var next_point := nav.get_next_path_position()
+	var direction := (next_point - global_position).normalized()
+	var desired_velocity := direction * speed
 
-func _on_utility_ai_agent_action_changed(action_node):
-	if action_node == current_action:
-		return
-	if current_action != null:
-		end_action(current_action)
-	current_action = action_node
-	if current_action != null:
-		start_action(current_action)
-
-
-func start_action(action_node):
-	if action_node.name == "Beweg":
-		speed = 100.0
-	elif action_node.name == "Kampf":
-		speed = 0.0
+	if nav.avoidance_enabled:
+		nav.set_velocity(desired_velocity)
+	else:
+		_velocity_computed(desired_velocity)
 
 
-func end_action(action_node):
-	if action_node.name == "Beweg":
-		pass
-	elif action_node.name == "Kampf":
-		pass
+func _velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
