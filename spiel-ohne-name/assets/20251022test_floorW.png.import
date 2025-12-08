@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://b86m03qcpwbke"
+=======
+uid="uid://m0jfwu2lqgqk"
+>>>>>>> origin/player
 path="res://.godot/imported/20251022test_floorW.png-52d52e05b1c1227be2478725217d69e9.ctex"
 metadata={
 "vram_texture": false

@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://bonrpcm84kk2f"
+=======
+uid="uid://dvk8rg7dl0mt8"
+>>>>>>> origin/player
 path="res://.godot/imported/20251126test_wand_nature_blue_small+diagonal.png-94b16944d048aef7e93b110b806caa8d.ctex"
 metadata={
 "vram_texture": false
