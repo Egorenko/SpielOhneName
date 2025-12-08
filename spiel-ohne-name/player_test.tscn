@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3vxwu7lyepm1"]
 
 [ext_resource type="Script" uid="uid://b1tb5vkpk2n5y" path="res://player_test.gd" id="1_ij6vw"]
-[ext_resource type="Texture2D" uid="uid://c6v2nj0oqjqg6" path="res://assets/20251103test_charF.png" id="2_e0b2u"]
+[ext_resource type="Texture2D" uid="uid://ceho03k0ru76q" path="res://assets/20251103test_charF.png" id="2_e0b2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_44cfe"]
 
@@ -19,8 +19,8 @@ script = ExtResource("1_ij6vw")
 z_index = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_44cfe")
-position = Vector2(3.0517578e-05, 0)
-scale = Vector2(1.0375713, 1)
+position = Vector2(3.05176e-05, 0)
+scale = Vector2(1.03757, 1)
 texture = ExtResource("2_e0b2u")
 
 [node name="body_hitbox" type="CollisionShape2D" parent="."]

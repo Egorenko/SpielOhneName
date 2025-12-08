@@ -4,6 +4,7 @@ var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
 var change = true
+var can_teleport: bool = true;
 
 var offset:float = 15.0
 var offsetV:Vector2 = Vector2(offset, 0.0)
@@ -24,16 +25,19 @@ var atk_ex_maxdis:float = 50#max distance most farthest away vertex is allowed t
 var atk_ex_mindis:float = 10#min distance most closest vertex needs to have (seperate from atk_noise)
 # |PI| left ; 0 right ; PI/2 down ; -PI/2 up
 # [3 .. -3]
-var rotation_noise:float = 0.2
+var rotation_noise:float = 1.0
 
 func _physics_process(delta: float) -> void:
+## simple teleport test##
+	teleport();
+	
 #TODO dodge
-	if Input.is_action_just_pressed("Ctrl"):
+	if Input.is_key_pressed(KEY_CTRL):
 		var help = Line2D.new()
 		help.points = [Vector2(1.0,-1.0), Vector2(1.0, 1.0)]
 		process_attack(Vector2(0.0,0.0), 0, help)
 #attack
-	if Input.is_action_just_released("LMB"):#if stop reset
+	if !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):#if stop reset
 		print("STOP")
 		if atk_vertces_count_min <= atk_vertces.size():#try process
 			print("WORK EARLY")
@@ -42,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		test_tick = 30
 		check = true
 		$atk_area/atk_ray.clear_points()
-	if Input.is_action_pressed("LMB") and check:#while hold
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and check:#while hold
 		test_tick-= 1#count timer
 		if(test_tick >= 0):#if timer not end
 			atk_vertces.append(get_global_mouse_position())#collect vertex
@@ -55,8 +59,8 @@ func _physics_process(delta: float) -> void:
 			processShape(atk_vertces, atk_noise, atk_ex_noise)
 
 # Get the input direction and handle the movement/deceleration.
-# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction: Vector2 = Vector2(Input.get_axis("A", "D"), Input.get_axis("W", "S"))
+# As good practice, you should replace UI actions with custom gameplay actions.	
+	var direction: Vector2 = Vector2(int(Input.is_key_pressed(KEY_D)) - int(Input.is_key_pressed(KEY_A)), int(Input.is_key_pressed(KEY_S)) - int(Input.is_key_pressed(KEY_W)))
 	if direction.x and direction.y != 0:
 		direction = direction * 0.707
 	var new_texture: Texture2D
@@ -76,7 +80,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
 
 # TODO sprint
-	if Input.is_action_just_pressed("Shift"):
+	if Input.is_key_pressed(KEY_SHIFT):
 		if change :
 			#$Sprite2D_test.material.shader = load("res://assets/test_shader.gdshader")
 			'var test = sprite.get_instance_shader_parameter("colors")
@@ -208,3 +212,24 @@ func move_rotate_sprite(sprite:Sprite2D, pivo_pos:Vector2, offset_:float, pivo_r
 	var new_pos= Vector2(cos(pivo_rot), sin(pivo_rot)) * offset_
 	sprite.global_position = pivo_pos + new_pos
 	sprite.rotate(self_rot)
+	
+	
+	
+func teleport()-> bool:
+	var tile_pos = $"../TileMap".local_to_map(global_position)
+	var cell_data = $"../TileMap".get_cell_tile_data(0, tile_pos)
+	
+	if (!can_teleport):
+		if (cell_data): return false;
+		can_teleport = true;
+		return false;
+	
+	if cell_data and cell_data.get_custom_data("teleport_tile"):
+		print("teleport");
+		for a: Vector4i in $"../TileMap".teleport_tiles:
+			if (a[0] == tile_pos[0] and a[1] == tile_pos[1]):
+				var b = $"../TileMap".map_to_local(Vector2i(a[2], a[3]));
+				global_position = b;
+				can_teleport = false;
+				return true;
+	return false;
