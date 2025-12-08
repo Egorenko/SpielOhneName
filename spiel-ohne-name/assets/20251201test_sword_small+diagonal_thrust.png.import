@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddlq411pq1d0m"
-path="res://.godot/imported/20251022test_floorD.png-5f1167b67205158cfd753c0a1624e78b.ctex"
+uid="uid://dqysb2hcn256f"
+path="res://.godot/imported/20251201test_sword_small+diagonal_thrust.png-d40395057aa945684a389c3861e68f5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/20251022test_floorD.png"
-dest_files=["res://.godot/imported/20251022test_floorD.png-5f1167b67205158cfd753c0a1624e78b.ctex"]
+source_file="res://assets/20251201test_sword_small+diagonal_thrust.png"
+dest_files=["res://.godot/imported/20251201test_sword_small+diagonal_thrust.png-d40395057aa945684a389c3861e68f5b.ctex"]
 
 [params]
 
