@@ -1,49 +1,45 @@
 extends CharacterBody2D
 class_name Enemy
 
-@export var speed: float = 50.0
+@export var speed := 50.0
+@export var attack_range := 50.0
+@export var attack_cooldown := 1.0
+@export var damage := 10
 
-@onready var nav: NavigationAgent2D = $NavigationAgent2D
-@onready var player: CharacterBody2D = %player
+var health : int = 10 
 
+var player: Node = null
+var can_attack := true
 
-func _ready() -> void:
-	call_deferred("_setup_navigation")
-	nav.velocity_computed.connect(_velocity_computed)
+func _ready():
+	player = get_tree().get_first_node_in_group("player")
+	if not player:
+		push_warning("Kein Player in Gruppe 'player' gefunden!")
 
-
-func _setup_navigation() -> void:
-	# NavigationServer muss erst einen Frame syncen
-	await get_tree().physics_frame
-	if player:
-		nav.target_position = player.global_position
-
-
-func _physics_process(delta: float) -> void:
+func _physics_process(delta):
 	if not player:
 		return
 
-	# Ziel jedes Frame aktualisieren
-	nav.target_position = player.global_position
+	var dir = (player.global_position - global_position)
+	var distance = dir.length()
 
-	if not nav.is_navigation_finished():
-		_move_towards_target()
+	if distance > attack_range:
+		velocity = dir.normalized() * speed
 	else:
 		velocity = Vector2.ZERO
+		_attack_player()
 
 	move_and_slide()
 
 
-func _move_towards_target() -> void:
-	var next_point := nav.get_next_path_position()
-	var direction := (next_point - global_position).normalized()
-	var desired_velocity := direction * speed
-
-	if nav.avoidance_enabled:
-		nav.set_velocity(desired_velocity)
-	else:
-		_velocity_computed(desired_velocity)
+func _attack_player():
+	if not can_attack:
+		return
 
 
-func _velocity_computed(safe_velocity: Vector2) -> void:
-	velocity = safe_velocity
+	if player.has_method("take_damage"):
+		player.take_damage(damage)
+
+	can_attack = false
+	await get_tree().create_timer(attack_cooldown) 
+	can_attack = true
