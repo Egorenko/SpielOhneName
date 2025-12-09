@@ -37,6 +37,7 @@ var display_mid:Vector2 = Vector2(0.0, 0.0)
 
 func _ready() -> void:
 	add_child(shape)
+	add_to_group("player")
 	shape.width = 2
 	shape.default_color = Color(255.0, 255.0, 255.0, 50.0)
 	pass
