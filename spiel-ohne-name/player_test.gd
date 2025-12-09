@@ -5,6 +5,7 @@ const JUMP_VELOCITY = -400.0
 
 var change = true
 var can_teleport: bool = true;
+var SEED: int = 1245212312421;
 
 var offset:float = 15.0
 var offsetV:Vector2 = Vector2(offset, 0.0)

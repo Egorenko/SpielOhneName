@@ -13,13 +13,7 @@ func _ready() -> void:
 	var loaded_pattern_layer_1: TileMapPattern = ResourceLoader.load("res://structures/Structure_House_3.1.tres")
 
 	
-	randomize();
-	noise = FastNoiseLite.new();
-	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX;
-	noise.seed = randi();
-	noise.frequency = 0.05;
-	noise.fractal_type = FastNoiseLite.FRACTAL_FBM;
-	noise.fractal_octaves = 5;	
+	noise = init_SimplexNoise($"../player".SEED);
 	
 	#Tilemap.set_cell(0, Vector2i(randi() % 50 - 25, randi() % 50 - 25), 1, GrassTile, 0);
 	
@@ -70,6 +64,12 @@ func save_structure(rect: Vector4i, path: String)-> void:
 	Structure_House = Tilemap.get_pattern(1, posarray);
 	ResourceSaver.save(Structure_House, "res://structures/Structure_House_3.1.tres");	
  	
-	
-	
+func init_SimplexNoise(Seed: int)-> FastNoiseLite:
+	var Noise = FastNoiseLite.new();
+	Noise.noise_type = FastNoiseLite.TYPE_SIMPLEX;
+	Noise.seed = Seed;
+	Noise.frequency = 0.05;
+	Noise.fractal_type = FastNoiseLite.FRACTAL_FBM;
+	Noise.fractal_octaves = 5;	
+	return Noise;
 	
