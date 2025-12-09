@@ -28,6 +28,7 @@ texture = ExtResource("3_6p80c")
 
 [node name="physics_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
+scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_ij6vw")
 
 [node name="atk_view" type="Sprite2D" parent="."]
@@ -55,6 +56,3 @@ script = ExtResource("4_8ut53")
 scale = Vector2(0.9, 0.7)
 shape = SubResource("CapsuleShape2D_2ue4q")
 debug_color = Color(1, 0, 0, 0.3137255)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)

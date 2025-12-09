@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd1xkl8mcunfh"]
+[gd_scene load_steps=3 format=3 uid="uid://cd1xkl8mcunfh"]
 
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player_test.tscn" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://dstrijlp5om61" path="res://scenes/map.tscn" id="2_fj7yv"]
 
 [node name="world" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("2_fj7yv")]
+
+[node name="player" parent="." instance=ExtResource("1_fj7yv")]
+
+[node name="player_view" type="Camera2D" parent="player"]
+zoom = Vector2(4, 4)
