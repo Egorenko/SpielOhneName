@@ -6,7 +6,7 @@ var teleport_tiles: Array[Vector4i] = [];
 var noise: FastNoiseLite;
 
 var min_room_size: Vector2i = Vector2i(3, 2);
-var grid_size: int = 10;
+var grid_size: int = 15;
 var dungeon_size: Vector2i = Vector2i(5, 5);
 var room_propability_to_be_void: float = 0.25;
 var arrayWithDoorInformation = [];
@@ -20,7 +20,10 @@ func _ready() -> void:
 		for j in range(0, dungeon_size.y):
 			for x in range(grid_size * 3 * i, grid_size * 3 * (i + 1)): for y in range(grid_size * 3 * j, grid_size * 3 * (j + 1)):
 				Tilemap.set_cell(0, Vector2i(x, y), 0, Vector2i(3, 0), 0);
+			var teleporters_doors: Array[Vector2i]; # saves the position of all four doors
+			teleporters_doors.resize(4);
 			if (noise.get_noise_2d(i * 100, j * 100) <= (2 * room_propability_to_be_void) - 1):
+				arrayWithDoorInformationRow.append(teleporters_doors);		
 				continue;
 				
 				
@@ -33,8 +36,7 @@ func _ready() -> void:
 			if (j >= dungeon_size.y - 1): isRoomNextTo[2] = false;
 			isRoomNextTo[3] = noise.get_noise_2d((i - 1) * 100, (j - 0) * 100) > (2 * room_propability_to_be_void) - 1
 			if (i <= 0): isRoomNextTo[3] = false;
-			var teleporters_doors: Array[Vector2i]; # saves the position of all four doors
-			teleporters_doors.resize(4);
+			
 			
 			
 			var a = noise.get_noise_3d((3 * i + 0) * 153, (3 * j + 1) * 153, 0);
@@ -117,17 +119,16 @@ func _ready() -> void:
 			arrayWithDoorInformationRow.append(teleporters_doors);		
 		arrayWithDoorInformation.append(arrayWithDoorInformationRow);
 		
-	for x in range(0, dungeon_size.x - 1): 
-		for y in range(0, dungeon_size.y - 1):
+	for x in range(0, dungeon_size.x): 
+		for y in range(0, dungeon_size.y):
 			if (arrayWithDoorInformation[x][y][0] != Vector2i(0, 0)):
-					teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][0].x, arrayWithDoorInformation[x][y][0].y, arrayWithDoorInformation[x][y - 1][2].x, arrayWithDoorInformation[x][y - 1][2].y));
+				teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][0].x, arrayWithDoorInformation[x][y][0].y, arrayWithDoorInformation[x][y - 1][2].x, arrayWithDoorInformation[x][y - 1][2].y));
 			if (arrayWithDoorInformation[x][y][1] != Vector2i(0, 0)):
-					teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][1].x, arrayWithDoorInformation[x][y][1].y, arrayWithDoorInformation[x + 1][y][3].x, arrayWithDoorInformation[x + 1][y][3].y));
+				teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][1].x, arrayWithDoorInformation[x][y][1].y, arrayWithDoorInformation[x + 1][y][3].x, arrayWithDoorInformation[x + 1][y][3].y));
 			if (arrayWithDoorInformation[x][y][2] != Vector2i(0, 0)):
-					teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][2].x, arrayWithDoorInformation[x][y][2].y, arrayWithDoorInformation[x][y + 1][0].x, arrayWithDoorInformation[x][y + 1][0].y));
+				teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][2].x, arrayWithDoorInformation[x][y][2].y, arrayWithDoorInformation[x][y + 1][0].x, arrayWithDoorInformation[x][y + 1][0].y));
 			if (arrayWithDoorInformation[x][y][3] != Vector2i(0, 0)):
-					teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][3].x, arrayWithDoorInformation[x][y][3].y, arrayWithDoorInformation[x - 1][y][1].x, arrayWithDoorInformation[x - 1][y][1].y));
-					
+				teleport_tiles.append(Vector4i(arrayWithDoorInformation[x][y][3].x, arrayWithDoorInformation[x][y][3].y, arrayWithDoorInformation[x - 1][y][1].x, arrayWithDoorInformation[x - 1][y][1].y));
 	print("W")
 	
 	

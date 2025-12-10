@@ -5,7 +5,7 @@ const JUMP_VELOCITY = -400.0
 
 var change = true
 var can_teleport: bool = true;
-var SEED: int = 1245212312421;
+var SEED: int = 9342;
 
 var offset:float = 15.0
 var offsetV:Vector2 = Vector2(offset, 0.0)
@@ -221,7 +221,7 @@ func teleport()-> bool:
 	var cell_data = $"../TileMap".get_cell_tile_data(0, tile_pos)
 	
 	if (!can_teleport):
-		if (cell_data): return false;
+		if (cell_data.get_custom_data("teleport_tile")): return false;
 		can_teleport = true;
 		return false;
 	
