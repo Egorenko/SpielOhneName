@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://buqu4u5q10vbs"]
+[gd_scene load_steps=11 format=3 uid="uid://buqu4u5q10vbs"]
 
 [ext_resource type="Script" uid="uid://ct3370r55isra" path="res://scripts/player.gd" id="1_ij6vw"]
 [ext_resource type="Texture2D" uid="uid://blxrm15n4bip3" path="res://assets/20251203test_charF2.png" id="3_6p80c"]
-[ext_resource type="Script" path="res://scripts/test_hurtbox.gd" id="4_8ut53"]
+[ext_resource type="Script" uid="uid://cthaq5k26syb3" path="res://scripts/find_shape.gd" id="4_2ue4q"]
+[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/test_hurtbox.gd" id="4_8ut53"]
+[ext_resource type="Resource" uid="uid://dnjryuv5dwbfd" path="res://scripts/ressources/find_shape_stats/test_shape_stats.tres" id="5_2ue4q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
 size = Vector2(16, 3)
@@ -56,3 +58,10 @@ script = ExtResource("4_8ut53")
 scale = Vector2(0.9, 0.7)
 shape = SubResource("CapsuleShape2D_2ue4q")
 debug_color = Color(1, 0, 0, 0.3137255)
+
+[node name="find_shape" type="Line2D" parent="."]
+width = 2.0
+default_color = Color(1, 1, 1, 0.2)
+script = ExtResource("4_2ue4q")
+shape_stats = ExtResource("5_2ue4q")
+metadata/_custom_type_script = "uid://cthaq5k26syb3"

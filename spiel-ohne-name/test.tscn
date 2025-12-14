@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://mwf0gkhgmt44"]
+
+[ext_resource type="PackedScene" uid="uid://cv7h0cs7hoky7" path="res://test2.tscn" id="1_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://d0v4sd7fxed5j" path="res://test_attack.tscn" id="2_6uqi0"]
+[ext_resource type="Script" uid="uid://c0fokllbtbvl3" path="res://test_3.gd" id="2_8uh7m"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="enemy" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(72, 36)
+script = ExtResource("2_8uh7m")
+
+[node name="enemy2" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(126, 36)
+script = ExtResource("2_8uh7m")
+
+[node name="char" parent="." instance=ExtResource("2_6uqi0")]

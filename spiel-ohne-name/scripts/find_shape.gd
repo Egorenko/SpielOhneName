@@ -1,19 +1,30 @@
 class_name find_shape extends Line2D
 
 enum SHAPES{
-	line = 0,
-	arch = 1,
+	point = 0,
+	line = 1,
+	arch = 2,
+	
+	circle = 3,
 	
 	undefined = -1,
 }
 
-var line_noise:float
-var middle_noise:float
+@export var shape_stats:find_shape_stats
 
-var min_dis_border:float
-var max_dis_border:float
+var line_noise = 0.0
+var middle_noise = 0.0
+var min_dis_border = 0.0
+var max_dis_border = 0.0
+var max_dis_not_allowed = 0.0
 
-var max_dis_not_allowed:float
+func _ready() -> void:
+	if shape_stats:
+		line_noise = shape_stats.line_noise
+		middle_noise = shape_stats.middle_noise
+		min_dis_border = shape_stats.min_dis_border
+		max_dis_border = shape_stats.max_dis_border
+		max_dis_not_allowed = shape_stats.max_dis_not_allowed
 
 var start_vertex:Vector2
 var end_vertex:Vector2
@@ -25,15 +36,6 @@ var max_dis_pos:float = 0
 var max_dis_pos_vertex:Vector2 = Vector2(0.0, 0.0)
 var max_dis_neg:float = 0
 var max_dis_neg_vertex:Vector2 = Vector2(0.0, 0.0)
-
-func _init(_line_noise:float, _middle_noise:float, _min_dis_border:float, _max_dis_border:float, _max_dis_not_allowed:float) -> void:
-	line_noise = _line_noise
-	middle_noise = _middle_noise
-	min_dis_border = _min_dis_border
-	max_dis_border = _max_dis_border
-	max_dis_not_allowed = _max_dis_not_allowed
-	analyse_by_distance()
-	return
 
 ##Return, if it could be analysed
 ##Safes the max distance of all Points to a Line, formed by the first and last Point
@@ -65,7 +67,7 @@ func analyse_by_distance() -> bool:
 	var help:Line2D = Line2D.new()
 	help.points = self.points
 	help.width = 1
-	help.default_color = Color(255.0, 0.0, 0.0, 255.0)
+	help.default_color = Color(255.0, 0.0, 0.0, 0.3)
 	add_child(help)
 	
 	var y2y1:float = (end_vertex.y - start_vertex.y)
@@ -96,7 +98,7 @@ func analyse_by_distance() -> bool:
 	else:
 		max_dis = abs(max_dis_neg)
 		max_dis_vertex = max_dis_neg_vertex
-	return max_dis >= max_dis_not_allowed
+	return true
 
 #all distance smaller noise
 func has_all_in_noise() -> bool:
@@ -122,10 +124,13 @@ func get_shape_number() -> int:
 	if not self.points:
 		print("NOTHING") 
 		return SHAPES.undefined
+	if is_point():
+		return SHAPES.point
 	if is_line(): 
 		return SHAPES.line
 	if is_arch(): 
 		return SHAPES.arch
+	
 	return SHAPES.undefined
 
 #equal to "has no out of noise"
@@ -135,3 +140,6 @@ func is_line() -> bool:
 #if one* vertex(in only one direction) too far away -> line has to bend
 func is_arch() -> bool:
 	return (has_max_dis_in_middle()) and (not has_max_pos_and_neg()) and (has_max_in_borders())
+
+func is_point() -> bool:
+	return start_vertex.distance_to(end_vertex) < max_dis_not_allowed and max_dis < max_dis_not_allowed

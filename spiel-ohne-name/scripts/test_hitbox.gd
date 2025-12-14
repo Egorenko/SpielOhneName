@@ -7,7 +7,6 @@ var hitbox_lifetime:float #?
 var shape:Shape2D
 var hit_log:HitLog
 
-#constructor?
 func _init(_damage:int, _hitbox_lifetime:float, _shape:Shape2D, _hit_log:HitLog = null) -> void:
 	damage = _damage
 	hitbox_lifetime = _hitbox_lifetime
@@ -37,8 +36,13 @@ func _ready() -> void:
 
 #do when hit
 func _on_area_entered(area:Area2D) -> void:
-	if self.scene_file_path == area.scene_file_path:
-		return
+	'if not self.owner and area.owner:
+		print("nope")
+		return'
+	
+	'if self.scene_file_path == area.scene_file_path:
+		print("nope")
+		return'
 	
 	if not area.has_method("take_damage"):#equals "check if hurtbox"
 		return

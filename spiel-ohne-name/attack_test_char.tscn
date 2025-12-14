@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpcl4jdkmfkkt"]
+
+[ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack_abstract.gd" id="1_kel2l"]
+[ext_resource type="Texture2D" uid="uid://bkq6bnjh1wwjw" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="2_cy32r"]
+[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/test_hurtbox.gd" id="3_hbtid"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grxin"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xc7i4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cy32r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4t5v"]
+
+[node name="attack_test_char" type="CharacterBody2D"]
+
+[node name="attack" type="Area2D" parent="."]
+script = ExtResource("1_kel2l")
+metadata/_custom_type_script = "uid://btxitkyvfstbt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+shape = SubResource("RectangleShape2D_grxin")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="attack"]
+sprite_frames = SubResource("SpriteFrames_xc7i4")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3_hbtid")
+metadata/_custom_type_script = "uid://2ljga3vpjswk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_w4t5v")
+debug_color = Color(0.88761103, 0.3003779, 0.36035585, 0.41960785)

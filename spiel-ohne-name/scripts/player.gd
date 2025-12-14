@@ -11,14 +11,6 @@ var offsetV:Vector2 = Vector2(offset, 0.0)
 var start_timer:bool = true#to differentiate between 'hold' and 'release'
 var start_draw:bool = true
 
-var atk_noise:float = 2.5#max distance a vertex can diviate from start-end-line
-var atk_middle_noise:float = 0.6#percentage of equality between start/end (1 -> perfect in middle | 0.0 -> distance to sstart/end irrelevant)
-var atk_max_dis:float = 50#max distance most farthest away vertex is allowed to have
-var atk_min_dis:float = 10#min distance most closest vertex needs to have (seperate from atk_noise)
-var atk_minmin_dis:float = 0.0#one point has to bee atleast this far away
-
-var shape = find_shape.new(atk_noise, atk_middle_noise, atk_min_dis, atk_max_dis, atk_minmin_dis)
-
 # |PI| left ; 0 right ; PI/2 down ; -PI/2 up
 # [3 .. -3]
 var rotation_noise:float = 1.0
@@ -36,9 +28,6 @@ var draw_timer:Timer#variable to count time
 var display_mid:Vector2 = Vector2(0.0, 0.0)
 
 func _ready() -> void:
-	add_child(shape)
-	shape.width = 2
-	shape.default_color = Color(255.0, 255.0, 255.0, 0.2)
 	pass
 
 func _process(_delta: float) -> void:
@@ -53,7 +42,7 @@ func _process(_delta: float) -> void:
 			start_timer = false
 		#when input-time startet, until end/ready again
 		if start_draw:
-			shape.add_point(get_local_mouse_position())
+			$find_shape.add_point(get_local_mouse_position())
 	
 	#if stopped hold to attack
 	if Input.is_action_just_released("LMB"):
@@ -70,11 +59,11 @@ func timer_end() -> void:
 
 ##if input-time is over
 func end_draw() -> void:
-	if shape.analyse_by_distance():
-		process_attack(display_mid, shape.get_shape_number(), shape)
+	if $find_shape.analyse_by_distance():
+		process_attack(display_mid, $find_shape.get_shape_number(), $find_shape)
 	else:
 		print("too short")
-	shape.clear_points()
+	$find_shape.clear_points()
 	if draw_timer:
 		draw_timer.queue_free()
 		draw_timer = null
@@ -151,6 +140,8 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 		-1:
 			print("NOT FOUND")
 		0:
+			print("POINT")
+		1:
 			print("LINE")
 			#angle ray from player to line bigger 90 - noise and smaller 90 + noise
 			#TODO problem when moving
@@ -171,7 +162,7 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 				attack.rotate(PI * 0.25)
 				attack.rotate_hitbox(-PI * 0.25)
 				attack.texture = load("res://assets/20251201test_sword_small+diagonal_thrust.png")#handle to player
-		1:
+		2:
 			print("ARCH")
 			
 			var swipe_hitbox:Hitbox = Hitbox.new(swipe_damage, 0.5, $swipe_attack.shape)
