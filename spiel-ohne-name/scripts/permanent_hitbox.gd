@@ -1,8 +1,9 @@
 extends Area2D
 class_name pHitbox
 
-@onready var damage:int = owner.damage
-@onready var cooldown:float = owner.cooldown
+
+var damage:int
+var cooldown:float
 var cooldown_over:bool = true
 
 func _process(_delta: float) -> void:
@@ -12,10 +13,17 @@ func _process(_delta: float) -> void:
 		print("?")'
 	pass
 
-func attack(hitbox_lifetime:float) -> void:
+func attack(_damage:int, hitbox_lifetime:float, _cooldown = null) -> void:
+	damage = _damage
+	if _cooldown and _cooldown is float:
+		cooldown = _cooldown
+	else:
+		cooldown = 0.0
+	
 	if not cooldown_over:
 		print("-------------------------------------")
 		return
+	print("attack")
 	on()
 	cooldown_start()
 	#is active as long as
@@ -46,7 +54,7 @@ func _ready() -> void:
 
 #
 func off() -> void:
-	print("OFF")
+	#print("OFF")
 	for node:Object in self.get_children():
 		if node is Timer:
 			continue
@@ -57,7 +65,7 @@ func off() -> void:
 
 #
 func on() -> void:
-	print("ON")
+	#print("ON")
 	for node:Object in self.get_children():
 		if node is Timer:
 			continue
@@ -74,12 +82,16 @@ func cooldown_end() -> void:
 func cooldown_start() -> void:
 	cooldown_over = false
 
+func set_damage(dmg:int) -> void:
+	damage = dmg
+
 #do when hit
 func _on_area_entered(area:Area2D) -> void:
 	if self.owner == area.owner:
 		print("CAN'T HIT IT SELF")
 		return
-	
+	print(self.owner)
+	print(area.owner)
 	if not area.has_method("take_damage"):#equals "check if hurtbox"
 		return
 	print("---------------------HIT-------------------")

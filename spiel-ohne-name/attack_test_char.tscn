@@ -29,6 +29,7 @@ metadata/_custom_type_script = "uid://btxitkyvfstbt"
 shape = SubResource("RectangleShape2D_grxin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="attack"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xc7i4")
 
 [node name="Hurtbox" type="Area2D" parent="."]

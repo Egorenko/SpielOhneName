@@ -8,18 +8,24 @@ var cooldown = test_stat.cooldown
 var speed = test_stat.speed
 var atk_speed = test_stat.attack_speed
 
+var local_position:Vector2 = Vector2(0.0, 0.0) 
+
 func _ready() -> void:
-	$AnimationPlayer/Node2D/Sprite2D/pHitbox.attack(atk_speed)
+	$AnimationPlayer/Node2D/Sprite2D/pHitbox.attack(damage, atk_speed, cooldown)
+	if test_stat:
+		health = test_stat.health
+		damage = test_stat.damage
+		cooldown = test_stat.cooldown
+		speed = test_stat.speed
+		atk_speed = test_stat.attack_speed
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("LMB"):
-		var angle = self.global_position.angle_to_point(get_global_mouse_position())
-		$AnimationPlayer/Node2D.rotation = angle
-		$AnimationPlayer/Node2D/Sprite2D.visible = true
-		$AnimationPlayer.current_animation = "attack_test"
-		$AnimationPlayer/Node2D/Sprite2D/pHitbox.attack(atk_speed)
-		$AnimationPlayer.speed_scale = $AnimationPlayer.current_animation_length / atk_speed
-		$AnimationPlayer.play("attack_test")
+		$attack2.rotation = local_position.angle_to_point(get_local_mouse_position())
+		$attack2.attack()
+	if event.is_action_pressed("RMB"):
+		$attack.rotation = local_position.angle_to_point(get_local_mouse_position())
+		$attack.attack()
 		
 
 func _physics_process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0v4sd7fxed5j"]
+[gd_scene load_steps=18 format=3 uid="uid://d0v4sd7fxed5j"]
 
 [ext_resource type="Script" uid="uid://dcl2lr6xaptaf" path="res://test_attack.gd" id="1_ba3qt"]
 [ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/test_hurtbox.gd" id="1_p0h6r"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://d1gur0gjdokex" path="res://assets/20251210test_diagonal_thrust.png" id="3_ba3qt"]
 [ext_resource type="Animation" uid="uid://d4jy5tocquctc" path="res://animations/attack_test.res" id="3_uevq2"]
 [ext_resource type="Script" uid="uid://b35f1ad4uy5uq" path="res://scripts/permanent_hitbox.gd" id="6_uevq2"]
+[ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack_abstract.gd" id="8_3uihl"]
+[ext_resource type="Resource" uid="uid://k8wpqffslyyf" path="res://scripts/ressources/attack_stats/thrust_stats1.tres" id="9_3e7wu"]
+[ext_resource type="Resource" uid="uid://rhbeywp2o4ul" path="res://scripts/ressources/attack_stats/swipe_stats1.tres" id="9_3uihl"]
 
 [sub_resource type="Animation" id="Animation_uevq2"]
 length = 0.001
@@ -93,6 +96,7 @@ libraries = {
 }
 
 [node name="Node2D" type="Node2D" parent="AnimationPlayer"]
+visible = false
 position = Vector2(100, 62)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer/Node2D"]
@@ -117,6 +121,7 @@ texture_filter = 1
 texture = ExtResource("2_dueac")
 
 [node name="phys" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_tp0s4")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -128,3 +133,13 @@ metadata/_custom_type_script = "uid://2ljga3vpjswk"
 [node name="hurt" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_o8s7a")
 debug_color = Color(0.90389454, 0.25380948, 0.44869822, 0.41960785)
+
+[node name="attack" type="Node2D" parent="."]
+script = ExtResource("8_3uihl")
+stats = ExtResource("9_3uihl")
+metadata/_custom_type_script = "uid://btxitkyvfstbt"
+
+[node name="attack2" type="Node2D" parent="."]
+script = ExtResource("8_3uihl")
+stats = ExtResource("9_3e7wu")
+metadata/_custom_type_script = "uid://btxitkyvfstbt"

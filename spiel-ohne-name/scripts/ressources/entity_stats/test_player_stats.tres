@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="stats" load_steps=2 format=3 uid="uid://csbbcafit3ltn"]
+[gd_resource type="Resource" script_class="entity_stats" load_steps=2 format=3 uid="uid://csbbcafit3ltn"]
 
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/ressources/entity_stats/entity_stats.gd" id="1_wgfwk"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_wgfwk")
 health = 10
 damage = 1
-cooldown = 0.5
+cooldown = 10.0
 speed = 4000
 attack_speed = 10.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"

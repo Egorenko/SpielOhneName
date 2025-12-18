@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="attack_stats" load_steps=4 format=3 uid="uid://rhbeywp2o4ul"]
+
+[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/ressources/attack_stats/attack_stats.gd" id="1_hj255"]
+[ext_resource type="Texture2D" uid="uid://bkq6bnjh1wwjw" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="2_xhunc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wr2jd"]
+resource_local_to_scene = true
+size = Vector2(5, 20)
+
+[resource]
+script = ExtResource("1_hj255")
+damage = 1
+cooldown = 0.5
+attack_time = 0.2
+hitbox = SubResource("RectangleShape2D_wr2jd")
+weapon = ExtResource("2_xhunc")
+offset = Vector2(15, 0)
+metadata/_custom_type_script = "uid://g3ewxx0o313"

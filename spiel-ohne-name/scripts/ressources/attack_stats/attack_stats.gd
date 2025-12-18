@@ -9,4 +9,8 @@ class_name attack_stats
 @export var attack_time:float
 @export var hitbox:Shape2D
 @export var anim:Animation
-@export var weapon:Texture2D
+@export var weapon:CompressedTexture2D
+@export var offset:Vector2
+@export var sprite_rotation:float
+@export var hitbox_rotation:float
+@export var rotation:float

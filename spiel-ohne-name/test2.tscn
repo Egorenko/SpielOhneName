@@ -1,18 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cv7h0cs7hoky7"]
+[gd_scene load_steps=6 format=3 uid="uid://cv7h0cs7hoky7"]
 
 [ext_resource type="Script" uid="uid://c8rm2n6385qv4" path="res://test_2.gd" id="1_qih2i"]
 [ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/test_hurtbox.gd" id="1_vfvc6"]
-[ext_resource type="Script" uid="uid://b35f1ad4uy5uq" path="res://scripts/permanent_hitbox.gd" id="3_sth5e"]
 [ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack_abstract.gd" id="4_2pks0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qih2i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sth5e"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2pks0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yerdr"]
-radius = 24.020824
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_qih2i")
@@ -24,28 +18,28 @@ shape = SubResource("RectangleShape2D_qih2i")
 script = ExtResource("1_vfvc6")
 metadata/_custom_type_script = "uid://2ljga3vpjswk"
 
+[node name="ProgressBar" type="ProgressBar" parent="Hurtbox" node_paths=PackedStringArray("shortcut_context")]
+modulate = Color(1, 0, 0, 1)
+show_behind_parent = true
+z_index = -1
+texture_filter = 1
+offset_left = -9.0
+offset_top = -15.0
+offset_right = 10.0
+offset_bottom = -11.0
+shortcut_context = NodePath("")
+accessibility_name = "HP"
+accessibility_live = 2
+accessibility_controls_nodes = Array[NodePath]([NodePath("../..")])
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_sth5e")
 debug_color = Color(0.8819358, 0.30480587, 0.38059732, 0.41960785)
-
-[node name="pHitbox" type="Area2D" parent="."]
-script = ExtResource("3_sth5e")
-metadata/_custom_type_script = "uid://b35f1ad4uy5uq"
-
-[node name="hit" type="CollisionShape2D" parent="pHitbox"]
-shape = SubResource("CircleShape2D_2pks0")
-debug_color = Color(0.7713253, 0.44446555, 0, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="attack" type="Node2D" parent="."]
 script = ExtResource("4_2pks0")
 metadata/_custom_type_script = "uid://btxitkyvfstbt"
-
-[node name="pHitbox" type="Area2D" parent="attack"]
-script = ExtResource("3_sth5e")
-metadata/_custom_type_script = "uid://b35f1ad4uy5uq"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack/pHitbox"]
-shape = SubResource("CircleShape2D_yerdr")
-debug_color = Color(0.5812706, 0.39559135, 0.97332066, 0.41960785)

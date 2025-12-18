@@ -146,32 +146,15 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 			#angle ray from player to line bigger 90 - noise and smaller 90 + noise
 			#TODO problem when moving
 			if (PI * 0.5 - rotation_noise <= abs(char_to_mid.angle_to(midLine))) and (abs(char_to_mid.angle_to(midLine)) <= PI * 0.5 + rotation_noise):
-				var block_hitbox:Hitbox = Hitbox.new(block_hp, 0.5, $thrust_attack.shape)
-				block_hitbox.scale = $shield_block.scale
-				var attack:attack_sprite = attack_sprite.new(block_hitbox)
-				add_child(attack)
-				attack.rotate_around_pivot(char_pos,char_pos.angle_to_point(mid), offset)
-				attack.rotate(PI * -0.5)
-				attack.texture = load("res://assets/20251126test_shield_smallF.png")#upper end to player
+				$block.rotation = char_pos.angle_to_point(mid)
+				$block.attack()
 			else:
-				var thrust_hitbox:Hitbox = Hitbox.new(thrust_damage, 0.5, $thrust_attack.shape)
-				thrust_hitbox.scale = $thrust_attack.scale
-				var attack:attack_sprite = attack_sprite.new(thrust_hitbox)
-				add_child(attack)
-				attack.rotate_around_pivot(char_pos, midLine_rotation, offset)
-				attack.rotate(PI * 0.25)
-				attack.rotate_hitbox(-PI * 0.25)
-				attack.texture = load("res://assets/20251201test_sword_small+diagonal_thrust.png")#handle to player
+				$thrust_attack.rotation = midLine_rotation
+				$thrust_attack.attack()
 		2:
 			print("ARCH")
-			
-			var swipe_hitbox:Hitbox = Hitbox.new(swipe_damage, 0.5, $swipe_attack.shape)
-			swipe_hitbox.scale = $swipe_attack.scale
-			var attack:attack_sprite = attack_sprite.new(swipe_hitbox)
-			add_child(attack)
-			attack.rotate_around_pivot(char_pos, char_pos.angle_to_point(mid), offset)
-			attack.rotate_hitbox(PI * 0.5)
-			attack.texture = load("res://assets/20251201test_sword_small+diagonal_swipe.png")
+			$swipe_attack.rotation = char_pos.angle_to_point(mid)
+			$swipe_attack.attack()
 	return
 
 #-------------------------------------------------------------------------------

@@ -63,12 +63,19 @@ func analyse_by_distance() -> bool:
 	end_vertex = self.points[self.points.size()-1]
 	help_vector = end_vertex - start_vertex
 	
+	'##########################################################################'
 	#red line; visual help
 	var help:Line2D = Line2D.new()
 	help.points = self.points
 	help.width = 1
-	help.default_color = Color(255.0, 0.0, 0.0, 0.3)
+	help.default_color = Color(255.0, 0.0, 0.0, 0.2)
 	add_child(help)
+	var timer:Timer = Timer.new()
+	add_child(timer)
+	timer.one_shot = true
+	timer.timeout.connect(help.queue_free)
+	timer.call_deferred("start", 3.0)
+	'##########################################################################'
 	
 	var y2y1:float = (end_vertex.y - start_vertex.y)
 	var x2x1:float = (end_vertex.x - start_vertex.x)
