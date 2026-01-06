@@ -5,9 +5,9 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_180hb")
-line_noise = 2.5
-middle_noise = 0.6
-min_dis_border = 10.0
-max_dis_border = 50.0
-max_dis_not_allowed = 0.01
+line_noise = 0.5
+middle_noise = 0.3
+min_dis_border = 1.0
+max_dis_border = 10.0
+max_dis_not_allowed = 1.0
 metadata/_custom_type_script = "uid://bj3ivvfexlyey"

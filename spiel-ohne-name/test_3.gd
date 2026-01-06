@@ -1,4 +1,14 @@
 extends CharacterBody2D
-var health:int = 10
-var damage = 0
-var cooldown = 0.0
+@export var stats:entity_stats 
+var healthbar:Healthbar = Healthbar.new()
+
+func _ready() -> void:
+	
+	add_child(healthbar)
+	healthbar.owner = self
+
+func on_interact() -> void:
+	print("interact")
+
+func on_death() -> void:
+	$AnimationPlayer.play("char_body/death")

@@ -1,15 +1,111 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv7h0cs7hoky7"]
+[gd_scene load_steps=15 format=3 uid="uid://cv7h0cs7hoky7"]
 
-[ext_resource type="Script" uid="uid://c8rm2n6385qv4" path="res://test_2.gd" id="1_qih2i"]
-[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/test_hurtbox.gd" id="1_vfvc6"]
-[ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack_abstract.gd" id="4_2pks0"]
+[ext_resource type="Script" uid="uid://c0fokllbtbvl3" path="res://test_3.gd" id="1_kshcw"]
+[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="1_vfvc6"]
+[ext_resource type="StyleBox" uid="uid://lko5qq3uet2k" path="res://assets/healthbar1_outer.tres" id="2_ijgdv"]
+[ext_resource type="Script" uid="uid://vtkv24ig5neo" path="res://healthbar.gd" id="2_sth5e"]
+[ext_resource type="Resource" uid="uid://csbbcafit3ltn" path="res://scripts/ressources/entity_stats/test_player_stats.tres" id="2_tiqs3"]
+[ext_resource type="StyleBox" uid="uid://brfj0esllp28d" path="res://assets/healthbar1_inner.tres" id="3_ow83g"]
+[ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack.gd" id="4_2pks0"]
+[ext_resource type="AnimationLibrary" uid="uid://nf1e3b5d7q0g" path="res://animations/char_body(lyb).res" id="5_yerdr"]
+[ext_resource type="Script" uid="uid://dqtxte4tdqhs7" path="res://scripts/interactable.gd" id="9_tiqs3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qih2i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sth5e"]
 
-[node name="enemy" type="CharacterBody2D"]
-script = ExtResource("1_qih2i")
+[sub_resource type="Animation" id="Animation_yerdr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ijgdv"]
+_data = {
+&"RESET": SubResource("Animation_yerdr")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmjtd"]
+
+[node name="test2" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_kshcw")
+stats = ExtResource("2_tiqs3")
+
+[node name="healthbar" type="ProgressBar" parent="."]
+visible = false
+z_index = 1
+texture_filter = 1
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 63.0
+offset_bottom = 2.0
+scale = Vector2(0.25, 0.25)
+theme_override_styles/background = ExtResource("2_ijgdv")
+theme_override_styles/fill = ExtResource("3_ow83g")
+max_value = 10.0
+step = 1.0
+value = 5.0
+show_percentage = false
+script = ExtResource("2_sth5e")
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qih2i")
@@ -18,28 +114,26 @@ shape = SubResource("RectangleShape2D_qih2i")
 script = ExtResource("1_vfvc6")
 metadata/_custom_type_script = "uid://2ljga3vpjswk"
 
-[node name="ProgressBar" type="ProgressBar" parent="Hurtbox" node_paths=PackedStringArray("shortcut_context")]
-modulate = Color(1, 0, 0, 1)
-show_behind_parent = true
-z_index = -1
-texture_filter = 1
-offset_left = -9.0
-offset_top = -15.0
-offset_right = 10.0
-offset_bottom = -11.0
-shortcut_context = NodePath("")
-accessibility_name = "HP"
-accessibility_live = 2
-accessibility_controls_nodes = Array[NodePath]([NodePath("../..")])
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_sth5e")
 debug_color = Color(0.8819358, 0.30480587, 0.38059732, 0.41960785)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="attack" type="Node2D" parent="."]
 script = ExtResource("4_2pks0")
 metadata/_custom_type_script = "uid://btxitkyvfstbt"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../healthbar")
+libraries = {
+&"": SubResource("AnimationLibrary_ijgdv"),
+&"char_body": ExtResource("5_yerdr")
+}
+
+[node name="Interactable" type="Area2D" parent="."]
+script = ExtResource("9_tiqs3")
+metadata/_custom_type_script = "uid://dqtxte4tdqhs7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -31)
+shape = SubResource("CircleShape2D_bmjtd")
+debug_color = Color(0.32941177, 0.5921569, 0.5568628, 1)

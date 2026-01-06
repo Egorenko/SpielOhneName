@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ed2lcojxy7vy"]
+
+[ext_resource type="Script" uid="uid://sc15o4tioh7s" path="res://test_angles.gd" id="1_y7xhg"]
+[ext_resource type="Script" uid="uid://cthaq5k26syb3" path="res://scripts/find_shape.gd" id="2_rihp2"]
+[ext_resource type="Resource" uid="uid://dnjryuv5dwbfd" path="res://scripts/ressources/find_shape_stats/test_shape_stats.tres" id="3_5nwsj"]
+
+[node name="test_angles" type="Node2D"]
+script = ExtResource("1_y7xhg")
+
+[node name="find_shape" type="Line2D" parent="."]
+script = ExtResource("2_rihp2")
+shape_stats = ExtResource("3_5nwsj")
+metadata/_custom_type_script = "uid://cthaq5k26syb3"
+
+[node name="help" type="Line2D" parent="."]
+width = 5.0
+default_color = Color(1, 0, 0, 1)

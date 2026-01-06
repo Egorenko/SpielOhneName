@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="entity_stats" load_steps=2 format=3 uid="uid://csbbcafit3ltn"]
+[gd_resource type="Resource" script_class="entity_stats" load_steps=3 format=3 uid="uid://csbbcafit3ltn"]
 
+[ext_resource type="Resource" uid="uid://8tsa38xegkqm" path="res://scripts/ressources/health_stats/health1.tres" id="1_ikd2w"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/ressources/entity_stats/entity_stats.gd" id="1_wgfwk"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_wgfwk")
-health = 10
+health = ExtResource("1_ikd2w")
 damage = 1
 cooldown = 10.0
-speed = 4000
+speed = 15000
 attack_speed = 10.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"

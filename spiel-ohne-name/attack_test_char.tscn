@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpcl4jdkmfkkt"]
 
-[ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack_abstract.gd" id="1_kel2l"]
+[ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack.gd" id="1_kel2l"]
 [ext_resource type="Texture2D" uid="uid://bkq6bnjh1wwjw" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="2_cy32r"]
-[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/test_hurtbox.gd" id="3_hbtid"]
+[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="3_hbtid"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grxin"]
 

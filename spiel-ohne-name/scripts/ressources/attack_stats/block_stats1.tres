@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://hvh8i34x6j3" path="res://assets/20251126test_shield_smallF.png" id="2_25gwq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wvyv"]
+resource_local_to_scene = true
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_b1uow")
-cooldown = 4.0
-attack_time = 2.0
+cooldown = 3.0
+attack_time = 1.0
 hitbox = SubResource("RectangleShape2D_4wvyv")
 weapon = ExtResource("2_25gwq")
 offset = Vector2(15, 0)

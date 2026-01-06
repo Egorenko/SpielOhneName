@@ -1,17 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://mwf0gkhgmt44"]
+[gd_scene load_steps=8 format=3 uid="uid://mwf0gkhgmt44"]
 
 [ext_resource type="PackedScene" uid="uid://cv7h0cs7hoky7" path="res://test2.tscn" id="1_8uh7m"]
-[ext_resource type="PackedScene" uid="uid://d0v4sd7fxed5j" path="res://test_attack.tscn" id="2_6uqi0"]
-[ext_resource type="Script" uid="uid://c0fokllbtbvl3" path="res://test_3.gd" id="2_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://d0v4sd7fxed5j" path="res://test_player.tscn" id="2_6uqi0"]
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/ressources/health_stats/health.gd" id="3_ykrsh"]
+[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/ressources/entity_stats/entity_stats.gd" id="5_vbegm"]
+[ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest.tscn" id="5_ykrsh"]
+
+[sub_resource type="Resource" id="Resource_ykrsh"]
+resource_local_to_scene = true
+script = ExtResource("3_ykrsh")
+metadata/_custom_type_script = "uid://doxodrbw6wbd6"
+
+[sub_resource type="Resource" id="Resource_g14j6"]
+resource_local_to_scene = true
+script = ExtResource("5_vbegm")
+health = SubResource("Resource_ykrsh")
+damage = 1
+cooldown = 10.0
+speed = 15000
+attack_speed = 10.0
+metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
 [node name="Node2D" type="Node2D"]
 
 [node name="enemy" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(72, 36)
-script = ExtResource("2_8uh7m")
-
-[node name="enemy2" parent="." instance=ExtResource("1_8uh7m")]
-position = Vector2(126, 36)
-script = ExtResource("2_8uh7m")
+stats = SubResource("Resource_g14j6")
 
 [node name="char" parent="." instance=ExtResource("2_6uqi0")]
+
+[node name="Camera2D" type="Camera2D" parent="char"]
+zoom = Vector2(5, 5)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("5_ykrsh")]
+position = Vector2(-37, 25)

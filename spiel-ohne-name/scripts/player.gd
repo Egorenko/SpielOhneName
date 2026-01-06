@@ -1,12 +1,9 @@
-extends CharacterBody2D
+class_name player1 extends CharacterBody2D
+
+@export var stats:entity_stats = preload("res://scripts/ressources/entity_stats/player_stats.tres")
 
 var SPEED = 15000.0
-const JUMP_VELOCITY = -400.0
-
-#var change = true
-
-var offset:float = 20.0
-var offsetV:Vector2 = Vector2(offset, 0.0)
+#const JUMP_VELOCITY = -400.0
 
 var start_timer:bool = true#to differentiate between 'hold' and 'release'
 var start_draw:bool = true
@@ -18,7 +15,6 @@ var rotation_noise:float = 1.0
 var thrust_damage:int = 3
 var swipe_damage:int = 1
 var block_hp:int = 2
-var health:int = 10
 
 var sprint_on:bool = true
 
@@ -27,12 +23,46 @@ var draw_timer:Timer#variable to count time
 
 var display_mid:Vector2 = Vector2(0.0, 0.0)
 
+@onready var healthbar: ProgressBar = $healthbar
+
 func _ready() -> void:
+	$Pickup_Area.interact(-1)
+	healthbar.max_value = stats.health.get_max_hp()
+	healthbar.value = stats.health.get_hp()
+	'###############################################################'
+	add_child(total_timer)
+	total_timer.connect("timeout", end)
+	add_child(vertex_timer)
+	vertex_timer.connect("timeout", per_vertex)
+	'###############################################################'
 	pass
+
+'#############################################################################'
+var total_timer:Timer = Timer.new()
+var total_time:float = 0.3
+var vertex_timer:Timer = Timer.new()
+var vertex_time:float = total_time * 0.1
+var hold:bool = false
+
+func per_vertex() -> void:
+	if hold:
+		$find_shape.add_point(get_local_mouse_position())
+	else:
+		vertex_timer.stop()
+func end() -> void:
+	vertex_timer.stop()
+	total_timer.stop()
+	hold = false
+	if $find_shape.analyse_by_distance():
+		process_attack(display_mid, $find_shape.get_shape_number(), $find_shape)
+	else:
+		print("too short")
+	$find_shape.clear_points()
+'#############################################################################'
 
 func _process(_delta: float) -> void:
 	#hold to draw attack shape
-	if Input.is_action_pressed("LMB"):
+	'if Input.is_action_pressed("LMB"):
 		#max time for input
 		if start_timer:
 			draw_timer = Timer.new()
@@ -50,7 +80,7 @@ func _process(_delta: float) -> void:
 			draw_timer.stop()
 		end_draw()
 		start_timer = true
-		start_draw = true
+		start_draw = true'
 
 ##just a small brain help
 func timer_end() -> void:
@@ -71,6 +101,14 @@ func end_draw() -> void:
 
 func _input(event: InputEvent) -> void:
 	
+	if Input.is_action_just_pressed("LMB"):
+		total_timer.start(total_time)
+		vertex_timer.start(vertex_time)
+	if event.is_action_pressed("LMB"):
+		hold = true
+	if event.is_action_released("LMB"):
+		hold = false
+	
 	#TODO dodge / press
 	if event.is_action_pressed("Ctrl") and not event.is_echo():
 		print("DODGE")
@@ -81,12 +119,12 @@ func _input(event: InputEvent) -> void:
 		if sprint_on:
 			print("SPRINT")
 			#$Sprite2D_test.material.shader = load("res://shaders/test_shader.gdshader")
-			SPEED = 45000
+			stats.speed = 45000
 			sprint_on = false
 		else:
 			print("STOP SPRINT")
 			#$Sprite2D_test.material.shader = null
-			SPEED = 15000
+			stats.speed = 15000
 			sprint_on = true
 		pass
 	
@@ -95,28 +133,28 @@ func _input(event: InputEvent) -> void:
 		print("RMB")
 		pass
 
+@onready var new_texture:AtlasTexture = $Sprite2D_test.texture as AtlasTexture
 ##movement
 func _physics_process(delta: float) -> void:
 # Get the input direction and handle the movement/deceleration.
 # As good practice, you should replace UI actions with custom gameplay actions.
 	velocity = Input.get_vector("A", "D", "W", "S")
 	if velocity.x != 0 and velocity.y != 0:
-		velocity = velocity * 0.707
-	var new_texture: Texture2D
+		velocity = velocity * 0.707107
 	if velocity.y < 0:
-		new_texture = preload("res://assets/20251203test_charB2.png")
+		new_texture.region = Rect2(60.0, 5.0, 17.0, 22.0)
 	elif velocity.y > 0:
-		new_texture = preload("res://assets/20251203test_charF2.png")
+		new_texture.region = Rect2(40.0, 5.0, 17.0, 22.0)
 	elif velocity.x > 0:
-		new_texture = preload("res://assets/20251103test_charR.png")
+		new_texture.region = Rect2(22.0, 5.0, 17.0, 22.0)
 	elif velocity.x < 0:
-		new_texture = preload("res://assets/20251103test_charL.png")
+		new_texture.region = Rect2(4.0, 5.0, 17.0, 22.0)
 	if new_texture and $Sprite2D_test.texture != new_texture:
 		$Sprite2D_test.texture = new_texture
 	if velocity:
-		velocity = velocity * SPEED * delta
+		velocity = velocity * stats.speed * delta
 	else:
-		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
+		velocity = Vector2(move_toward(velocity.x, 0, stats.speed), move_toward(velocity.y, 0, stats.speed))
 	move_and_slide()
 
 ## tryes to find fitting attack for shape
@@ -141,6 +179,8 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 			print("NOT FOUND")
 		0:
 			print("POINT")
+			$Interact_Area.position = get_local_mouse_position()
+			$Interact_Area.interact(0.1)
 		1:
 			print("LINE")
 			#angle ray from player to line bigger 90 - noise and smaller 90 + noise
@@ -153,7 +193,7 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 				$thrust_attack.attack()
 		2:
 			print("ARCH")
-			$swipe_attack.rotation = char_pos.angle_to_point(mid)
+			$swipe_attack.rotation = mid.angle_to_point($find_shape.max_dis_vertex)
 			$swipe_attack.attack()
 	return
 

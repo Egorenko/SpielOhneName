@@ -6,18 +6,17 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdxuq"]
 resource_local_to_scene = true
-size = Vector2(5, 20)
+size = Vector2(25, 6)
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_b36gw")
 damage = 3
-cooldown = 1.0
-attack_time = 0.5
+cooldown = 0.6
+attack_time = 0.3
 hitbox = SubResource("RectangleShape2D_xdxuq")
 anim = ExtResource("1_xdxuq")
 weapon = ExtResource("3_xdxuq")
 offset = Vector2(20, 0)
 sprite_rotation = 0.785
-hitbox_rotation = 1.571
 metadata/_custom_type_script = "uid://g3ewxx0o313"

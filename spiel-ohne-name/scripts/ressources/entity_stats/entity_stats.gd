@@ -1,9 +1,8 @@
-extends Resource
-class_name entity_stats
+class_name entity_stats extends Resource
 
+@export var health:Health
 ##should be base
-@export var health:int
-##should be basse
+##TODO make Type = Damage
 @export var damage:int
 ##in seconds, until next attack, after key press
 @export var cooldown:float

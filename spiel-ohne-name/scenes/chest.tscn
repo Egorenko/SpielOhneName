@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://btlppk87oudyb"]
+
+[ext_resource type="Texture2D" uid="uid://cb7fm01q5ajc7" path="res://assets/20260103test_chest.png" id="1_8uwsg"]
+[ext_resource type="Script" uid="uid://boxvduyxkp6q4" path="res://scripts/chest.gd" id="1_bp1or"]
+[ext_resource type="Script" uid="uid://dqtxte4tdqhs7" path="res://scripts/interactable.gd" id="2_bp1or"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7mpe"]
+atlas = ExtResource("1_8uwsg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv3sb"]
+size = Vector2(14, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trlyu"]
+size = Vector2(14, 11)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_bp1or")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_x7mpe")
+
+[node name="Interactable" type="Area2D" parent="."]
+script = ExtResource("2_bp1or")
+metadata/_custom_type_script = "uid://dqtxte4tdqhs7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_bv3sb")
+debug_color = Color(0.88556206, 0.2548284, 0.54551005, 0.41960785)
+
+[node name="phys" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_trlyu")

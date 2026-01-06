@@ -1,7 +1,8 @@
-extends Node2D
-class_name attack
+class_name Attack extends Node2D
 
+@onready var owner_stats:entity_stats = owner.stats
 @export var stats:attack_stats
+
 var damage:int = 0
 var cooldown:float = 0.0
 var attack_time:float = 1.0
@@ -14,9 +15,13 @@ var sprite_rot:float
 var hitbox_rotation:float
 var rot:float
 
+var effect:Array[effects]
+
 var animator:AnimationPlayer = AnimationPlayer.new()
 
 func _ready() -> void:
+	weapon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	weapon.z_index = -1
 	
 	if stats:
 		damage = stats.damage
@@ -43,9 +48,19 @@ func _ready() -> void:
 	
 	rotate_attack(rot)
 
+func make_invisible()->void:
+	weapon.visible = false
+
 func attack() -> void:
-	hitbox.attack(damage, attack_time, cooldown)
+	hitbox.attack(damage * owner_stats.damage, attack_time, effect, cooldown)
+	print(weapon.visible)
 	weapon.visible = true
+	print(weapon.visible)
+	var help:Timer = Timer.new()
+	add_child(help)
+	help.one_shot = true
+	help.timeout.connect(make_invisible)
+	help.call_deferred("start", attack_time)
 	
 	'var a_name = anim.find_animation(animation)
 	anim.current_animation = a_name
@@ -64,5 +79,18 @@ func _process(_delta: float) -> void:
 	'if not anim.is_playing():
 		weapon.visible = false'
 	#turn off if hitbox off
-	if hitbox.monitoring == false and hitbox.monitorable == false:
-		weapon.visible = false
+	'if hitbox.monitoring == false and hitbox.monitorable == false:
+		weapon.visible = false'
+	pass
+
+func add_effect(_effect) -> void:
+	if _effect is not Array:
+		_effect = [_effect]
+	effect.append_array(_effect)
+	effect.sort_custom(func(a,b): return a.priority > b.priority)
+
+func delete_effect_front() -> void:
+	effect.pop_front()
+
+func delete_effect_back() -> void:
+	effect.pop_back()
