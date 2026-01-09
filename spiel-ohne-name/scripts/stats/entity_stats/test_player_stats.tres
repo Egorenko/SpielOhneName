@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="entity_stats" load_steps=3 format=3 uid="uid://csbbcafit3ltn"]
 
-[ext_resource type="Resource" uid="uid://8tsa38xegkqm" path="res://scripts/ressources/health_stats/health1.tres" id="1_ikd2w"]
-[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/ressources/entity_stats/entity_stats.gd" id="1_wgfwk"]
+[ext_resource type="Resource" uid="uid://8tsa38xegkqm" path="res://scripts/stats/health_stats/health1.tres" id="1_ikd2w"]
+[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="1_wgfwk"]
 
 [resource]
 resource_local_to_scene = true

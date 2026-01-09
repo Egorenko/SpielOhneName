@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="1_vfvc6"]
 [ext_resource type="StyleBox" uid="uid://lko5qq3uet2k" path="res://assets/healthbar1_outer.tres" id="2_ijgdv"]
 [ext_resource type="Script" uid="uid://vtkv24ig5neo" path="res://scripts/healthbar.gd" id="2_sth5e"]
-[ext_resource type="Resource" uid="uid://csbbcafit3ltn" path="res://scripts/ressources/entity_stats/test_player_stats.tres" id="2_tiqs3"]
+[ext_resource type="Resource" uid="uid://csbbcafit3ltn" path="res://scripts/stats/entity_stats/test_player_stats.tres" id="2_tiqs3"]
 [ext_resource type="StyleBox" uid="uid://brfj0esllp28d" path="res://assets/healthbar1_inner.tres" id="3_ow83g"]
 [ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack.gd" id="4_2pks0"]
 [ext_resource type="AnimationLibrary" uid="uid://nf1e3b5d7q0g" path="res://animations/char_body(lyb).res" id="5_yerdr"]

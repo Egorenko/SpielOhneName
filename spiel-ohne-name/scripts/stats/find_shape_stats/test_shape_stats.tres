@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="find_shape_stats" load_steps=2 format=3 uid="uid://dnjryuv5dwbfd"]
 
-[ext_resource type="Script" uid="uid://bj3ivvfexlyey" path="res://scripts/ressources/find_shape_stats/find_shape_stats.gd" id="1_180hb"]
+[ext_resource type="Script" uid="uid://bj3ivvfexlyey" path="res://scripts/stats/find_shape_stats/find_shape_stats.gd" id="1_180hb"]
 
 [resource]
 resource_local_to_scene = true

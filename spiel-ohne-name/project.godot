@@ -13,11 +13,27 @@ config_version=5
 config/name="SpielOhneName"
 run/main_scene="uid://cd1xkl8mcunfh"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="SpielOhneName"
+
+[file_customization]
+
+folder_colors={
+"res://animations/": "blue",
+"res://assets/": "green",
+"res://scenes/": "green",
+"res://scripts/": "yellow",
+"res://scripts/effects/": "blue",
+"res://scripts/entitys/": "green",
+"res://scripts/items/": "red",
+"res://scripts/items/useless/": "yellow",
+"res://scripts/items/weapons/": "yellow",
+"res://scripts/test/": "blue",
+"res://shaders/": "blue",
+"res://structures/": "blue"
+}
 
 [input]
 
