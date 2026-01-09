@@ -13,7 +13,8 @@ var arrayWithDoorInformation = [];
 
 
 func _ready() -> void:
-	noise = init_SimplexNoise($"../player".SEED);
+	#noise = init_SimplexNoise($"../player".SEED);
+	noise = init_SimplexNoise(123455);
 	
 	for i in range(0, dungeon_size.x): 
 		var arrayWithDoorInformationRow = []

@@ -13,9 +13,8 @@ func _ready() -> void:
 	var loaded_pattern_layer_1: TileMapPattern = ResourceLoader.load("res://structures/Structure_House_3.1.tres")
 
 	
-	noise = init_SimplexNoise($"../player".SEED);
-	
-	#Tilemap.set_cell(0, Vector2i(randi() % 50 - 25, randi() % 50 - 25), 1, GrassTile, 0);
+	#noise = init_SimplexNoise($"../player".SEED);
+	noise = init_SimplexNoise(123455);
 	
 	var ChunkSize: int = 25; # Chunksize in Tiles
 	var minDistanceFromBorder: float = 0.15; # distance the middle of the path should have to the border of the chunk in percent of tiles
@@ -33,7 +32,7 @@ func _ready() -> void:
 			if ((x >= posWay.x + maxWayWidth * ChunkSize or x <= posWay.x - maxWayWidth * ChunkSize) && (y >= posWay.y + maxWayWidth * ChunkSize or y <= posWay.y - maxWayWidth * ChunkSize)):
 				Tilemap.set_cell(0, Vector2i(x, y), 1, GrassTile, 0);
 			else: 
-				Tilemap.set_cell(0, Vector2i(x, y), 1, Vector2i(7, 1), 0);
+				Tilemap.set_cell(0, Vector2i(x, y), 1, Vector2i(6, 5), 0);
 				
 	var GrassTileDimension: Vector4i = Vector4i(
 		int(((noise.get_noise_1d(0 + 1458321) + 1.0) * (0.5 - minDistanceFromBorder) + maxWayAmplitude) * ChunkSize) + 1,
