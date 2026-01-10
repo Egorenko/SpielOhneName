@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var ai_entity_template: PackedScene = preload("res://ai_bot_2d.tscn")
+@onready var ai_entity_template: PackedScene = preload("res://scenes/ritter.tscn")
 var mouse_position: Vector2
 
 
@@ -8,7 +8,7 @@ var mouse_position: Vector2
 func _ready():
 	randomize()
 	# For convinience in changing the number of AI-entities to create
-	var num_entities:int = 3
+	var num_entities:int = 1
 	
 	# Create all the entities.
 	for i in range(0, num_entities):

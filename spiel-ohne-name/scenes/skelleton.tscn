@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtr26ge0tjxnb"]
+
+[ext_resource type="Script" uid="uid://dr67hepvqcr6l" path="res://scripts/entitys/skelleton.gd" id="1_viovb"]
+[ext_resource type="Texture2D" uid="uid://l0x8fkrxs7on" path="res://assets/Overworldspriteatlas.png" id="2_viovb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n3et"]
+atlas = ExtResource("2_viovb")
+region = Rect2(56, 84, 28, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyrqf"]
+atlas = ExtResource("2_viovb")
+region = Rect2(0, 84, 28, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pce27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n3et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyrqf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlwrl"]
+size = Vector2(26, 26)
+
+[node name="Skelleton" type="CharacterBody2D"]
+script = ExtResource("1_viovb")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pce27")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_dlwrl")

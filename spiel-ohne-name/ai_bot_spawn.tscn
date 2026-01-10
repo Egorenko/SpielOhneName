@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c52ogx0dyo721"]
 
 [ext_resource type="Script" uid="uid://bmbmd4ywildou" path="res://ai_bot_spawn.gd" id="1_iltar"]
-[ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://Player.tscn" id="2_uiyxu"]
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="2_uiyxu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uiyxu"]
 vertices = PackedVector2Array(1142, 622.203, 9.99219, 645.781, 10, 10, 1142, 10)
@@ -11,8 +11,8 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 1152, 0, 1152, 63
 [node name="AIBotSpawn" type="Node2D"]
 script = ExtResource("1_iltar")
 
-[node name="Player" parent="." instance=ExtResource("2_uiyxu")]
-unique_name_in_owner = true
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_uiyxu")
+
+[node name="player" parent="." instance=ExtResource("2_uiyxu")]

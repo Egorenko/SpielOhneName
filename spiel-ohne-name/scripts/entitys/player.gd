@@ -5,7 +5,7 @@ var can_teleport:bool = true
 var SEED:int = 9342
 '###'
 
-@export var stats:entity_stats = preload("res://scripts/ressources/entity_stats/player_stats.tres")
+@export var stats:entity_stats = preload("res://scripts/stats/entity_stats/player_stats.tres")
 
 var SPEED = 15000.0
 #const JUMP_VELOCITY = -400.0
@@ -31,6 +31,7 @@ var display_mid:Vector2 = Vector2(0.0, 0.0)
 @onready var healthbar: ProgressBar = $healthbar
 
 func _ready() -> void:
+	add_to_group("player")
 	$Pickup_Area.interact(-1)
 	healthbar.max_value = stats.health.get_max_hp()
 	healthbar.value = stats.health.get_hp()
