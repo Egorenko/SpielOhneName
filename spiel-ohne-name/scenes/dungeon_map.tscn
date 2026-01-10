@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmbmd4ywildou" path="res://ai_bot_spawn.gd" id="1_h053f"]
 [ext_resource type="Texture2D" uid="uid://duferjiihnyia" path="res://assets/DungeonSpriteAtlas.png" id="1_pw7fj"]
-[ext_resource type="Script" uid="uid://u3od0jxh2r6h" path="res://scripts/dungeon_map.gd" id="2_nolvg"]
-[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player_test.tscn" id="4_26w82"]
+[ext_resource type="Script" uid="uid://u3od0jxh2r6h" path="res://scripts/test/dungeon_map.gd" id="2_nolvg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_e4o3k"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

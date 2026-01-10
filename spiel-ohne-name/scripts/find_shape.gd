@@ -1,19 +1,30 @@
 class_name find_shape extends Line2D
 
 enum SHAPES{
-	line = 0,
-	arch = 1,
+	point = 0,
+	line = 1,
+	arch = 2,
+	
+	circle = 3,
 	
 	undefined = -1,
 }
 
-var line_noise:float
-var middle_noise:float
+@export var shape_stats:find_shape_stats
 
-var min_dis_border:float
-var max_dis_border:float
+var line_noise = 0.0
+var middle_noise = 0.0
+var min_dis_border = 0.0
+var max_dis_border = 0.0
+var max_dis_not_allowed = 0.0
 
-var max_dis_not_allowed:float
+func _ready() -> void:
+	if shape_stats:
+		line_noise = shape_stats.line_noise
+		middle_noise = shape_stats.middle_noise
+		min_dis_border = shape_stats.min_dis_border
+		max_dis_border = shape_stats.max_dis_border
+		max_dis_not_allowed = shape_stats.max_dis_not_allowed
 
 var start_vertex:Vector2
 var end_vertex:Vector2
@@ -26,16 +37,16 @@ var max_dis_pos_vertex:Vector2 = Vector2(0.0, 0.0)
 var max_dis_neg:float = 0
 var max_dis_neg_vertex:Vector2 = Vector2(0.0, 0.0)
 
-func _init(_line_noise:float, _middle_noise:float, _min_dis_border:float, _max_dis_border:float, _max_dis_not_allowed:float) -> void:
-	line_noise = _line_noise
-	middle_noise = _middle_noise
-	min_dis_border = _min_dis_border
-	max_dis_border = _max_dis_border
-	max_dis_not_allowed = _max_dis_not_allowed
-	analyse_by_distance()
-	return
+'################################'
+#in degree
+var degree_noise:float = 40
+#0,1 is vertex; 2 is degree
+var big_degrees:Array[Vector3]
+'################################'
 
-##Return, if it could be analysed
+#=_DISTANCE_=#
+
+'Return, if it could be analysed'
 ##Safes the max distance of all Points to a Line, formed by the first and last Point
 ##Safes:
 ##The Point with the absolut max distance (and its distance)
@@ -46,6 +57,7 @@ func _init(_line_noise:float, _middle_noise:float, _min_dis_border:float, _max_d
 ## max_dis_neg_vertex (max_dis_neg)
 ##WARNIG: these values are only reset, if this method is reused
 func analyse_by_distance() -> bool:
+	normalize()
 	#reset all dis
 	max_dis = 0.0
 	max_dis_vertex = Vector2(0.0, 0.0)
@@ -61,12 +73,19 @@ func analyse_by_distance() -> bool:
 	end_vertex = self.points[self.points.size()-1]
 	help_vector = end_vertex - start_vertex
 	
+	'##########################################################################'
 	#red line; visual help
 	var help:Line2D = Line2D.new()
 	help.points = self.points
-	help.width = 1
-	help.default_color = Color(255.0, 0.0, 0.0, 255.0)
+	help.width = 3
+	help.default_color = Color(255.0, 255.0, 255.0, 0.2)
 	add_child(help)
+	var timer:Timer = Timer.new()
+	add_child(timer)
+	timer.one_shot = true
+	timer.timeout.connect(help.queue_free)
+	timer.call_deferred("start", 3.0)
+	'##########################################################################'
 	
 	var y2y1:float = (end_vertex.y - start_vertex.y)
 	var x2x1:float = (end_vertex.x - start_vertex.x)
@@ -96,7 +115,33 @@ func analyse_by_distance() -> bool:
 	else:
 		max_dis = abs(max_dis_neg)
 		max_dis_vertex = max_dis_neg_vertex
-	return max_dis >= max_dis_not_allowed
+	return true
+
+#=_DEGREE_=#
+
+var test:Array[Vector2]
+
+func analyse_by_degree() -> void:
+	big_degrees.clear()
+	'###'
+	test.clear()
+	'###'
+	if points.size() < 3:
+		#print("too few vertices")
+		return
+	for i:int in range(1, points.size()-1):
+		var back:Vector2 = points[i] - points[i-1]
+		var front:Vector2 = points[i] - points[i+1]
+		var angle:float = rad_to_deg(back.angle_to(front))
+		if is_zero_approx(angle):
+			continue
+		#if angle over points[i] is out of noise
+		var PI_deg:float = rad_to_deg(PI)
+		if not ((PI_deg - degree_noise <= abs(angle)) and (abs(angle) <= PI_deg + degree_noise)):
+			big_degrees.append(Vector3(points[i].x, points[i].y, angle))
+			test.append(points[i])
+
+#==============================================================================#
 
 #all distance smaller noise
 func has_all_in_noise() -> bool:
@@ -122,11 +167,18 @@ func get_shape_number() -> int:
 	if not self.points:
 		print("NOTHING") 
 		return SHAPES.undefined
+	if is_point():
+		return SHAPES.point
 	if is_line(): 
 		return SHAPES.line
 	if is_arch(): 
 		return SHAPES.arch
+	
 	return SHAPES.undefined
+
+#if start and end and the point furthest out of noise too close
+func is_point() -> bool:
+	return start_vertex.distance_to(end_vertex) < max_dis_not_allowed and max_dis < max_dis_not_allowed
 
 #equal to "has no out of noise"
 func is_line() -> bool:
@@ -135,3 +187,22 @@ func is_line() -> bool:
 #if one* vertex(in only one direction) too far away -> line has to bend
 func is_arch() -> bool:
 	return (has_max_dis_in_middle()) and (not has_max_pos_and_neg()) and (has_max_in_borders())
+
+#============================_W_I_P_===========================================#
+##TODO
+func normalize() -> void:
+	var center := Vector2.ZERO
+	for p in points:
+		center += p
+		center /= points.size()
+	for i in range(points.size()):
+		points[i] -= center
+	# Scale
+	var max_dist := 10.0
+	'for p in points:
+		max_dist = max(max_dist, p.length())'
+	for i in range(points.size()):
+		points[i] /= max_dist
+	
+	#TODO
+	#resample to get a fixed amount of vetrices
