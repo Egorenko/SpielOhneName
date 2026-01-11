@@ -32,5 +32,5 @@ func _attack_player():
 	$thrust_attack.attack()
 
 func on_death():
-	$AnimationPlayer.play("Enemy/death")
+	$AnimationPlayer.play("ritter_death")
 	queue_free()

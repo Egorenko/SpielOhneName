@@ -8,7 +8,7 @@ var mouse_position: Vector2
 func _ready():
 	randomize()
 	# For convinience in changing the number of AI-entities to create
-	var num_entities:int = 1
+	var num_entities:int = 2
 	
 	# Create all the entities.
 	for i in range(0, num_entities):

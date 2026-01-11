@@ -143,7 +143,7 @@ func _input(event: InputEvent) -> void:
 ##movement
 func _physics_process(delta: float) -> void:
 	'###'
-	teleport()
+	#teleport()
 	'###'
 # Get the input direction and handle the movement/deceleration.
 # As good practice, you should replace UI actions with custom gameplay actions.
@@ -168,7 +168,6 @@ func _physics_process(delta: float) -> void:
 
 ## tryes to find fitting attack for shape
 func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
-	
 	var midLine:Vector2 = Vector2(0.0,0.0)
 	var mid:Vector2 = Vector2(0.0,0.0)
 	var midLine_rotation:float = 0.0
@@ -207,7 +206,7 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 	return
 
 #-------------------------------------------------------------------------------
-func teleport()-> bool:
+"""func teleport()-> bool:
 	var tile_pos = $"../TileMap".local_to_map(global_position)
 	var cell_data = $"../TileMap".get_cell_tile_data(0, tile_pos)
 	
@@ -225,3 +224,4 @@ func teleport()-> bool:
 				can_teleport = false;
 				return true;
 	return false;
+"""

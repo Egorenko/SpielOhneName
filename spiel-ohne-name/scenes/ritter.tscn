@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxqspnvyclpdn"]
+[gd_scene load_steps=22 format=3 uid="uid://dxqspnvyclpdn"]
 
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
 [ext_resource type="Texture2D" uid="uid://4m8jpfrvb48m" path="res://assets/20251209test_knight.png" id="2_lov5v"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/ritter.gd" id="2_y08xt"]
 [ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
 [ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack.gd" id="6_6swco"]
-[ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts//stats//attack_stats//thrust_stat1.tres" id="7_6swco"]
+[ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts/stats/attack_stats/thrust_stat1.tres" id="7_6swco"]
 
 [sub_resource type="Resource" id="Resource_cyrqf"]
 script = ExtResource("2_4n3et")
@@ -87,6 +87,7 @@ anti_aliasing = false
 
 [sub_resource type="Animation" id="Animation_6swco"]
 resource_name = "death"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -94,10 +95,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [0.0, 0.5235987755982988, 1.0471975511965976, 1.5707963267948966]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -106,10 +107,10 @@ tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": []
+"values": [true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -118,14 +119,54 @@ tracks/2/path = NodePath(".:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": []
+"values": [Color(0.8784314, 0.8784314, 0.8784314, 0.972549), Color(1, 1, 1, 0.18039216)]
+}
+
+[sub_resource type="Animation" id="Animation_ffcvf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ffcvf"]
 _data = {
+&"RESET": SubResource("Animation_ffcvf"),
 &"death": SubResource("Animation_6swco")
 }
 
