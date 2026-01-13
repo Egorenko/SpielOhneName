@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://coytyyvgpgbhl"]
+
+[ext_resource type="Script" uid="uid://d4kk8pbywjcpj" path="res://scripts/pick_up_item.gd" id="1_6muww"]
+[ext_resource type="Texture2D" uid="uid://dvk8rg7dl0mt8" path="res://assets/20251126test_wand_nature_blue_small+diagonal.png" id="2_6muww"]
+[ext_resource type="Script" uid="uid://dqtxte4tdqhs7" path="res://scripts/interactable.gd" id="3_ro5b8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vljjh"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_6muww")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_6muww")
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_ro5b8")
+metadata/_custom_type_script = "uid://dqtxte4tdqhs7"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_vljjh")

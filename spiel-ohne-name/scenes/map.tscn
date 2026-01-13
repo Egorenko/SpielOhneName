@@ -3,6 +3,18 @@
 [ext_resource type="Script" uid="uid://cr8gxxitfa5t2" path="res://tile_map.gd" id="2_e0an3"]
 [ext_resource type="Texture2D" uid="uid://bl4yt8fc86x3b" path="res://assets/Overworldspriteatlas.png" id="2_p5pve"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e0an3"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_p5pve"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urblq"]
 texture = ExtResource("2_p5pve")
 0:0/0 = 0
@@ -10,7 +22,7 @@ texture = ExtResource("2_p5pve")
 0:1/0 = 0
 1:1/0 = 0
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -20,7 +32,9 @@ texture = ExtResource("2_p5pve")
 5:0/0 = 0
 6:0/0 = 0
 7:0/0 = 0
+7:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_e0an3")
 7:1/0 = 0
+7:1/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_p5pve")
 6:1/0 = 0
 0:2/0 = 0
 1:2/0 = 0
@@ -61,7 +75,9 @@ texture = ExtResource("2_p5pve")
 
 [sub_resource type="TileSet" id="TileSet_71pa8"]
 physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
 navigation_layer_0/layers = 1
+navigation_layer_1/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_urblq")
 
 [node name="Map" type="Node2D"]
@@ -75,4 +91,5 @@ layer_0/tile_data = PackedInt32Array(196609, 131073, 0, 196610, 131073, 0, 19661
 layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(1, 327681, 2, 2, 327681, 2, 3, 327681, 2, 4, 327681, 2, 5, 327681, 2, 6, 327681, 2, 7, 327681, 2, 65543, 327681, 2, 65542, 327681, 2, 65541, 327681, 2, 65539, 327681, 2, 65538, 327681, 2, 65537, 327681, 2, 65540, 327681, 2, 131073, 327681, 2, 131074, 327681, 2, 131075, 327681, 2, 131076, 327681, 2, 131077, 327681, 2, 131078, 327681, 2, 131079, 327681, 2, 196609, 262145, 2, 196610, 262145, 2, 196611, 262145, 2, 196612, 262145, 2, 196613, 262145, 2, 196614, 262145, 2, 196615, 262145, 2, 0, 196609, 2, 65536, 196609, 2, 131072, 196609, 2, 196608, 65537, 2, 196616, 1, 2, 131080, 131073, 2, 65544, 131073, 2, 8, 131073, 2, 327687, 131073, 4, 327681, 131073, 4, 393223, 131073, 4, 393217, 131073, 4, 458753, 1, 4, 458759, 196609, 4, 458758, 458753, 3, 458757, 458753, 4, 458755, 393217, 4, 458754, 458753, 3)
 layer_2/name = "Layer2"
+layer_3/name = "Layer3"
 script = ExtResource("2_e0an3")

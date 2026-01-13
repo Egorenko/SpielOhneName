@@ -19,7 +19,7 @@ func _ready() -> void:
 	var ChunkSize: int = 25; # Chunksize in Tiles
 	var minDistanceFromBorder: float = 0.15; # distance the middle of the path should have to the border of the chunk in percent of tiles
 	var maxWayAmplitude: float = 0.1; # Maximum amplitude the path should have in percent of tiles. Full amplitude is two times this value since it can add and subtract the max amplitude
-	var maxWayWidth: float = 0.1; # maximum width of the path in percent of tiles. full width is two times this value for it can be added below and above the path
+	var maxWayWidth: float = 0.05; # maximum width of the path in percent of tiles. full width is two times this value for it can be added below and above the path
 	
 	for x in range(-50, 50):
 		for y in range(-50, 50):
