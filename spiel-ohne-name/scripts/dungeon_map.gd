@@ -1,5 +1,5 @@
 extends TileMap
-
+#
 @onready
 var Tilemap: TileMap = self;
 var teleport_tiles: Array[Vector4i] = [];
