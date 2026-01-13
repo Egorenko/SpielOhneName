@@ -1,9 +1,9 @@
 class_name attack_sprite extends Sprite2D
 
-var hitbox:Hitbox
+var hitbox:pHitbox
 var hitbox_rotation:float = 0
 
-func _init(_hitbox:Hitbox) -> void:
+func _init(_hitbox:pHitbox) -> void:
 	hitbox = _hitbox
 	add_child(hitbox)
 	if hitbox.hitbox_lifetime > 0.0:#optional (does not delete) continues use

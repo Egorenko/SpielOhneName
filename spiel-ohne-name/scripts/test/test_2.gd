@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var stats:entity_stats = preload("res://scripts/ressources/entity_stats/test_player_stats.tres")
+@export var stats:entity_stats = preload("res://scripts/stats/entity_stats/test_player_stats.tres")
 
 func _ready() -> void:
 	pass

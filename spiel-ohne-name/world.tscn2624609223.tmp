@@ -1,15 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cd1xkl8mcunfh"]
+[gd_scene load_steps=13 format=3 uid="uid://cd1xkl8mcunfh"]
 
 [ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://dstrijlp5om61" path="res://scenes/map.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://cv7h0cs7hoky7" path="res://test2.tscn" id="3_aqk2v"]
-[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="3_pkg7o"]
-[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="4_gbfbk"]
+[ext_resource type="Resource" uid="uid://41p1g61qqiiq" path="res://scripts/stats/entity_stats/player_stats.tres" id="3_pkg7o"]
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="5_dwbse"]
 [ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest.tscn" id="6_dwbse"]
 [ext_resource type="Resource" uid="uid://cl0imnwq3q37h" path="res://scripts/items/inventory/test_items/sword1.tres" id="6_pkg7o"]
-[ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/inventory/Inventory_item.gd" id="7_pkg7o"]
-[ext_resource type="Resource" uid="uid://cx11h2wqxweto" path="res://scripts/items/inventory/test_items/staff1.tres" id="9_wse8f"]
-[ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="10_ic0uy"]
 
 [sub_resource type="Gradient" id="Gradient_aqk2v"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -21,36 +18,37 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8224299, 0.17757009)
 
-[sub_resource type="Resource" id="Resource_ic0uy"]
+[sub_resource type="Resource" id="Resource_gbfbk"]
 resource_local_to_scene = true
-script = ExtResource("3_pkg7o")
+script = ExtResource("5_dwbse")
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
-[sub_resource type="Resource" id="Resource_k3n1d"]
+[sub_resource type="GDScript" id="GDScript_036b0"]
+script/source = "class_name entity_stats extends Resource
+
+@export var health:Health
+##should be base
+##TODO make Type = Damage
+@export var damage:int
+##in seconds, until next attack, after key press
+@export var cooldown:float
+##Movement speed * delta, original SPEED
+##Has ro be about 10-times SPEED
+@export var speed:int
+##Time the attack animation takes * attack_speed
+##>1 -> slow; <1 -> fast; <0 -> fast too (?)
+@export var attack_speed:float
+"
+
+[sub_resource type="Resource" id="Resource_dwbse"]
 resource_local_to_scene = true
-script = ExtResource("4_gbfbk")
-health = SubResource("Resource_ic0uy")
+script = SubResource("GDScript_036b0")
+health = SubResource("Resource_gbfbk")
 damage = 1
 cooldown = 10.0
 speed = 15000
 attack_speed = 10.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
-
-[sub_resource type="Resource" id="Resource_2o6r5"]
-resource_local_to_scene = true
-script = ExtResource("10_ic0uy")
-loot = Array[ExtResource("7_pkg7o")]([ExtResource("6_pkg7o"), ExtResource("9_wse8f")])
-quantity = Array[int]([1, 1])
-propability = Array[float]([0.0])
-metadata/_custom_type_script = "uid://dqhg12h35d4au"
-
-[sub_resource type="Resource" id="Resource_wse8f"]
-resource_local_to_scene = true
-script = ExtResource("10_ic0uy")
-loot = Array[ExtResource("7_pkg7o")]([ExtResource("6_pkg7o"), ExtResource("9_wse8f")])
-quantity = Array[int]([1, 1])
-propability = Array[float]([0.0])
-metadata/_custom_type_script = "uid://dqhg12h35d4au"
 
 [node name="world" type="Node2D"]
 
@@ -58,6 +56,7 @@ metadata/_custom_type_script = "uid://dqhg12h35d4au"
 z_index = -2
 
 [node name="player" parent="." instance=ExtResource("1_fj7yv")]
+stats = ExtResource("3_pkg7o")
 
 [node name="PointLight2D" type="PointLight2D" parent="player"]
 visible = false
@@ -77,12 +76,12 @@ color = Color(0.34901962, 0.42352942, 0.7764706, 1)
 
 [node name="enemy" parent="." instance=ExtResource("3_aqk2v")]
 position = Vector2(-57, 47)
-stats = SubResource("Resource_k3n1d")
+stats = SubResource("Resource_dwbse")
 
-[node name="chest2" parent="." instance=ExtResource("6_dwbse")]
-position = Vector2(-91, 0)
-items = SubResource("Resource_2o6r5")
+[node name="chest" parent="." instance=ExtResource("6_dwbse")]
+z_index = -2
+position = Vector2(55, -11)
 
-[node name="chest1" parent="." instance=ExtResource("6_dwbse")]
-position = Vector2(-70, 0)
-items = SubResource("Resource_wse8f")
+[node name="chest_sword" parent="." instance=ExtResource("6_dwbse")]
+position = Vector2(-70, -19)
+items = ExtResource("6_pkg7o")

@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 	#uses heathbar if existend
 	if owner.get("healthbar"):
-		print("has healthbar")
+		#print("has healthbar")
 		healthbar = owner.healthbar
 	else:
 		#if not existend searches in tree
@@ -21,12 +21,12 @@ func _ready() -> void:
 				print("new healthbar")
 				healthbar = node
 				break
-	#if not "healthbar" not existend and no heltbar in tree -> create new
+	'#if not "healthbar" not existend and no heltbar in tree -> create new
 	if not healthbar:
 		var help:Healthbar = Healthbar.new()
 		owner.add_child.call_deferred(help)
 		#help.owner = owner
-		healthbar = help
+		healthbar = help'
 
 func on_death() -> void:
 	if owner.has_method("on_death"):

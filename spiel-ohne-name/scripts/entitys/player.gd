@@ -1,52 +1,41 @@
 class_name player1 extends CharacterBody2D
 
+@export var stats:entity_stats = preload("res://scripts/stats/entity_stats/player_stats.tres")
+@export var inventory:Inventory = preload("res://scripts/items/inventory/inventory_9slots.tres")
+@onready var inventory_ui:Control = $Inventory_UI
+
 '###'
 var can_teleport:bool = true
 var SEED:int = 9342
 '###'
 
-@export var stats:entity_stats = preload("res://scripts/ressources/entity_stats/player_stats.tres")
-
 var SPEED = 15000.0
-#const JUMP_VELOCITY = -400.0
-
-var start_timer:bool = true#to differentiate between 'hold' and 'release'
-var start_draw:bool = true
-
+var sprint_on:bool = true
+var display_mid:Vector2 = Vector2(0.0, 0.0)
 # |PI| left ; 0 right ; PI/2 down ; -PI/2 up
 # [3 .. -3]
 var rotation_noise:float = 1.0
 
-var thrust_damage:int = 3
-var swipe_damage:int = 1
-var block_hp:int = 2
-
-var sprint_on:bool = true
-
-var draw_time:float = 0.3#in seconds
-var draw_timer:Timer#variable to count time
-
-var display_mid:Vector2 = Vector2(0.0, 0.0)
-
 @onready var healthbar: ProgressBar = $healthbar
 
 func _ready() -> void:
+	'#fill all places in inventory with empty stacks
+	inventory.ready()'
+	#activate pickup_area indefenetly (x < 0 -> no end)
 	$Pickup_Area.interact(-1)
+	#start stats for healthbar
 	healthbar.max_value = stats.health.get_max_hp()
 	healthbar.value = stats.health.get_hp()
-	'###############################################################'
-	add_child(total_timer)
-	total_timer.connect("timeout", end)
+	#timer for drawing
+	add_child(draw_timer)
+	draw_timer.connect("timeout", end)
 	add_child(vertex_timer)
 	vertex_timer.connect("timeout", per_vertex)
-	'###############################################################'
-	pass
 
-'#############################################################################'
-var total_timer:Timer = Timer.new()
-var total_time:float = 0.3
+var draw_timer:Timer = Timer.new()
+var draw_time:float = 0.3
 var vertex_timer:Timer = Timer.new()
-var vertex_time:float = total_time * 0.1
+var vertex_time:float = draw_time * 0.1
 var hold:bool = false
 
 func per_vertex() -> void:
@@ -56,66 +45,38 @@ func per_vertex() -> void:
 		vertex_timer.stop()
 func end() -> void:
 	vertex_timer.stop()
-	total_timer.stop()
+	draw_timer.stop()
 	hold = false
 	if $find_shape.analyse_by_distance():
 		process_attack(display_mid, $find_shape.get_shape_number(), $find_shape)
 	else:
 		print("too short")
 	$find_shape.clear_points()
-'#############################################################################'
 
 func _process(_delta: float) -> void:
-	#hold to draw attack shape
-	'if Input.is_action_pressed("LMB"):
-		#max time for input
-		if start_timer:
-			draw_timer = Timer.new()
-			add_child(draw_timer)
-			draw_timer.connect("timeout", timer_end)
-			draw_timer.start(draw_time)#zählt nur bei halten
-			start_timer = false
-		#when input-time startet, until end/ready again
-		if start_draw:
-			$find_shape.add_point(get_local_mouse_position())
-	
-	#if stopped hold to attack
-	if Input.is_action_just_released("LMB"):
-		if draw_timer:
-			draw_timer.stop()
-		end_draw()
-		start_timer = true
-		start_draw = true'
-
-##just a small brain help
-func timer_end() -> void:
-	start_draw = false
-	#end_draw()
-
-##if input-time is over
-func end_draw() -> void:
-	if $find_shape.analyse_by_distance():
-		process_attack(display_mid, $find_shape.get_shape_number(), $find_shape)
-	else:
-		print("too short")
-	$find_shape.clear_points()
-	if draw_timer:
-		draw_timer.queue_free()
-		draw_timer = null
-	
+	pass
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Alt") and not event.is_echo():
+		if $Inventory_UI.is_open:
+			$Inventory_UI.close()
+		else:
+			$Inventory_UI.open()
 	
-	if Input.is_action_just_pressed("LMB"):
-		total_timer.start(total_time)
+	if event.is_action_pressed("LMB") and not event.is_echo():
+		draw_timer.start(draw_time)
 		vertex_timer.start(vertex_time)
+	
 	if event.is_action_pressed("LMB"):
 		hold = true
+	
 	if event.is_action_released("LMB"):
 		hold = false
 	
 	#TODO dodge / press
 	if event.is_action_pressed("Ctrl") and not event.is_echo():
+		inventory.take_item(load("res://scripts/items/inventory/test_items/shield1.tres"))
+		$Inventory_UI.update_slots()
 		print("DODGE")
 		pass
 	
@@ -135,15 +96,17 @@ func _input(event: InputEvent) -> void:
 	
 	#TODO use RMB i guess
 	if event.is_action_pressed("RMB"):
+		inventory.add_item(load("res://scripts/items/inventory/test_items/shield1.tres"))
+		$Inventory_UI.update_slots()
 		print("RMB")
 		pass
 
 @onready var new_texture:AtlasTexture = $Sprite2D_test.texture as AtlasTexture
 ##movement
 func _physics_process(delta: float) -> void:
-	'###'
+	'###
 	teleport()
-	'###'
+	###'
 # Get the input direction and handle the movement/deceleration.
 # As good practice, you should replace UI actions with custom gameplay actions.
 	velocity = Input.get_vector("A", "D", "W", "S")
@@ -186,7 +149,7 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 		-1:
 			print("NOT FOUND")
 		0:
-			print("POINT")
+			#print("POINT")
 			$Interact_Area.position = get_local_mouse_position()
 			$Interact_Area.interact(0.1)
 		1:
@@ -206,7 +169,7 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 	return
 
 #-------------------------------------------------------------------------------
-func teleport()-> bool:
+'func teleport()-> bool:
 	var tile_pos = $"../TileMap".local_to_map(global_position)
 	var cell_data = $"../TileMap".get_cell_tile_data(0, tile_pos)
 	
@@ -223,4 +186,4 @@ func teleport()-> bool:
 				global_position = b;
 				can_teleport = false;
 				return true;
-	return false;
+	return false;'

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@export var stats:entity_stats 
+@export var stats:entity_stats
 var healthbar:Healthbar = Healthbar.new()
 
 func _ready() -> void:
