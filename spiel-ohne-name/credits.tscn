@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://by3txqe1x2qfd"]
+
+[ext_resource type="Texture2D" uid="uid://dsmnq0d7oik5v" path="res://assets/Credits.png" id="1_c1t8d"]
+[ext_resource type="Script" uid="uid://bxkeehmlc1cbu" path="res://credits.gd" id="1_g4wvt"]
+[ext_resource type="Script" uid="uid://iv4f7e7waraa" path="res://texture_rect.gd" id="2_g4wvt"]
+
+[node name="credits" type="Node2D"]
+script = ExtResource("1_g4wvt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(-2.38419e-07, 951)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_c1t8d")
+script = ExtResource("2_g4wvt")
