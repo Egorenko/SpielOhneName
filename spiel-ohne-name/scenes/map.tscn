@@ -1,15 +1,7 @@
-<<<<<<< Updated upstream:spiel-ohne-name/scenes/map.tscn
-[gd_scene load_steps=5 format=3 uid="uid://dstrijlp5om61"]
+[gd_scene load_steps=5 format=3 uid="uid://d2t5x6sqsf7gd"]
 
 [ext_resource type="Script" uid="uid://cceuckwg2xy87" path="res://scripts/test/tile_map.gd" id="2_e0an3"]
-[ext_resource type="Texture2D" uid="uid://bmcvq1i660g2i" path="res://assets/Overworldspriteatlas.png" id="2_p5pve"]
-=======
-[gd_scene load_steps=8 format=3 uid="uid://d2t5x6sqsf7gd"]
-
-[ext_resource type="Script" uid="uid://ddg3vocp05b4q" path="res://tile_map.gd" id="2_e0an3"]
-[ext_resource type="Texture2D" uid="uid://cg58q8mlqc6ww" path="res://assets/Overworldspriteatlas.png" id="2_p5pve"]
-[ext_resource type="PackedScene" uid="uid://d3vxwu7lyepm1" path="res://player_test.tscn" id="3_e0an3"]
->>>>>>> Stashed changes:spiel-ohne-name/map.tscn
+[ext_resource type="Texture2D" uid="uid://7qkrgf6qxai2" path="res://assets/Overworldspriteatlas.png" id="2_p5pve"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_e0an3"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -78,6 +70,8 @@ texture = ExtResource("2_p5pve")
 6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.39576, 1.97845, -5.2159, 2.33816, 5.75548, -8, 5.2159)
 7:4/0 = 0
 7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.1583, -8, -2.1583, 5.57562, 8, 5.93534, 8, -8)
+6:5/0 = 0
+7:5/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_71pa8"]
 physics_layer_0/collision_layer = 1
@@ -99,5 +93,3 @@ layer_1/tile_data = PackedInt32Array(1, 327681, 2, 2, 327681, 2, 3, 327681, 2, 4
 layer_2/name = "Layer2"
 layer_3/name = "Layer3"
 script = ExtResource("2_e0an3")
-
-[node name="player" parent="." instance=ExtResource("3_e0an3")]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://by3txqe1x2qfd"]
+
+[ext_resource type="Texture2D" uid="uid://dsmnq0d7oik5v" path="res://assets/Credits.png" id="1_c1t8d"]
+[ext_resource type="Script" uid="uid://bxkeehmlc1cbu" path="res://credits.gd" id="1_g4wvt"]
+[ext_resource type="Script" uid="uid://iv4f7e7waraa" path="res://texture_rect.gd" id="2_g4wvt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4wvt"]
+
+[node name="credits" type="Node2D"]
+script = ExtResource("1_g4wvt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(-2.38419e-07, 951)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_c1t8d")
+script = ExtResource("2_g4wvt")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = -574.0
+offset_top = 294.0
+offset_right = -274.0
+offset_bottom = 336.0
+theme_override_colors/font_color = Color(0.212305, 0.212305, 0.212305, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g4wvt")
+text = "press ESC to return to the title screen"
