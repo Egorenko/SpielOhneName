@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc0yt65kkhl5u"]
+
+[ext_resource type="Script" uid="uid://iwt6kg1mq8em" path="res://scripts/credits.gd" id="1_0ctdu"]
+[ext_resource type="Texture2D" uid="uid://dsmnq0d7oik5v" path="res://assets/Credits.png" id="2_2fbfq"]
+[ext_resource type="Script" uid="uid://ctee7hondt7g8" path="res://scripts/texture_rect.gd" id="3_0ctdu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4wvt"]
+
+[node name="ColorRect" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="credits" type="Node2D" parent="."]
+script = ExtResource("1_0ctdu")
+
+[node name="Camera2D" type="Camera2D" parent="credits"]
+anchor_mode = 0
+
+[node name="TextureRect" type="Sprite2D" parent="credits"]
+position = Vector2(588, 1013)
+rotation = 0.0122173
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_2fbfq")
+script = ExtResource("3_0ctdu")
+
+[node name="TextEdit" type="TextEdit" parent="credits"]
+offset_left = 17.0
+offset_top = 614.0
+offset_right = 317.0
+offset_bottom = 656.0
+theme_override_colors/font_color = Color(0.212305, 0.212305, 0.212305, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g4wvt")
+text = "press ESC to return to the title screen"

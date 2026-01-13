@@ -2,7 +2,7 @@ class_name player1 extends CharacterBody2D
 
 '###'
 var can_teleport:bool = true
-var SEED:int = 9342
+var SEED:int = randi();
 '###'
 
 @export var stats:entity_stats = preload("res://scripts/stats/entity_stats/player_stats.tres")
