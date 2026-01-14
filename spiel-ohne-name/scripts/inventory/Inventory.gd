@@ -7,6 +7,11 @@ func ready() -> void:
 		if not items[i]:
 			items[i] = Inventory_stack.new()
 
+func add_stack(new_stack:Inventory_stack) -> void:
+	while new_stack.item != null:
+			add_item(new_stack.item)
+			new_stack.decrease_stack()
+
 func add_item(new_item:Inventory_item) -> void:
 	var added:bool = false
 	var _1st_empty_pos:int = -1

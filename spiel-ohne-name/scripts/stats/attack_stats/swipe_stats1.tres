@@ -7,7 +7,6 @@
 height = 40.0
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_hj255")
 damage = 1
 cooldown = 0.3

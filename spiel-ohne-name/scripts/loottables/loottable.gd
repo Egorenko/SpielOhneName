@@ -55,3 +55,17 @@ func complete_propability() -> void:
 	for i in range(loot.size()):
 		if loot[i] and quantity[i] > 0 and propability[i] == 0:
 			propability[i] = missing_prop
+
+func choose_item() -> Inventory_stack:
+	if overall_propability <= 0.0:
+		print("overall 0 or negative propability")
+		return null
+	var r := randf() * overall_propability
+	var acc := 0.0
+	#go throu every chance until the chance is higher then the random number
+	for i in range(loot.size()):
+		acc += propability[i]
+		if r <= acc:
+			var stack:Inventory_stack = Inventory_stack.new(loot[i], quantity[i])
+			return stack
+	return null

@@ -1,8 +1,7 @@
 class_name Hurtbox extends Area2D
 
-var effect:Array[effects]
-
 var healthbar:Healthbar
+#var effect:Array[effects]
 
 #actually no clue what that does
 func _ready() -> void:
@@ -28,30 +27,36 @@ func _ready() -> void:
 		#help.owner = owner
 		healthbar = help'
 
+func on_hit(_damage:float) -> void:
+	if owner.has_method("on_hit"):
+		owner.on_hit()
+	else:
+		owner.stats.health.decrease_hp(_damage)
+		if healthbar and owner.stats.health.got_changed():
+			healthbar.update()
+		print(owner, ", has no on_hit")
+	pass
+
 func on_death() -> void:
 	if owner.has_method("on_death"):
 		owner.on_death()
-	print(owner, " is dead")
+	else:
+		print(owner, ", has no on_death")
 	pass
 
 ##returns if object dead (true) or alife (false)
 func take_damage(_damage:float) -> bool:
-	#unsure
-	owner.stats.health.decrease_hp(_damage)
-	if owner.stats.health.got_changed():
-		healthbar.update()
-	print(owner.stats.health.hp)
-	#print(get_parent().name, owner_stats.health.get_hp())
-	if owner.stats.health.is_dead():
+	on_hit(_damage)
+	if owner.get("stats") and owner.stats.health.is_dead():
 		on_death()
 		return true
 	return false
-	
-	'#==_W_I_P_==#'
+'
+	#==_W_I_P_==#
 	#effects
 	for el in effect:
 		el.activate_effect()
-'#=====================================_W_I_P_==================================#'
+#=====================================_W_I_P_==================================#
 
 ##WIP
 func add_effect(_effect) -> void:
@@ -68,3 +73,4 @@ func delete_effect_front() -> void:
 ##WIP
 func delete_effect_back() -> void:
 	effect.pop_back()
+'

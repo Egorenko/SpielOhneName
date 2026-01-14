@@ -1,4 +1,6 @@
-@abstract class_name Cooldown_Area extends Area2D
+#@abstract
+##abstract should declare func _on_area_entered -> bool
+class_name Cooldown_Area extends Area2D
 #defaults
 var lifetime:float = 0.001
 var cooldown:float = 0.0
@@ -10,7 +12,10 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
 ##returns if acceptable area is found
-@abstract func _on_area_entered(area:Area2D) -> bool
+#@abstract 
+func _on_area_entered(area:Area2D) -> bool:
+	print("base _ona_area_entered")
+	return false
 
 func off() -> void:
 	#print("OFF")

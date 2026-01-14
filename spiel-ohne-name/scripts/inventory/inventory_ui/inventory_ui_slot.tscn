@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnasgrjdrv3uc"]
+[gd_scene load_steps=4 format=3 uid="uid://cnasgrjdrv3uc"]
 
-[ext_resource type="Script" uid="uid://cga3e0qlxpa8i" path="res://scripts/items/inventory/inventory_ui_slot.gd" id="1_784ec"]
+[ext_resource type="Script" uid="uid://cga3e0qlxpa8i" path="res://scripts/inventory/inventory_ui/inventory_ui_slot.gd" id="1_784ec"]
 [ext_resource type="Texture2D" uid="uid://c45un87q6unaq" path="res://assets/20260112test_inventory_base.png" id="2_784ec"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_784ec"]
+resource_local_to_scene = true
 
 [node name="slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -12,7 +15,9 @@ mouse_default_cursor_shape = 2
 script = ExtResource("1_784ec")
 
 [node name="backround" type="Sprite2D" parent="."]
+modulate = Color(0.9867516, 0.9867516, 0.9867516, 1)
 texture_filter = 1
+material = SubResource("ShaderMaterial_784ec")
 position = Vector2(6, 6)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_784ec")

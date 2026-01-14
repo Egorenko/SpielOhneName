@@ -20,21 +20,5 @@ func spawn_item() -> void:
 	var item := contains.instantiate()
 	item.position = item_pos
 	
-	item.item = choose_item()
+	item.item = items.choose_item()
 	get_tree().root.call_deferred("add_child", item)
-
-func choose_item() -> Inventory_stack:
-	var total:float = items.overall_propability
-	if total <= 0.0:
-		return null
-	var r := randf() * total
-	var acc := 0.0
-	#go throu every chance until the chance is higher then the random number
-	for i in range(items.loot.size()):
-		acc += items.propability[i]
-		if r <= acc:
-			var stack:Inventory_stack = Inventory_stack.new()
-			stack.item = items.loot[i]
-			stack.current_stack = items.quantity[i]
-			return stack
-	return null

@@ -1,7 +1,5 @@
-class_name player1 extends CharacterBody2D
+class_name player1 extends entity
 
-@export var stats:entity_stats = preload("res://scripts/stats/entity_stats/player_stats.tres")
-@export var inventory:Inventory = preload("res://scripts/items/inventory/inventory_9slots.tres")
 @onready var inventory_ui:Control = $Inventory_UI
 
 '###'
@@ -16,12 +14,17 @@ var display_mid:Vector2 = Vector2(0.0, 0.0)
 # [3 .. -3]
 var rotation_noise:float = 1.0
 
-@onready var healthbar: ProgressBar = $healthbar
+var healthbar:Healthbar = Healthbar.new()
 
 func _ready() -> void:
 	'#fill all places in inventory with empty stacks
 	inventory.ready()'
-	#activate pickup_area indefenetly (x < 0 -> no end)
+	print(healthbar.size)
+	#why the fuck is size 71 27?
+	print($healthbar.size)
+	healthbar = $healthbar
+	print(healthbar.size)
+	#setup area infinite
 	$Pickup_Area.interact(-1)
 	#start stats for healthbar
 	healthbar.max_value = stats.health.get_max_hp()
@@ -63,7 +66,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			$Inventory_UI.open()
 	
-	if event.is_action_pressed("LMB") and not event.is_echo():
+	if event.is_action_pressed("LMB") and not event.is_echo() and not $Inventory_UI.mouse_inside:
 		draw_timer.start(draw_time)
 		vertex_timer.start(vertex_time)
 	
@@ -75,8 +78,6 @@ func _input(event: InputEvent) -> void:
 	
 	#TODO dodge / press
 	if event.is_action_pressed("Ctrl") and not event.is_echo():
-		inventory.take_item(load("res://scripts/items/inventory/test_items/shield1.tres"))
-		$Inventory_UI.update_slots()
 		print("DODGE")
 		pass
 	
@@ -96,8 +97,6 @@ func _input(event: InputEvent) -> void:
 	
 	#TODO use RMB i guess
 	if event.is_action_pressed("RMB"):
-		inventory.add_item(load("res://scripts/items/inventory/test_items/shield1.tres"))
-		$Inventory_UI.update_slots()
 		print("RMB")
 		pass
 
@@ -149,7 +148,7 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 		-1:
 			print("NOT FOUND")
 		0:
-			#print("POINT")
+			print("POINT")
 			$Interact_Area.position = get_local_mouse_position()
 			$Interact_Area.interact(0.1)
 		1:
@@ -157,15 +156,18 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 			#angle ray from player to line bigger 90 - noise and smaller 90 + noise
 			#TODO problem when moving
 			if (PI * 0.5 - rotation_noise <= abs(char_to_mid.angle_to(midLine))) and (abs(char_to_mid.angle_to(midLine)) <= PI * 0.5 + rotation_noise):
-				$block.rotation = char_pos.angle_to_point(mid)
-				$block.attack()
+				#block
+				$attack.rotation = char_pos.angle_to_point(mid)
+				$attack.attack(attacks[0])
 			else:
-				$thrust_attack.rotation = midLine_rotation
-				$thrust_attack.attack()
+				#thrust
+				$attack.rotation = midLine_rotation
+				$attack.attack(attacks[1])
 		2:
 			print("ARCH")
-			$swipe_attack.rotation = mid.angle_to_point($find_shape.max_dis_vertex)
-			$swipe_attack.attack()
+			#swipe
+			$attack.rotation = mid.angle_to_point($find_shape.max_dis_vertex)
+			$attack.attack(attacks[2])
 	return
 
 #-------------------------------------------------------------------------------

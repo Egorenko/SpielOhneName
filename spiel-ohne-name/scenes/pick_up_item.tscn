@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://dqtxte4tdqhs7" path="res://scripts/interactable.gd" id="3_ro5b8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vljjh"]
+radius = 8.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="pick_up_item" type="CharacterBody2D"]
 script = ExtResource("1_6muww")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
