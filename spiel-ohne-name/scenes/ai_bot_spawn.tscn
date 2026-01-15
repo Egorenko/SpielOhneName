@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cu0vdyocefwut"]
 
-[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="2_uiyxu"]
+[ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="2_uiyxu"]
 
 [sub_resource type="GDScript" id="GDScript_iltar"]
 script/source = "extends Node2D
@@ -57,7 +57,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 1152, 0, 1152, 63
 script = SubResource("GDScript_iltar")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_uiyxu")
 
 [node name="player" parent="." instance=ExtResource("2_uiyxu")]
