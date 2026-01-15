@@ -1,14 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjn5hg12myrv4"]
+[gd_scene load_steps=8 format=3 uid="uid://cjn5hg12myrv4"]
 
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://gp2rh3ssud54" path="res://assets/DungeonSpriteAtlas.png" id="1_pw7fj"]
 [ext_resource type="Script" uid="uid://dfmk68i6ft5ue" path="res://scripts/dungeon_map.gd" id="2_dko0b"]
+=======
+[ext_resource type="Script" uid="uid://d20wq05x8pm25" path="res://scripts/entitys/ai_bot_spawn.gd" id="1_h053f"]
+[ext_resource type="Texture2D" uid="uid://cnntf0q3nbwhk" path="res://assets/DungeonSpriteAtlas.png" id="1_pw7fj"]
+[ext_resource type="Script" uid="uid://20qxcp3h4io1" path="res://scripts/dungeon_map.gd" id="2_dko0b"]
+>>>>>>> 08cfc8c3d433e29fd6a628452d6bf2985a816da7
 [ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="3_h053f"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h053f"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nolvg"]
 texture = ExtResource("1_pw7fj")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
 1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h053f")
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
 3:0/0 = 0
@@ -27,6 +40,7 @@ sources/0 = SubResource("TileSetAtlasSource_nolvg")
 
 [node name="DungeonMap" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_h053f")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_lv76w")
