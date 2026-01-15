@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://coytyyvgpgbhl"]
 
 [ext_resource type="Script" uid="uid://d4kk8pbywjcpj" path="res://scripts/pick_up_item.gd" id="1_6muww"]
-[ext_resource type="Texture2D" uid="uid://dvk8rg7dl0mt8" path="res://assets/20251126test_wand_nature_blue_small+diagonal.png" id="2_6muww"]
+[ext_resource type="Texture2D" uid="uid://bi3emlketkciv" path="res://assets/20251126test_wand_nature_blue_small+diagonal.png" id="2_6muww"]
 [ext_resource type="Script" uid="uid://dqtxte4tdqhs7" path="res://scripts/interactable.gd" id="3_ro5b8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vljjh"]

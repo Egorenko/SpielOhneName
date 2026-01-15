@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://dqtxte4tdqhs7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_bv3sb")
-debug_color = Color(0.88556206, 0.2548284, 0.54551005, 0.41960785)
+debug_color = Color(0.885562, 0.254828, 0.54551, 0.419608)
 
 [node name="phys" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)

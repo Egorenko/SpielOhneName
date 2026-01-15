@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="3_cglt6"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="3_gmh41"]
 [ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack.gd" id="4_a0jgs"]
-[ext_resource type="Texture2D" uid="uid://drp7wucg7s4ab" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
+[ext_resource type="Texture2D" uid="uid://jcalr63vc3p" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="5_j6eg8"]
-[ext_resource type="Texture2D" uid="uid://d1gur0gjdokex" path="res://assets/20251210test_diagonal_thrust.png" id="6_gmh41"]
+[ext_resource type="Texture2D" uid="uid://dte785vby2scs" path="res://assets/20251210test_diagonal_thrust.png" id="6_gmh41"]
 
 [sub_resource type="Resource" id="Resource_qe266"]
 script = ExtResource("2_j6eg8")
@@ -95,9 +95,11 @@ resource_local_to_scene = true
 script = ExtResource("5_j6eg8")
 damage = 1
 cooldown = 0.5
+attack_time = 0.6
 hitbox = SubResource("RectangleShape2D_ivoki")
 anim = SubResource("Animation_h2y1i")
 weapon = ExtResource("6_gmh41")
+offset = Vector2(20, 0)
 metadata/_custom_type_script = "uid://g3ewxx0o313"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ih5h"]

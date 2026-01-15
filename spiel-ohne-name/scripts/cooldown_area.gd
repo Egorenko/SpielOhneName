@@ -1,4 +1,4 @@
-@abstract class_name Cooldown_Area extends Area2D
+class_name Cooldown_Area extends Area2D
 #defaults
 var lifetime:float = 0.001
 var cooldown:float = 0.0
@@ -10,7 +10,10 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
 ##returns if acceptable area is found
-@abstract func _on_area_entered(area:Area2D) -> bool
+func _on_area_entered(area:Area2D) -> bool:
+	assert(false, "_on_area_entered() must be implemented in a subclass");
+	return false;
+
 
 func off() -> void:
 	#print("OFF")

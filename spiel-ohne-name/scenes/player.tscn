@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://buqu4u5q10vbs"]
+[gd_scene load_steps=18 format=3 uid="uid://tbjvmotu5cvj"]
 
 [ext_resource type="Script" uid="uid://ct3370r55isra" path="res://scripts/entitys/player.gd" id="1_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://4m8jpfrvb48m" path="res://assets/20251209test_knight.png" id="2_y4r1p"]
@@ -13,29 +13,30 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_y4r1p")
+region = Rect2(40, 1, 17, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
 size = Vector2(16, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ged13"]
 resource_local_to_scene = true
-bg_color = Color(1, 0, 0, 0.39215687)
+bg_color = Color(1, 0, 0, 0.392157)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.39215687)
+border_color = Color(0, 0, 0, 0.392157)
 corner_detail = 1
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad58j"]
 resource_local_to_scene = true
-bg_color = Color(0, 1, 0, 0.78431374)
+bg_color = Color(0, 1, 0, 0.784314)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.5882353)
+border_color = Color(0, 0, 0, 0.588235)
 corner_detail = 1
 anti_aliasing = false
 
@@ -110,7 +111,7 @@ script = ExtResource("3_d2wvv")
 [node name="hurt_shape" type="CollisionShape2D" parent="Hurtbox"]
 scale = Vector2(0.9, 0.7)
 shape = SubResource("CapsuleShape2D_2ue4q")
-debug_color = Color(1, 0, 0, 0.3137255)
+debug_color = Color(1, 0, 0, 0.313726)
 
 [node name="Interact_Area" type="Area2D" parent="."]
 monitoring = false
@@ -129,3 +130,6 @@ metadata/_custom_type_script = "uid://buvoikjjriw57"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_Area"]
 shape = SubResource("CircleShape2D_y4r1p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

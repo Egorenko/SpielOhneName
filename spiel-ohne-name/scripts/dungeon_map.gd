@@ -1,5 +1,5 @@
 extends TileMap
-
+#
 @onready
 var Tilemap: TileMap = self;
 var teleport_tiles: Array[Vector4i] = [];
@@ -13,8 +13,7 @@ var arrayWithDoorInformation = [];
 
 
 func _ready() -> void:
-	#noise = init_SimplexNoise($"../player".SEED);
-	noise = init_SimplexNoise(123455);
+	noise = init_SimplexNoise($"../player".SEED);
 	
 	for i in range(0, dungeon_size.x): 
 		var arrayWithDoorInformationRow = []
