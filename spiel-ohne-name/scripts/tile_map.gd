@@ -13,19 +13,31 @@ var MossyPathTile: Vector2i = Vector2i(8, 3);
 var TreeTileSlim: Vector2i = Vector2i(0, 4);
 var TreeTileWide: Vector2i = Vector2i(1, 4);
 
-var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"], [Vector3i(1, 7, 6), "res://structures/House_2"], [Vector3i(2, 11, 10), "res://structures/House_3"], [Vector3i(3, 12, 16), "res://structures/House_4"], [Vector3i(4, 7, 9), "res://structures/Dungeon_1"], [Vector3i(5, 7, 6), "res://structures/Dungeon_2"], [Vector3i(6, 4, 6), "res://structures/Dungeon_3"]];
+var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"], 
+								[Vector3i(1, 7, 6), "res://structures/House_2"], 
+								[Vector3i(2, 8, 7), "res://structures/House_3"], 
+								[Vector3i(3, 11, 9), "res://structures/House_4"], 
+								[Vector3i(4, 8, 7), "res://structures/House_5"], 
+								[Vector3i(5, 6, 7), "res://structures/House_6"], 
+								[Vector3i(6, 10, 13), "res://structures/House_7"], 
+								[Vector3i(7, 7, 6), "res://structures/Dungeon_1"], 
+								[Vector3i(8, 4, 4), "res://structures/Dungeon_2"], 
+								[Vector3i(9, 11, 6), "res://structures/Dungeon_3"]];
 
 
 func _ready() -> void:
 	
 	#save_structure(Vector4i(0, 1, 6, 8), "res://structures/House_1");
 	#save_structure(Vector4i(7, 1, 7, 7), "res://structures/House_2");
-	#save_structure(Vector4i(16, 0, 11, 10), "res://structures/House_3");
-	#save_structure(Vector4i(1, 9, 12, 16), "res://structures/House_4");
+	#save_structure(Vector4i(15, 1, 8, 8), "res://structures/House_3");
+	#save_structure(Vector4i(24, 1, 11, 10), "res://structures/House_4");
+	#save_structure(Vector4i(37, 1, 8, 8), "res://structures/House_5");
+	#save_structure(Vector4i(46, 1, 6, 8), "res://structures/House_6");
+	#save_structure(Vector4i(0, 10, 10, 14), "res://structures/House_7");
 
-	#save_structure(Vector4i(20, 11, 7, 9), "res://structures/Dungeon_1");
-	#save_structure(Vector4i(19, 22, 7, 6), "res://structures/Dungeon_2");
-	#save_structure(Vector4i(30, 18, 4, 6), "res://structures/Dungeon_3");
+	#save_structure(Vector4i(15, 13, 7, 7), "res://structures/Dungeon_1");
+	#save_structure(Vector4i(27, 15, 4, 5), "res://structures/Dungeon_2");
+	#save_structure(Vector4i(35, 13, 11, 7), "res://structures/Dungeon_3");
 	
 	noise = init_SimplexNoise($"../player".SEED);
 	

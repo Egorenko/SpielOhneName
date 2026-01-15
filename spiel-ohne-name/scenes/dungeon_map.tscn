@@ -1,8 +1,13 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjn5hg12myrv4"]
 
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://gp2rh3ssud54" path="res://assets/DungeonSpriteAtlas.png" id="1_pw7fj"]
+[ext_resource type="Script" uid="uid://dfmk68i6ft5ue" path="res://scripts/dungeon_map.gd" id="2_dko0b"]
+=======
 [ext_resource type="Script" uid="uid://d20wq05x8pm25" path="res://scripts/entitys/ai_bot_spawn.gd" id="1_h053f"]
 [ext_resource type="Texture2D" uid="uid://cnntf0q3nbwhk" path="res://assets/DungeonSpriteAtlas.png" id="1_pw7fj"]
 [ext_resource type="Script" uid="uid://20qxcp3h4io1" path="res://scripts/dungeon_map.gd" id="2_dko0b"]
+>>>>>>> 08cfc8c3d433e29fd6a628452d6bf2985a816da7
 [ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="3_h053f"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h053f"]
