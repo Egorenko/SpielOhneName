@@ -68,6 +68,7 @@ func end() -> void:
 
 func _process(_delta: float) -> void:
 	#hold to draw attack shape
+	teleport();
 	'if Input.is_action_pressed("LMB"):
 		#max time for input
 		if start_timer:
@@ -206,12 +207,14 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 	return
 
 #-------------------------------------------------------------------------------
-"""func teleport()-> bool:
+func teleport()-> bool:
 	var tile_pos = $"../TileMap".local_to_map(global_position)
 	var cell_data = $"../TileMap".get_cell_tile_data(0, tile_pos)
+	var cell_data_door = $"../TileMap".get_cell_tile_data(2, tile_pos)
 	
 	if (!can_teleport):
 		if (cell_data.get_custom_data("teleport_tile")): return false;
+		if (cell_data_door != null): if (cell_data_door.get_custom_data("Teleporter")): return false;
 		can_teleport = true;
 		return false;
    
@@ -223,5 +226,10 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 				global_position = b;
 				can_teleport = false;
 				return true;
+				
+	if cell_data_door and cell_data_door.get_custom_data("Teleporter"):
+		print("Door Teleport");
+		can_teleport = false;
+		get_tree().change_scene_to_file("res://scenes/dungeon_map.tscn");
+		return true;
 	return false;
-"""
