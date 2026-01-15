@@ -2,12 +2,14 @@ extends CharacterBody2D
 class_name Enemy
 @export var stats:entity_stats
 @export var attack_range = 50.0
+@onready var agent := $NavigationAgent2D
 
 
 var player: Node = null
 var can_attack := true
 
 func _ready():
+	agent.navigation_layers = 0
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
 		push_warning("Kein Player in Gruppe 'player' gefunden!")
