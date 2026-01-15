@@ -1,7 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://n75wlovkaa4p"]
+[gd_scene load_steps=5 format=3 uid="uid://bpfwvsmj6wgyc"]
 
-[ext_resource type="Script" uid="uid://bt5gu04km5k21" path="res://gegner.gd" id="1_co84x"]
-[ext_resource type="Texture2D" uid="uid://c6v2nj0oqjqg6" path="res://assets/20251103test_charF.png" id="2_tvgt1"]
+[ext_resource type="Texture2D" uid="uid://dna54grf4gyd1" path="res://assets/20251103test_charF.png" id="2_tvgt1"]
+
+[sub_resource type="GDScript" id="GDScript_v5qxm"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+	#$AnimatedSprite2D.play()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+	
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t3vge"]
 animations = [{
@@ -20,7 +37,7 @@ radius = 11.0
 [node name="Mob" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("1_co84x")
+script = SubResource("GDScript_v5qxm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t3vge")
