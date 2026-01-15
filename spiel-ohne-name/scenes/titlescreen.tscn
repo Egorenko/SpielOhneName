@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://drj5sagc7xpw5"]
+[gd_scene load_steps=37 format=3 uid="uid://drj5sagc7xpw5"]
 
 [ext_resource type="Script" uid="uid://dpi8jkip7uq4" path="res://scripts/titlescreen.gd" id="1_tt55a"]
 [ext_resource type="Texture2D" uid="uid://c1o0btcxks1a4" path="res://assets/Titlescreen.png" id="2_t7v6v"]
@@ -48,6 +48,28 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2gcxm"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tt55a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7v6v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhbaf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6ms7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rpvs4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_84han"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ejck"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w77yj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7hj3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8or72"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcbn3"]
+
 [node name="titlescreen" type="Node2D"]
 script = ExtResource("1_tt55a")
 
@@ -61,10 +83,10 @@ texture = ExtResource("2_t7v6v")
 
 [node name="STRAT_GAME_BUTTON" type="Button" parent="."]
 texture_filter = 1
-offset_left = -73.0
-offset_top = -1.0
-offset_right = 74.0
-offset_bottom = 43.0
+offset_left = -72.0
+offset_top = -25.0
+offset_right = 75.0
+offset_bottom = 19.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hxypl")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_o0614")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_jtfbd")
@@ -83,10 +105,11 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CREDIT_BUTTON" type="Button" parent="."]
-offset_left = -71.0
-offset_top = 87.0
+texture_filter = 1
+offset_left = -72.0
+offset_top = 105.0
 offset_right = 74.0
-offset_bottom = 130.0
+offset_bottom = 151.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ihoui")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_jrr3x")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_cf3cb")
@@ -103,5 +126,28 @@ icon = ExtResource("3_vhbaf")
 icon_alignment = 1
 expand_icon = true
 
+[node name="TUTORIAL_BUTTON" type="Button" parent="."]
+texture_filter = 1
+offset_left = -67.0
+offset_top = 34.0
+offset_right = 68.0
+offset_bottom = 84.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tt55a")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_t7v6v")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vhbaf")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v6ms7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rpvs4")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_84han")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6ejck")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_w77yj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v7hj3")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8or72")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hcbn3")
+text = "TUTORIAL"
+icon = ExtResource("3_vhbaf")
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="button_down" from="STRAT_GAME_BUTTON" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="CREDIT_BUTTON" to="." method="_on_credit_button_button_down"]
+[connection signal="button_down" from="TUTORIAL_BUTTON" to="." method="_on_tutorial_button_button_down"]
