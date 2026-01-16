@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dpuked5b2sh1t"]
 
 [ext_resource type="Script" uid="uid://d20wq05x8pm25" path="res://scripts/entitys/ai_bot_spawn.gd" id="1_3shin"]
-[ext_resource type="Texture2D" uid="uid://bsfmptvg8u3oh" path="res://assets/DungeonSpriteAtlas.png" id="2_nioxd"]
+[ext_resource type="Texture2D" uid="uid://4cuce05hcn8o" path="res://assets/DungeonSpriteAtlas.png" id="2_nioxd"]
 [ext_resource type="Script" uid="uid://20qxcp3h4io1" path="res://scripts/dungeon_map.gd" id="3_7qibk"]
 [ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="4_qoy4h"]
 

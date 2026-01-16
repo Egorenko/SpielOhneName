@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://cboiknrur5hvg"]
+
+[ext_resource type="Texture2D" uid="uid://cb6x2y0i61sir" path="res://assets/Button.png" id="1_5af0l"]
+[ext_resource type="Script" uid="uid://uv27dky6eqnr" path="res://scripts/dialog_box.gd" id="1_oohy4"]
+[ext_resource type="Texture2D" uid="uid://c6wy3pe2x1pm2" path="res://assets/EnterButton.png" id="3_ideoa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwprb"]
+atlas = ExtResource("3_ideoa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odxxp"]
+atlas = ExtResource("3_ideoa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guheb"]
+atlas = ExtResource("3_ideoa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uuqr"]
+atlas = ExtResource("3_ideoa")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctw7d"]
+atlas = ExtResource("3_ideoa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyc8j"]
+atlas = ExtResource("3_ideoa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj3nj"]
+atlas = ExtResource("3_ideoa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_75inr"]
+animations = [{
+"frames": [{
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_rwprb")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_odxxp")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_guheb")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_8uuqr")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ctw7d")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_iyc8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj3nj")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 7.0
+}]
+
+[node name="DialogBox" type="Node2D"]
+z_index = 1000
+script = ExtResource("1_oohy4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(10, 7)
+texture = ExtResource("1_5af0l")
+
+[node name="labelOne" type="Label" parent="."]
+offset_left = -138.0
+offset_top = -24.0
+offset_right = 139.0
+offset_bottom = 21.0
+theme_override_font_sizes/font_size = 9
+text = "This is a test message. maybe it will work, maybe it wont... who knows... \\n 3 lines are good i guess"
+autowrap_mode = 2
+max_lines_visible = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(150, 2.38419e-07)
+scale = Vector2(0.6875, 0.71875)
+sprite_frames = SubResource("SpriteFrames_75inr")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.492395

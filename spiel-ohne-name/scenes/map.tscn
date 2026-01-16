@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bcifeck4kexsg"]
 
-[ext_resource type="Texture2D" uid="uid://lmhlhtjbm3uv" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
-[ext_resource type="Script" uid="uid://dq6jwid55v0n7" path="res://scripts/tile_map.gd" id="2_0cso3"]
+[ext_resource type="Texture2D" uid="uid://cyfp8mnr1a1oo" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
+[ext_resource type="Script" uid="uid://dpi2xdmbtjh0r" path="res://scripts/tile_map.gd" id="2_0cso3"]
 [ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="3_2klcf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urblq"]
