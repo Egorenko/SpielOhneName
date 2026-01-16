@@ -19,4 +19,4 @@ func destroy() -> void:
 
 func spawn_item() -> void:
 	var item_pos:Vector2 = Vector2(position.x + randi_range(-20, 20), position.y + randi_range(-20, 20))
-	items.choose_item().on_drop(item_pos, self)
+	items.choose_item().on_drop(item_pos, self, pick_up_item)
