@@ -1,6 +1,8 @@
-class_name Hurtbox extends Area2D
+extends Area2D
+class_name Hurtbox
 
-var healthbar:Healthbar
+var has_healthbar:bool = false
+var owner_healthbar:Healthbar
 #var effect:Array[effects]
 
 #actually no clue what that does
@@ -10,30 +12,35 @@ func _ready() -> void:
 	set_collision_layer_value(1, true)#?
 	
 	#uses heathbar if existend
-	if owner.get("healthbar"):
-		#print("has healthbar")
-		healthbar = owner.healthbar
+	if "healthbar" in owner:
+		has_healthbar = true
 	else:
 		#if not existend searches in tree
 		for node:Object in owner.get_children():
 			if node is Healthbar:
-				print("new healthbar")
-				healthbar = node
+				print(node.name)
+				print(owner, " got new healthbar")
+				owner_healthbar = node
+				print(owner_healthbar)
+				has_healthbar = true
 				break
 	'#if not "healthbar" not existend and no heltbar in tree -> create new
 	if not healthbar:
-		var help:Healthbar = Healthbar.new()
+		var help:Healthbar = Healthbar.new(self.owner)
 		owner.add_child.call_deferred(help)
 		#help.owner = owner
-		healthbar = help'
+		owner_healthbar = help'
 
 func on_hit(_damage:float) -> void:
 	if owner.has_method("on_hit"):
 		owner.on_hit()
 	else:
 		owner.stats.health.decrease_hp(_damage)
-		if healthbar and owner.stats.health.got_changed():
-			healthbar.update()
+		if has_healthbar and owner.stats.health.got_changed():
+			if owner_healthbar :
+				owner_healthbar.update()
+			else:
+				owner.healthbar.update()
 		print(owner, ", has no on_hit")
 	pass
 
@@ -47,7 +54,7 @@ func on_death() -> void:
 ##returns if object dead (true) or alife (false)
 func take_damage(_damage:float) -> bool:
 	on_hit(_damage)
-	if owner.get("stats") and owner.stats.health.is_dead():
+	if "stats" in owner and owner.stats.health.is_dead():
 		on_death()
 		return true
 	return false

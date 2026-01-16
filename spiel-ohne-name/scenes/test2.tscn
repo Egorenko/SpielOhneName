@@ -90,7 +90,6 @@ script = ExtResource("1_kshcw")
 stats = ExtResource("2_tiqs3")
 
 [node name="healthbar" type="ProgressBar" parent="."]
-visible = false
 z_index = 1
 texture_filter = 1
 offset_left = -9.0

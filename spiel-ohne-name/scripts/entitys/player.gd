@@ -1,4 +1,5 @@
-class_name player1 extends entity
+extends entity
+class_name player1 
 
 @onready var inventory_ui:Control = $Inventory_UI
 
@@ -25,11 +26,7 @@ func _ready() -> void:
 <<<<<<< .merge_file_uDJK9g
 	'#fill all places in inventory with empty stacks
 	inventory.ready()'
-	print(healthbar.size)
-	#why the fuck is size 71 27?
-	print($healthbar.size)
 	healthbar = $healthbar
-	print(healthbar.size)
 	#setup area infinite
 =======
 	add_to_group("player")

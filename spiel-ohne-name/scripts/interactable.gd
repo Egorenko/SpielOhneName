@@ -1,4 +1,5 @@
-class_name Interactable extends Area2D
+extends Area2D
+class_name Interactable 
 
 #actually no clue what that does
 func _ready() -> void:

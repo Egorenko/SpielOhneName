@@ -1,4 +1,5 @@
-class_name Inventory_stack extends Resource
+extends Resource
+class_name Inventory_stack 
 
 @export var item:Inventory_item
 var stack_max:int = 0
@@ -51,8 +52,8 @@ func on_drop(pos:Vector2, dropper:Node2D, scene = null) -> void:
 		scene_root = drop_scene.instantiate()
 	scene_root.position = pos
 	#TODO wtf y not find item?
-	if scene_root.get("item"):
-		scene_root.item = self
+	if "stack" in scene_root:
+		scene_root.stack = self
 	else:
-		print("not found 'item' in scene")
+		print("not found 'stack' in scene")
 	dropper.get_tree().root.call_deferred_thread_group("add_child", scene_root)

@@ -1,4 +1,5 @@
-class_name Attack extends Node2D
+extends Node2D
+class_name Attack 
 
 @onready var owner_stats:entity_stats = owner.stats
 

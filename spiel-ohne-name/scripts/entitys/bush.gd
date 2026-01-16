@@ -1,4 +1,5 @@
-class_name bush1 extends CharacterBody2D
+extends CharacterBody2D
+class_name bush1 
 
 @export var items:Loot_Table
 @export var max_fill:int = 0

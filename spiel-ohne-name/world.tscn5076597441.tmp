@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cd1xkl8mcunfh"]
+[gd_scene load_steps=28 format=3 uid="uid://cd1xkl8mcunfh"]
 
 [ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://dstrijlp5om61" path="res://scenes/map.tscn" id="2_fj7yv"]
@@ -14,9 +14,9 @@
 [ext_resource type="Script" uid="uid://dn51gbsepixer" path="res://scripts/inventory/Inventory_stack.gd" id="12_2o6r5"]
 [ext_resource type="Resource" uid="uid://dynt2q6ugdpj2" path="res://scripts/items/usefull/healing/potion_red_50%.tres" id="12_udxuc"]
 [ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="13_70uel"]
-[ext_resource type="Resource" uid="uid://djmlyc7vluo3f" path="res://scripts/items/usefull/equipable/weapons/test_staff.tres" id="13_ikiii"]
 [ext_resource type="PackedScene" uid="uid://b87guxik3ufos" path="res://scenes/bush1.tscn" id="14_2u3nc"]
-[ext_resource type="Resource" uid="uid://dwjbw5e343pva" path="res://scripts/items/usefull/healing/apple_+2.tres" id="17_udxuc"]
+[ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="15_udxuc"]
+[ext_resource type="Texture2D" uid="uid://bfo6m4jx6xglq" path="res://assets/20260113test_apple_red.png" id="16_ikiii"]
 
 [sub_resource type="Resource" id="Resource_cbp6q"]
 resource_local_to_scene = true
@@ -66,15 +66,24 @@ metadata/_custom_type_script = "uid://0ccklkhvugtt"
 [sub_resource type="Resource" id="Resource_wse8f"]
 resource_local_to_scene = true
 script = ExtResource("10_ic0uy")
-loot = Array[ExtResource("7_pkg7o")]([ExtResource("6_pkg7o"), ExtResource("9_wse8f"), ExtResource("12_udxuc"), ExtResource("13_ikiii")])
-quantity = Array[int]([1, 1, 1, 1])
-propability = Array[float]([0.0, 0.0, 0.0, 100.0])
+loot = Array[ExtResource("7_pkg7o")]([ExtResource("6_pkg7o"), ExtResource("9_wse8f"), ExtResource("12_udxuc")])
+quantity = Array[int]([1, 1, 1])
+propability = Array[float]([0.0, 0.0, 100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"
+
+[sub_resource type="Resource" id="Resource_udxuc"]
+resource_local_to_scene = true
+script = ExtResource("15_udxuc")
+heal = 2.0
+name = "Apple"
+texture = ExtResource("16_ikiii")
+stack_size = 5
+metadata/_custom_type_script = "uid://dwefkhid8qmy0"
 
 [sub_resource type="Resource" id="Resource_ikiii"]
 resource_local_to_scene = true
 script = ExtResource("10_ic0uy")
-loot = Array[ExtResource("7_pkg7o")]([ExtResource("17_udxuc")])
+loot = Array[ExtResource("7_pkg7o")]([SubResource("Resource_udxuc")])
 quantity = Array[int]([1])
 propability = Array[float]([100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"
@@ -114,9 +123,7 @@ items = SubResource("Resource_wse8f")
 
 [node name="crate1" parent="." instance=ExtResource("11_ic0uy")]
 position = Vector2(45, -19)
-hits = 3
 
 [node name="bush" parent="." instance=ExtResource("14_2u3nc")]
 position = Vector2(-42, -44)
 items = SubResource("Resource_ikiii")
-spawn_time = 0.1

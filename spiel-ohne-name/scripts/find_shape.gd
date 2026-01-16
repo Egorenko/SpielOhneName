@@ -1,4 +1,5 @@
-class_name find_shape extends Line2D
+extends Line2D
+class_name find_shape 
 
 enum SHAPES{
 	point = 0,

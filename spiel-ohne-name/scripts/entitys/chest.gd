@@ -1,6 +1,7 @@
-class_name Chest extends CharacterBody2D
+extends CharacterBody2D
+class_name Chest 
 
-var contains:PackedScene = preload("res://scenes/pick_up_item.tscn")
+var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
 @export var items:Loot_Table
 
 func _ready() -> void:
@@ -17,8 +18,4 @@ func open() -> void:
 
 func spawn_item() -> void:
 	var item_pos:Vector2 = Vector2(position.x + randi_range(-20, 20), position.y + randi_range(-20, 20))
-	var item := contains.instantiate()
-	item.position = item_pos
-	
-	item.item = items.choose_item()
-	get_tree().root.call_deferred("add_child", item)
+	items.choose_item().on_drop(item_pos, self, pick_up_item)

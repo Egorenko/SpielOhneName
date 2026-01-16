@@ -1,11 +1,9 @@
-extends CharacterBody2D
-@export var stats:entity_stats
+extends entity
 var healthbar:Healthbar = Healthbar.new()
 
 func _ready() -> void:
-	
-	add_child(healthbar)
-	healthbar.owner = self
+	healthbar = $healthbar
+	pass
 
 func on_interact() -> void:
 	print("interact")
