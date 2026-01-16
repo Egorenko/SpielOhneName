@@ -1,4 +1,3 @@
-@abstract
 class_name effects
 
 var priority:int
@@ -15,5 +14,8 @@ func dur_start() -> void:
 func dur_end() -> void:
 	self.free()
 
-@abstract func _init()
-@abstract func activate_effect()
+func _init():
+	assert(false, "_init() must be implemented in a subclass");
+
+func activate_effect():
+	assert(false, "activate_effect() must be implemented in a subclass");

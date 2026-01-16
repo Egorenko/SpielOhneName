@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://btlppk87oudyb"]
 
-[ext_resource type="Texture2D" uid="uid://cb7fm01q5ajc7" path="res://assets/20260103test_chest.png" id="1_8uwsg"]
+[ext_resource type="Texture2D" uid="uid://m4genouwvtbw" path="res://assets/20260103test_chest.png" id="1_8uwsg"]
 [ext_resource type="Script" uid="uid://boxvduyxkp6q4" path="res://scripts/entitys/chest.gd" id="1_bp1or"]
 [ext_resource type="Script" uid="uid://dqtxte4tdqhs7" path="res://scripts/interactable.gd" id="2_bp1or"]
 [ext_resource type="Resource" uid="uid://p2p154yrvnym" path="res://scripts/loottables/chest1.tres" id="2_yue2o"]
@@ -31,7 +31,7 @@ metadata/_custom_type_script = "uid://dqtxte4tdqhs7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_bv3sb")
-debug_color = Color(0.88556206, 0.2548284, 0.54551005, 0.41960785)
+debug_color = Color(0.885562, 0.254828, 0.54551, 0.419608)
 
 [node name="phys" type="CollisionShape2D" parent="."]
 visible = false

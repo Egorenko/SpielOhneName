@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="attack_stats" load_steps=4 format=3 uid="uid://rhbeywp2o4ul"]
 
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_hj255"]
-[ext_resource type="Texture2D" uid="uid://bkq6bnjh1wwjw" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="2_xhunc"]
+[ext_resource type="Texture2D" uid="uid://c0im5s3fff4jf" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="2_xhunc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecivy"]
 height = 40.0
@@ -14,4 +14,7 @@ attack_time = 0.3
 hitbox = SubResource("CapsuleShape2D_ecivy")
 weapon = ExtResource("2_xhunc")
 offset = Vector2(15, 0)
+sprite_rotation = 0.0
+hitbox_rotation = 0.0
+rotation = 0.0
 metadata/_custom_type_script = "uid://g3ewxx0o313"
