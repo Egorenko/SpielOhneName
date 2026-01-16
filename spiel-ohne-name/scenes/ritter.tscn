@@ -1,12 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxqspnvyclpdn"]
+[gd_scene load_steps=21 format=3 uid="uid://dxqspnvyclpdn"]
 
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
 [ext_resource type="Texture2D" uid="uid://4m8jpfrvb48m" path="res://assets/20251209test_knight.png" id="2_lov5v"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="2_vdsa7"]
 [ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/ritter.gd" id="2_y08xt"]
-[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
-[ext_resource type="Script" uid="uid://btxitkyvfstbt" path="res://scripts/attack.gd" id="6_6swco"]
-[ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts/stats/attack_stats/thrust_stat1.tres" id="7_6swco"]
+[ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
+[ext_resource type="Script" uid="uid://s0ddp1cmrgfc" path="res://scripts/attack.gd" id="6_6swco"]
 
 [sub_resource type="Resource" id="Resource_cyrqf"]
 script = ExtResource("2_4n3et")
@@ -177,6 +176,7 @@ stats = SubResource("Resource_4n3et")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rriqm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -213,7 +213,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="thrust_attack" type="Node2D" parent="."]
 script = ExtResource("6_6swco")
-stats = ExtResource("7_6swco")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

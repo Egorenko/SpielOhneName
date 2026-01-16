@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://hx8fcq12p18e"]
 
-[ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="1_c13y7"]
-[ext_resource type="Texture2D" uid="uid://lmhlhtjbm3uv" path="res://assets/Overworldspriteatlas.png" id="1_ph3nu"]
-[ext_resource type="Script" uid="uid://3ecgj0tb0p3a" path="res://scripts/tutorialMap.gd" id="2_4kmhl"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_c13y7"]
+[ext_resource type="Texture2D" uid="uid://dqk0ur10jyi8l" path="res://assets/Overworldspriteatlas.png" id="1_ph3nu"]
+[ext_resource type="Script" uid="uid://dc6c4nri0h6pe" path="res://scripts/tutorialMap.gd" id="2_4kmhl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cq4me"]
 texture = ExtResource("1_ph3nu")
