@@ -1,4 +1,5 @@
-class_name Inventory extends Resource
+extends Resource
+class_name Inventory 
 
 @export var items:Array[Inventory_stack]
 

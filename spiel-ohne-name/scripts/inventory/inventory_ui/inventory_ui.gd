@@ -1,4 +1,5 @@
-class_name Inventory_ui extends Control
+extends Control
+class_name Inventory_ui
 
 @onready var inv:Inventory = owner.inventory
 @onready var slots:Array[Node] = $backround/GridContainer.get_children()

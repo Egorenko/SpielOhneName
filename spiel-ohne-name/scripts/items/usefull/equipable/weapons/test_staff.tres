@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="weapon_item" load_steps=7 format=3 uid="uid://djmlyc7vluo3f"]
+
+[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_klqph"]
+[ext_resource type="Texture2D" uid="uid://c8pgwa1y2fje6" path="res://assets/20260115test_tree_pine_4x3.png" id="2_6n2d8"]
+[ext_resource type="Script" uid="uid://cf6ikgs8e2om6" path="res://scripts/items/usefull/equipable/weapons/weapon_item.gd" id="2_ybg27"]
+[ext_resource type="Texture2D" uid="uid://bglv8y7fuumy4" path="res://assets/20260116test_tree_pine_4x1.png" id="4_leppt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybg27"]
+size = Vector2(100, 20)
+
+[sub_resource type="Resource" id="Resource_coyxc"]
+resource_local_to_scene = true
+script = ExtResource("1_klqph")
+damage = 10
+cooldown = 5.0
+attack_time = 1.0
+hitbox = SubResource("RectangleShape2D_ybg27")
+weapon = ExtResource("2_6n2d8")
+offset = Vector2(20, 0)
+sprite_rotation = 1.571
+metadata/_custom_type_script = "uid://g3ewxx0o313"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_ybg27")
+attacks = Array[ExtResource("1_klqph")]([null, SubResource("Resource_coyxc")])
+name = "attack_Staff"
+texture = ExtResource("4_leppt")
+metadata/_custom_type_script = "uid://cf6ikgs8e2om6"

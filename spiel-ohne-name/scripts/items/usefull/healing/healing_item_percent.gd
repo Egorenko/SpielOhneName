@@ -1,4 +1,6 @@
-class_name healing_item_percent extends healing_item
+extends healing_item
+class_name healing_item_percent 
+
 ##From 100.0 to 0.0
 @export var healing_percent:float = 0.0
 

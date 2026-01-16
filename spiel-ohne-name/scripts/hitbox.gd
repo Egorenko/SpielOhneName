@@ -1,4 +1,5 @@
-class_name pHitbox extends Cooldown_Area
+extends Cooldown_Area
+class_name pHitbox 
 
 
 var damage:int

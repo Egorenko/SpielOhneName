@@ -1,7 +1,6 @@
-class_name healing_item extends use_item
+extends use_item
+class_name healing_item 
 
 func update_ui() -> void:
-	var healthbar:Healthbar
-	if user.get("healthbar"):
-		healthbar = user.healthbar
-		healthbar.update()
+	if "healthbar" in user:
+		user.healthbar.update()

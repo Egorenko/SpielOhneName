@@ -1,4 +1,5 @@
-class_name Chest extends CharacterBody2D
+extends CharacterBody2D
+class_name Chest 
 
 var contains:PackedScene = preload("res://scenes/pick_up_item.tscn")
 @export var items:Loot_Table

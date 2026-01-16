@@ -1,4 +1,5 @@
-class_name crate extends CharacterBody2D
+extends CharacterBody2D
+class_name crate 
 
 var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
 @export var items:Loot_Table
@@ -9,7 +10,6 @@ func _ready() -> void:
 
 func on_hit() -> void:
 	hits -= 1
-	spawn_item()
 	if hits <= 0:
 		destroy()
 

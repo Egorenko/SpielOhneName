@@ -1,4 +1,5 @@
-class_name Inventory_stack extends Resource
+extends Resource
+class_name Inventory_stack 
 
 @export var item:Inventory_item
 var stack_max:int = 0

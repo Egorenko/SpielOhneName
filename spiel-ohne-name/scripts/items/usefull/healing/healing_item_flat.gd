@@ -1,4 +1,5 @@
-class_name healing_item_flat extends healing_item
+extends healing_item
+class_name healing_item_flat 
 
 @export var heal:float = 0.0
 

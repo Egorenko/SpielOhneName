@@ -1,4 +1,5 @@
-class_name Pick_up_item extends CharacterBody2D
+extends CharacterBody2D
+class_name Pick_up_item 
 
 #TODO add Item (resource?)
 @export var item:Inventory_stack = Inventory_stack.new()

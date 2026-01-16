@@ -1,4 +1,5 @@
-class_name player1 extends entity
+extends entity
+class_name player1 
 
 @onready var inventory_ui:Control = $Inventory_UI
 
@@ -19,11 +20,7 @@ var healthbar:Healthbar = Healthbar.new()
 func _ready() -> void:
 	'#fill all places in inventory with empty stacks
 	inventory.ready()'
-	print(healthbar.size)
-	#why the fuck is size 71 27?
-	print($healthbar.size)
 	healthbar = $healthbar
-	print(healthbar.size)
 	#setup area infinite
 	$Pickup_Area.interact(-1)
 	#start stats for healthbar

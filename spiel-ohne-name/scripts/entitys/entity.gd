@@ -1,5 +1,6 @@
 ##abstract Every entity has room for stats, inventory, and Array of attack_stats
-class_name entity extends CharacterBody2D
+extends CharacterBody2D
+class_name entity 
 
 @export var stats:entity_stats
 @export var inventory:Inventory

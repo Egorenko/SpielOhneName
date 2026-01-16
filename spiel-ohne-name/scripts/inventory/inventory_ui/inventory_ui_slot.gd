@@ -1,4 +1,5 @@
-class_name Inventory_ui_slot extends Panel
+extends Panel
+class_name Inventory_ui_slot 
 
 @onready var item_visual:Sprite2D = $backround/CenterContainer/Panel/Item_dysplay
 @onready var default_texture:Texture2D = $backround.texture
