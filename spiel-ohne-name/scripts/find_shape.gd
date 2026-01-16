@@ -1,4 +1,5 @@
-class_name find_shape extends Line2D
+extends Line2D
+class_name find_shape 
 
 enum SHAPES{
 	point = 0,
@@ -198,11 +199,12 @@ func normalize() -> void:
 	for i in range(points.size()):
 		points[i] -= center
 	# Scale
-	var max_dist := 10.0
-	'for p in points:
-		max_dist = max(max_dist, p.length())'
+	var max_dist:float = 0.0
+	var help:float = 10.0
+	for p in points:
+		max_dist = max(max_dist, p.length())
 	for i in range(points.size()):
-		points[i] /= max_dist
+		points[i] = points[i] / max_dist * help
 	
 	#TODO
 	#resample to get a fixed amount of vetrices

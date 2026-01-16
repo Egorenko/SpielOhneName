@@ -9,7 +9,6 @@ resource_local_to_scene = true
 size = Vector2(25, 6)
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_b36gw")
 damage = 3
 cooldown = 0.6

@@ -66,4 +66,4 @@ func is_dead()-> bool:
 	return is_equal_approx(hp, min_hp)
 
 func got_changed() -> bool:
-	return is_equal_approx(hp, last_hp) or is_equal_approx(max_hp, last_max_hp)
+	return not (is_equal_approx(hp, last_hp) and is_equal_approx(max_hp, last_max_hp))

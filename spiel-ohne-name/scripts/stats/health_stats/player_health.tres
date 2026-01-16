@@ -5,4 +5,5 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_w5fsg")
+hp = 1.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"

@@ -1,4 +1,5 @@
-class_name Interact_Area extends Cooldown_Area
+extends Cooldown_Area
+class_name Interact_Area
 
 ##In seconds. If _lifetime is < 0.0, the lifetime is infinite until activated again.
 func interact(_lifetime = null, _cooldown = null) -> void:
@@ -18,7 +19,6 @@ func interact(_lifetime = null, _cooldown = null) -> void:
 	
 	#is active as long as
 	if lifetime > 0.0:
-		print("life")
 		on()
 		var timer = Timer.new()
 		add_child(timer)
@@ -43,5 +43,5 @@ func _on_area_entered(area:Area2D) -> bool:
 		return false'
 	if not area.has_method("interact_"):
 		return false
-	area.interact_()
+	area.interact_(self.owner)
 	return true

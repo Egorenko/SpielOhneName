@@ -1,4 +1,5 @@
-class_name pHitbox extends Cooldown_Area
+extends Cooldown_Area
+class_name pHitbox 
 
 
 var damage:int
@@ -23,10 +24,10 @@ func attack(_damage:int, hitbox_lifetime = null, _cooldown = null, _effect = nul
 	#=========================_W_I_P_==========================================#
 	
 	if not cooldown_over:
-		print("still on cooldown")
+		#print("still on cooldown")
 		return
 	
-	print("attack")
+	#print("attack")
 	
 	#is active as long as
 	if lifetime > 0.0:
