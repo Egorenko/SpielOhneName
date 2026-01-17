@@ -83,8 +83,9 @@ func _ready() -> void:
 						Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(7, 5), 0)
 						#test -> changed to calm_grass and instantice bush scene there
 						var bush_test:PackedScene = preload("res://scenes/bush1.tscn")
-						var bush_spawn = bush_test.instantiate()
+						var bush_spawn:CharacterBody2D = bush_test.instantiate()
 						bush_spawn.position = Vector2i(x,y)
+						bush_spawn.z_index = 20
 						get_tree().root.call_deferred_thread_group("add_child", bush_spawn)
 	
 	#find all empty spaces where structures can potentially be placed
