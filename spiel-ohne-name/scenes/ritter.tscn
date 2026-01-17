@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://dxqspnvyclpdn"]
+[gd_scene load_steps=25 format=3 uid="uid://dxqspnvyclpdn"]
 
+[ext_resource type="Resource" uid="uid://btctntehuprsv" path="res://scripts/loottables/crate1.tres" id="2_3fnxt"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
 [ext_resource type="Texture2D" uid="uid://4m8jpfrvb48m" path="res://assets/20251209test_knight.png" id="2_lov5v"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="2_vdsa7"]
@@ -174,6 +175,7 @@ size = Vector2(16, 3)
 
 [node name="ritter" type="CharacterBody2D"]
 script = ExtResource("2_y08xt")
+items = ExtResource("2_3fnxt")
 stats = SubResource("Resource_4n3et")
 attacks = Array[ExtResource("4_ffcvf")]([ExtResource("5_3q0ad")])
 
@@ -184,6 +186,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rriqm")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
 script = ExtResource("3_vdsa7")
 
 [node name="hurt_shape" type="CollisionShape2D" parent="Hurtbox"]
@@ -212,9 +215,6 @@ show_percentage = false
 script = ExtResource("8_3q0ad")
 metadata/_edit_use_anchors_ = true
 
-[node name="thrust_attack" type="Node2D" parent="."]
-script = ExtResource("6_6swco")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ffcvf")
@@ -225,7 +225,6 @@ position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_vdsa7")
 
 [node name="attack" type="Node2D" parent="."]
-visible = false
 script = ExtResource("6_6swco")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

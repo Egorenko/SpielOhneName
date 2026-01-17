@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpuked5b2sh1t"]
+[gd_scene load_steps=15 format=3 uid="uid://dpuked5b2sh1t"]
 
 [ext_resource type="Script" uid="uid://d20wq05x8pm25" path="res://scripts/entitys/ai_bot_spawn.gd" id="1_3shin"]
-[ext_resource type="Texture2D" uid="uid://4cuce05hcn8o" path="res://assets/DungeonSpriteAtlas.png" id="2_nioxd"]
+[ext_resource type="Texture2D" uid="uid://cnntf0q3nbwhk" path="res://assets/DungeonSpriteAtlas.png" id="2_nioxd"]
 [ext_resource type="Script" uid="uid://20qxcp3h4io1" path="res://scripts/dungeon_map.gd" id="3_7qibk"]
-[ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="4_qoy4h"]
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="4_qoy4h"]
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="5_juv50"]
+[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="6_n2o5k"]
+[ext_resource type="Script" uid="uid://dn51gbsepixer" path="res://scripts/inventory/Inventory_stack.gd" id="7_nir3v"]
+[ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="8_foejh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h053f"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -33,6 +37,26 @@ custom_data_layer_0/name = "teleport_tile"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_nolvg")
 
+[sub_resource type="Resource" id="Resource_gfbno"]
+resource_local_to_scene = true
+script = ExtResource("5_juv50")
+hp = 1.0
+metadata/_custom_type_script = "uid://doxodrbw6wbd6"
+
+[sub_resource type="Resource" id="Resource_me4xs"]
+resource_local_to_scene = true
+script = ExtResource("6_n2o5k")
+health = SubResource("Resource_gfbno")
+damage = 1
+speed = 15000
+metadata/_custom_type_script = "uid://0ccklkhvugtt"
+
+[sub_resource type="Resource" id="Resource_uihlw"]
+resource_local_to_scene = true
+script = ExtResource("8_foejh")
+items = Array[ExtResource("7_nir3v")]([null, null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://cp3ar7nkt1tpt"
+
 [node name="DungeonMap" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_3shin")
@@ -48,3 +72,5 @@ script = ExtResource("3_7qibk")
 
 [node name="player" parent="." instance=ExtResource("4_qoy4h")]
 position = Vector2(270, 201)
+stats = SubResource("Resource_me4xs")
+inventory = SubResource("Resource_uihlw")
