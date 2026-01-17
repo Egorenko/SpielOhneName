@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Loot_Table" load_steps=4 format=3 uid="uid://fex3nccvasya"]
 
 [ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="1_ppytd"]
-[ext_resource type="Resource" uid="uid://dwjbw5e343pva" path="res://scripts/items/usefull/healing/apple_+2.tres" id="2_48565"]
+[ext_resource type="Resource" uid="uid://dcemn6nw1kqbe" path="res://scripts/items/usefull/healing/berrys_+2.tres" id="2_ppytd"]
 [ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="3_ebjhg"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("3_ebjhg")
-loot = Array[ExtResource("1_ppytd")]([ExtResource("2_48565")])
+loot = Array[ExtResource("1_ppytd")]([ExtResource("2_ppytd")])
 quantity = Array[int]([1])
 propability = Array[float]([100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"

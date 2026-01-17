@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="healing_item_flat" load_steps=3 format=3 uid="uid://dcemn6nw1kqbe"]
+
+[ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="1_epel6"]
+[ext_resource type="Texture2D" uid="uid://d34cq3n1xoi0t" path="res://assets/20260117test_berrys_red.png" id="2_g8gix"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_epel6")
+heal = 2.0
+name = "Berrys"
+texture = ExtResource("2_g8gix")
+stack_size = 10
+metadata/_custom_type_script = "uid://dwefkhid8qmy0"

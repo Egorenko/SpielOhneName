@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcifeck4kexsg"]
+[gd_scene load_steps=13 format=3 uid="uid://bcifeck4kexsg"]
 
-[ext_resource type="Texture2D" uid="uid://cyfp8mnr1a1oo" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
+[ext_resource type="Texture2D" uid="uid://dqk0ur10jyi8l" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
 [ext_resource type="Script" uid="uid://dpi2xdmbtjh0r" path="res://scripts/tile_map.gd" id="2_0cso3"]
-[ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="3_2klcf"]
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="3_2klcf"]
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="4_nakos"]
+[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="5_jh32y"]
+[ext_resource type="Script" uid="uid://dn51gbsepixer" path="res://scripts/inventory/Inventory_stack.gd" id="6_be0no"]
+[ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="7_blm8a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urblq"]
 texture = ExtResource("1_gldc4")
@@ -97,6 +101,26 @@ custom_data_layer_0/name = "Teleporter"
 custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_urblq")
 
+[sub_resource type="Resource" id="Resource_mlgqr"]
+resource_local_to_scene = true
+script = ExtResource("4_nakos")
+hp = 1.0
+metadata/_custom_type_script = "uid://doxodrbw6wbd6"
+
+[sub_resource type="Resource" id="Resource_wslke"]
+resource_local_to_scene = true
+script = ExtResource("5_jh32y")
+health = SubResource("Resource_mlgqr")
+damage = 1
+speed = 15000
+metadata/_custom_type_script = "uid://0ccklkhvugtt"
+
+[sub_resource type="Resource" id="Resource_gw3fx"]
+resource_local_to_scene = true
+script = ExtResource("7_blm8a")
+items = Array[ExtResource("6_be0no")]([null, null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://cp3ar7nkt1tpt"
+
 [node name="Map" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -114,3 +138,7 @@ script = ExtResource("2_0cso3")
 
 [node name="player" parent="." instance=ExtResource("3_2klcf")]
 z_index = 2
+stats = SubResource("Resource_wslke")
+inventory = SubResource("Resource_gw3fx")
+
+[node name="Camera2D" type="Camera2D" parent="player"]

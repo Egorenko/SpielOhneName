@@ -1,6 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://cd1xkl8mcunfh"]
+[gd_scene load_steps=25 format=3 uid="uid://cd1xkl8mcunfh"]
 
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bcifeck4kexsg" path="res://scenes/map.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://cv7h0cs7hoky7" path="res://scenes/test2.tscn" id="3_aqk2v"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="3_pkg7o"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="13_70uel"]
 [ext_resource type="Resource" uid="uid://djmlyc7vluo3f" path="res://scripts/items/usefull/equipable/weapons/test_staff.tres" id="13_ikiii"]
 [ext_resource type="PackedScene" uid="uid://b87guxik3ufos" path="res://scenes/bush1.tscn" id="14_2u3nc"]
-[ext_resource type="Resource" uid="uid://dwjbw5e343pva" path="res://scripts/items/usefull/healing/apple_+2.tres" id="17_udxuc"]
 
 [sub_resource type="Resource" id="Resource_cbp6q"]
 resource_local_to_scene = true
@@ -71,14 +70,6 @@ quantity = Array[int]([1, 1, 1, 1])
 propability = Array[float]([0.0, 0.0, 0.0, 100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"
 
-[sub_resource type="Resource" id="Resource_ikiii"]
-resource_local_to_scene = true
-script = ExtResource("10_ic0uy")
-loot = Array[ExtResource("7_pkg7o")]([ExtResource("17_udxuc")])
-quantity = Array[int]([1])
-propability = Array[float]([100.0])
-metadata/_custom_type_script = "uid://dqhg12h35d4au"
-
 [node name="world" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("2_fj7yv")]
@@ -116,7 +107,6 @@ items = SubResource("Resource_wse8f")
 position = Vector2(45, -19)
 hits = 3
 
-[node name="bush" parent="." instance=ExtResource("14_2u3nc")]
+[node name="bush1" parent="." instance=ExtResource("14_2u3nc")]
 position = Vector2(-42, -44)
-items = SubResource("Resource_ikiii")
 spawn_time = 0.1

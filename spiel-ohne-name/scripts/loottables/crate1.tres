@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="1_spk1f"]
 [ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="2_cbnym"]
-[ext_resource type="Resource" uid="uid://dwjbw5e343pva" path="res://scripts/items/usefull/healing/apple_+2.tres" id="2_op0t2"]
+[ext_resource type="Resource" uid="uid://dwjbw5e343pva" path="res://scripts/items/usefull/healing/apple_+5.tres" id="2_op0t2"]
 [ext_resource type="Resource" uid="uid://dynt2q6ugdpj2" path="res://scripts/items/usefull/healing/potion_red_50%.tres" id="3_g8ogr"]
 
 [resource]
