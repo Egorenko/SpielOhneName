@@ -67,10 +67,6 @@ texture = ExtResource("1_gldc4")
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:5/0 = 0
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6.1152, 1.97845, 6.29506, 1.79859, -8, -8, -8)
-1:4/size_in_atlas = Vector2i(3, 4)
-1:4/0 = 0
-1:4/0/texture_origin = Vector2i(0, 24)
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 7:6/0 = 0
 7:7/0 = 0
 7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
@@ -93,6 +89,22 @@ texture = ExtResource("1_gldc4")
 8:0/0/custom_data_0 = true
 8:4/0 = 0
 8:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+1:4/size_in_atlas = Vector2i(3, 4)
+1:4/0 = 0
+1:4/0/texture_origin = Vector2i(0, 24)
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+0:8/size_in_atlas = Vector2i(3, 4)
+0:8/0 = 0
+0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 28, 6, 28, 6, 32, -6, 32)
+3:8/size_in_atlas = Vector2i(3, 4)
+3:8/0 = 0
+3:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 32, -6, 28, 6, 28, 6, 32)
+6:8/size_in_atlas = Vector2i(3, 4)
+6:8/0 = 0
+6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 32, -6, 28, 6, 28, 6, 32)
+9:8/size_in_atlas = Vector2i(1, 4)
+9:8/0 = 0
+9:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, 32, -2, 30, 2, 30, 2, 32)
 
 [sub_resource type="TileSet" id="TileSet_71pa8"]
 physics_layer_0/collision_layer = 1
@@ -140,5 +152,3 @@ script = ExtResource("2_0cso3")
 z_index = 2
 stats = SubResource("Resource_wslke")
 inventory = SubResource("Resource_gw3fx")
-
-[node name="Camera2D" type="Camera2D" parent="player"]

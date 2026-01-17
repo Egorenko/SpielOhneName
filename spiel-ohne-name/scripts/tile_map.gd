@@ -7,11 +7,11 @@ var Structure_House: TileMapPattern;
 var Overworld_map_radius: int = 50;
 var PlayerSpawnTile: Vector2i = Vector2i(0, 0);
 
-var GrassTile: Vector2i = Vector2i(7, 0);
+var GrassTile: Vector2i = Vector2i(7, 5);
 var PathTile: Vector2i = Vector2i(6, 5);
 var MossyPathTile: Vector2i = Vector2i(8, 3);
-var TreeTileSlim: Vector2i = Vector2i(0, 4);
-var TreeTileWide: Vector2i = Vector2i(1, 4);
+var TreeTileSlim: Vector2i = Vector2i(9, 8);
+var TreeTileWide: Vector2i = Vector2i(0, 8);
 
 var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"], 
 								[Vector3i(1, 7, 6), "res://structures/House_2"], 
@@ -74,9 +74,18 @@ func _ready() -> void:
 			#generate foliage
 			if (noise.get_noise_3d(0, x * 100, y * 100) > 0.4 and Tilemap.get_cell_atlas_coords(0, Vector2i(x, y)) != PathTile):
 				match (int((noise.get_noise_3d(100, x, y) + 1.0) * 7) % 3):
-					0: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 4), 0);
-					1: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(1, 4), 0);
-					2: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(7, 6), 0);
+					#thin tree
+					0: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 8), 0);
+					#wide tree
+					1: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 8), 0);
+					#bush
+					2: 
+						Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(7, 5), 0)
+						#test -> changed to calm_grass and instantice bush scene there
+						var bush_test:PackedScene = preload("res://scenes/bush1.tscn")
+						var bush_spawn = bush_test.instantiate()
+						bush_spawn.position = Vector2i(x,y)
+						get_tree().root.call_deferred_thread_group("add_child", bush_spawn)
 	
 	#find all empty spaces where structures can potentially be placed
 	for x in range((-Overworld_map_radius - 16.0) / float(ChunkSize) - 1, (Overworld_map_radius + 16.0) / float(ChunkSize)): 

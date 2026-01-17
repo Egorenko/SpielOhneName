@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cd1xkl8mcunfh"]
+[gd_scene load_steps=29 format=3 uid="uid://cd1xkl8mcunfh"]
 
 [ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bcifeck4kexsg" path="res://scenes/map.tscn" id="2_fj7yv"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="13_70uel"]
 [ext_resource type="Resource" uid="uid://djmlyc7vluo3f" path="res://scripts/items/usefull/equipable/weapons/test_staff.tres" id="13_ikiii"]
 [ext_resource type="PackedScene" uid="uid://b87guxik3ufos" path="res://scenes/bush1.tscn" id="14_2u3nc"]
+[ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="17_ikiii"]
+[ext_resource type="Texture2D" uid="uid://d34cq3n1xoi0t" path="res://assets/20260117test_berrys_red.png" id="18_cbp6q"]
 
 [sub_resource type="Resource" id="Resource_cbp6q"]
 resource_local_to_scene = true
@@ -70,6 +72,23 @@ quantity = Array[int]([1, 1, 1, 1])
 propability = Array[float]([0.0, 0.0, 0.0, 100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"
 
+[sub_resource type="Resource" id="Resource_wjb0r"]
+resource_local_to_scene = true
+script = ExtResource("17_ikiii")
+heal = 2.0
+name = "Berrys"
+texture = ExtResource("18_cbp6q")
+stack_size = 10
+metadata/_custom_type_script = "uid://dwefkhid8qmy0"
+
+[sub_resource type="Resource" id="Resource_mc2jv"]
+resource_local_to_scene = true
+script = ExtResource("10_ic0uy")
+loot = Array[ExtResource("7_pkg7o")]([SubResource("Resource_wjb0r")])
+quantity = Array[int]([1])
+propability = Array[float]([100.0])
+metadata/_custom_type_script = "uid://dqhg12h35d4au"
+
 [node name="world" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("2_fj7yv")]
@@ -87,9 +106,6 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_036b0")
 texture_scale = 2.5
 height = 3.0
-
-[node name="player_view" type="Camera2D" parent="player"]
-zoom = Vector2(4, 4)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -109,4 +125,5 @@ hits = 3
 
 [node name="bush1" parent="." instance=ExtResource("14_2u3nc")]
 position = Vector2(-42, -44)
+items = SubResource("Resource_mc2jv")
 spawn_time = 0.1

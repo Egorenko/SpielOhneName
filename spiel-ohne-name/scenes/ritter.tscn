@@ -57,9 +57,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdsa7"]
-size = Vector2(26, 26)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ueoa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30fxi"]
@@ -169,6 +166,9 @@ _data = {
 &"death": SubResource("Animation_6swco")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdsa7"]
+size = Vector2(16, 3)
+
 [node name="ritter" type="CharacterBody2D"]
 script = ExtResource("2_y08xt")
 stats = SubResource("Resource_4n3et")
@@ -178,10 +178,6 @@ stats = SubResource("Resource_4n3et")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rriqm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0)
-shape = SubResource("RectangleShape2D_vdsa7")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("3_vdsa7")
@@ -218,5 +214,9 @@ script = ExtResource("6_6swco")
 libraries = {
 &"": SubResource("AnimationLibrary_ffcvf")
 }
+
+[node name="phys" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_vdsa7")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

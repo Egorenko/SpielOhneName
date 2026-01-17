@@ -80,7 +80,6 @@ script = ExtResource("6_f1ej7")
 
 [node name="phys" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
-scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_ij6vw")
 
 [node name="healthbar" type="ProgressBar" parent="."]
@@ -145,3 +144,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
