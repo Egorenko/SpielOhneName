@@ -1,9 +1,13 @@
-extends Enemy
+#extends Enemy
+extends entity
 class_name PatrolEnemy
 
 @export var patrol_radius := 100.0
 var start_position := Vector2.ZERO
 var patrol_target := Vector2.ZERO
+#@export var stats:entity_stats
+var player = null
+var attack_range = 30.0
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
@@ -40,7 +44,7 @@ func _set_new_patrol_point():
 	patrol_target = start_position + Vector2(cos(angle), sin(angle)) * radius
 
 func _attack_player():
-	$thrust_attack.attack()
+	$attack.attack(attacks[0])
 
 func on_death():
 	$AnimationPlayer.play("ritter_death")

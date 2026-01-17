@@ -1,11 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtr26ge0tjxnb"]
+[gd_scene load_steps=22 format=3 uid="uid://dtr26ge0tjxnb"]
 
 [ext_resource type="Script" uid="uid://dr67hepvqcr6l" path="res://scripts/entitys/skelleton.gd" id="1_viovb"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_j6eg8"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_cglt6"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="3_gmh41"]
 [ext_resource type="Script" uid="uid://s0ddp1cmrgfc" path="res://scripts/attack.gd" id="4_a0jgs"]
+[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_gmh41"]
 [ext_resource type="Texture2D" uid="uid://drp7wucg7s4ab" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
+[ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts/stats/attack_stats/thrust_stat1.tres" id="5_qe266"]
+[ext_resource type="Script" uid="uid://dda1aatq0u6cu" path="res://scripts/healthbar.gd" id="8_gmh41"]
 
 [sub_resource type="Resource" id="Resource_qe266"]
 script = ExtResource("2_j6eg8")
@@ -17,7 +20,7 @@ script = ExtResource("3_gmh41")
 health = SubResource("Resource_qe266")
 damage = 1
 cooldown = 0.5
-speed = 45
+speed = 35
 attack_speed = 0.4
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
@@ -90,6 +93,7 @@ size = Vector2(16, 3)
 [node name="Skelleton" type="CharacterBody2D"]
 script = ExtResource("1_viovb")
 stats = SubResource("Resource_2yj5u")
+attacks = Array[ExtResource("4_gmh41")]([ExtResource("5_qe266")])
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -125,9 +129,11 @@ max_value = 5.0
 step = 1.0
 value = 5.0
 show_percentage = false
+script = ExtResource("8_gmh41")
 metadata/_edit_use_anchors_ = true
 
 [node name="thrust_attack" type="Node2D" parent="."]
+visible = false
 position = Vector2(-9, -14)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("4_a0jgs")
@@ -140,3 +146,6 @@ libraries = {
 [node name="pys" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_dlwrl")
+
+[node name="attack" type="Node2D" parent="."]
+script = ExtResource("4_a0jgs")

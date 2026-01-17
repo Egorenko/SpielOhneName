@@ -1,11 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxqspnvyclpdn"]
+[gd_scene load_steps=24 format=3 uid="uid://dxqspnvyclpdn"]
 
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
 [ext_resource type="Texture2D" uid="uid://4m8jpfrvb48m" path="res://assets/20251209test_knight.png" id="2_lov5v"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="2_vdsa7"]
 [ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/ritter.gd" id="2_y08xt"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
+[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_ffcvf"]
+[ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts/stats/attack_stats/thrust_stat1.tres" id="5_3q0ad"]
 [ext_resource type="Script" uid="uid://s0ddp1cmrgfc" path="res://scripts/attack.gd" id="6_6swco"]
+[ext_resource type="Script" uid="uid://dda1aatq0u6cu" path="res://scripts/healthbar.gd" id="8_3q0ad"]
 
 [sub_resource type="Resource" id="Resource_cyrqf"]
 script = ExtResource("2_4n3et")
@@ -15,9 +18,9 @@ metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 resource_local_to_scene = true
 script = ExtResource("2_vdsa7")
 health = SubResource("Resource_cyrqf")
-damage = 10
+damage = 5
 cooldown = 1.0
-speed = 150
+speed = 50
 attack_speed = 50.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
@@ -172,6 +175,7 @@ size = Vector2(16, 3)
 [node name="ritter" type="CharacterBody2D"]
 script = ExtResource("2_y08xt")
 stats = SubResource("Resource_4n3et")
+attacks = Array[ExtResource("4_ffcvf")]([ExtResource("5_3q0ad")])
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -205,6 +209,7 @@ max_value = 10.0
 step = 1.0
 value = 10.0
 show_percentage = false
+script = ExtResource("8_3q0ad")
 metadata/_edit_use_anchors_ = true
 
 [node name="thrust_attack" type="Node2D" parent="."]
@@ -218,5 +223,9 @@ libraries = {
 [node name="phys" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_vdsa7")
+
+[node name="attack" type="Node2D" parent="."]
+visible = false
+script = ExtResource("6_6swco")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

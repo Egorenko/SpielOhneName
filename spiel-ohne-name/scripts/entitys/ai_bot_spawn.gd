@@ -39,5 +39,4 @@ func cache_navigation_cells() -> void:
 
 func get_random_navigation_position() -> Vector2:
 	var cell: Vector2i = navigation_cells.pick_random()
-	print(cell)
 	return tile_map.map_to_local(cell)

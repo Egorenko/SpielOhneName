@@ -18,6 +18,7 @@ var rotation_noise:float = 1.0
 var healthbar:Healthbar = Healthbar.new()
 
 func _ready() -> void:
+	add_to_group("player")
 	healthbar = $healthbar
 	#setup area infinite
 	$Pickup_Area.interact(-1)

@@ -1,6 +1,7 @@
-extends CharacterBody2D
+#extends CharacterBody2D
+extends entity
 class_name Enemy
-@export var stats:entity_stats
+#@export var stats:entity_stats
 @export var attack_range = 50.0
 @onready var agent := $NavigationAgent2D
 
@@ -31,7 +32,8 @@ func _physics_process(delta):
 
 
 func _attack_player():
-	$thrust_attack.attack()
+	$attack.attack(attacks[0])
+
 
 func on_death():
 	$AnimationPlayer.play("ritter_death")
