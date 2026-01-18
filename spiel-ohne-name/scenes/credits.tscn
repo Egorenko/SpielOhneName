@@ -1,37 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc0yt65kkhl5u"]
+[gd_scene load_steps=5 format=3 uid="uid://by3txqe1x2qfd"]
 
-[ext_resource type="Script" uid="uid://c227kc6o8d4ck" path="res://scripts/credits.gd" id="1_0ctdu"]
-[ext_resource type="Texture2D" uid="uid://byue4fwlt5hit" path="res://assets/Credits.png" id="2_2fbfq"]
-[ext_resource type="Script" uid="uid://c5831pgagha7x" path="res://scripts/texture_rect.gd" id="3_0ctdu"]
+[ext_resource type="Texture2D" uid="uid://dcymdpptelbak" path="res://assets/Credits.png" id="1_c1t8d"]
+[ext_resource type="Script" uid="uid://c227kc6o8d4ck" path="res://scripts/credits.gd" id="1_g4wvt"]
+[ext_resource type="Script" uid="uid://o13f1owx7hs4" path="res://texture_rect.gd" id="2_g4wvt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4wvt"]
 
-[node name="ColorRect" type="ColorRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="credits" type="Node2D"]
+position = Vector2(-26, -7)
+script = ExtResource("1_g4wvt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 23.0
+offset_top = 7.0
+offset_right = 1687.0
+offset_bottom = 992.0
 color = Color(0, 0, 0, 1)
 
-[node name="credits" type="Node2D" parent="."]
-script = ExtResource("1_0ctdu")
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(599, 332)
 
-[node name="Camera2D" type="Camera2D" parent="credits"]
-anchor_mode = 0
-
-[node name="TextureRect" type="Sprite2D" parent="credits"]
+[node name="TextureRect" type="Sprite2D" parent="."]
 position = Vector2(588, 1013)
 rotation = 0.0122173
 scale = Vector2(1.4, 1.4)
-texture = ExtResource("2_2fbfq")
-script = ExtResource("3_0ctdu")
+texture = ExtResource("1_c1t8d")
+script = ExtResource("2_g4wvt")
 
-[node name="TextEdit" type="TextEdit" parent="credits"]
-offset_left = 17.0
-offset_top = 614.0
-offset_right = 317.0
-offset_bottom = 656.0
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 31.0
+offset_top = 624.0
+offset_right = 331.0
+offset_bottom = 706.0
 theme_override_colors/font_color = Color(0.212305, 0.212305, 0.212305, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_g4wvt")
 text = "press ESC to return to the title screen"

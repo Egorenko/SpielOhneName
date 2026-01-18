@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_b36gw"]
 [ext_resource type="Animation" uid="uid://d4jy5tocquctc" path="res://animations/attack_test.res" id="1_xdxuq"]
-[ext_resource type="Texture2D" uid="uid://ba1abrfptyaho" path="res://assets/20251201test_sword_small+diagonal_thrust.png" id="3_xdxuq"]
+[ext_resource type="Texture2D" uid="uid://r0qeqfgj1vsi" path="res://assets/20251201test_sword_small+diagonal_thrust.png" id="3_xdxuq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdxuq"]
 resource_local_to_scene = true

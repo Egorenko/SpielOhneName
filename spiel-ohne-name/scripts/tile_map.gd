@@ -75,9 +75,9 @@ func _ready() -> void:
 			if (noise.get_noise_3d(0, x * 100, y * 100) > 0.4 and Tilemap.get_cell_atlas_coords(0, Vector2i(x, y)) != PathTile):
 				match (int((noise.get_noise_3d(100, x, y) + 1.0) * 7) % 3):
 					#thin tree
-					0: pass #Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 8), 0);
+					0: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 8), 0);
 					#wide tree
-					1: pass #Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 8), 0);
+					1: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 8), 0);
 					#bush
 					2: 
 						Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(7, 6), 0)

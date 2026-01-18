@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bcifeck4kexsg"]
 
-[ext_resource type="Texture2D" uid="uid://dqk0ur10jyi8l" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
+[ext_resource type="Texture2D" uid="uid://5f14xega33nn" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
 [ext_resource type="Script" uid="uid://dpi2xdmbtjh0r" path="res://scripts/tile_map.gd" id="2_0cso3"]
 [ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="3_2klcf"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="4_nakos"]
