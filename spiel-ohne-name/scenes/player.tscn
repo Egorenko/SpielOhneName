@@ -72,6 +72,7 @@ rotation = 0.0
 metadata/_custom_type_script = "uid://g3ewxx0o313"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+
 atlas = ExtResource("2_d2wvv")
 region = Rect2(40, 5, 17, 22)
 
@@ -198,7 +199,7 @@ scale = Vector2(2, 2)
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="DialogBox" parent="." instance=ExtResource("16_a8ls1")]
 visible = false
