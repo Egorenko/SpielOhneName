@@ -1,14 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcifeck4kexsg"]
+[gd_scene load_steps=6 format=3 uid="uid://bcifeck4kexsg"]
 
-[ext_resource type="Texture2D" uid="uid://betmwcxvxhd" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
+[ext_resource type="Texture2D" uid="uid://1bpn4n22p4vq" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
 [ext_resource type="Script" uid="uid://c0vjgh4iu5jjw" path="res://scripts/map.gd" id="1_jh32y"]
 [ext_resource type="Script" uid="uid://hq7h2v55f26r" path="res://scripts/tile_map.gd" id="2_0cso3"]
-[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="4_be0no"]
-[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="5_blm8a"]
-[ext_resource type="Texture2D" uid="uid://kfk6runc5ses" path="res://assets/20251126test_shield_smallF.png" id="6_mlgqr"]
-[ext_resource type="Animation" uid="uid://d4jy5tocquctc" path="res://animations/attack_test.res" id="7_wslke"]
-[ext_resource type="Texture2D" uid="uid://ba1abrfptyaho" path="res://assets/20251201test_sword_small+diagonal_thrust.png" id="8_gw3fx"]
-[ext_resource type="Texture2D" uid="uid://fakbooy8udfj" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="9_n1psn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urblq"]
 texture = ExtResource("1_gldc4")
@@ -157,59 +151,6 @@ custom_data_layer_0/name = "Teleporter"
 custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_urblq")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgydc"]
-resource_local_to_scene = true
-
-[sub_resource type="Resource" id="Resource_cg04q"]
-resource_local_to_scene = true
-script = ExtResource("5_blm8a")
-damage = 0
-cooldown = 3.0
-attack_time = 1.0
-hitbox = SubResource("RectangleShape2D_qgydc")
-weapon = ExtResource("6_mlgqr")
-offset = Vector2(15, 0)
-sprite_rotation = -1.571
-hitbox_rotation = 0.0
-rotation = 0.0
-metadata/_custom_type_script = "uid://g3ewxx0o313"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_23bqe"]
-resource_local_to_scene = true
-size = Vector2(25, 6)
-
-[sub_resource type="Resource" id="Resource_anxp1"]
-resource_local_to_scene = true
-script = ExtResource("5_blm8a")
-damage = 3
-cooldown = 2.0
-attack_time = 0.3
-hitbox = SubResource("RectangleShape2D_23bqe")
-anim = ExtResource("7_wslke")
-weapon = ExtResource("8_gw3fx")
-offset = Vector2(20, 0)
-sprite_rotation = 0.785
-hitbox_rotation = 0.0
-rotation = 0.0
-metadata/_custom_type_script = "uid://g3ewxx0o313"
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecivy"]
-height = 40.0
-
-[sub_resource type="Resource" id="Resource_ouocn"]
-resource_local_to_scene = true
-script = ExtResource("5_blm8a")
-damage = 1
-cooldown = 0.5
-attack_time = 0.3
-hitbox = SubResource("CapsuleShape2D_ecivy")
-weapon = ExtResource("9_n1psn")
-offset = Vector2(15, 0)
-sprite_rotation = 0.0
-hitbox_rotation = 0.0
-rotation = 0.0
-metadata/_custom_type_script = "uid://g3ewxx0o313"
-
 [node name="Map" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_jh32y")
@@ -227,11 +168,8 @@ layer_1/y_sort_enabled = true
 layer_2/name = "Dungeons"
 layer_2/y_sort_enabled = true
 layer_3/name = "Roof"
-layer_3/z_index = 1
+layer_3/y_sort_enabled = true
+layer_3/z_index = 2
 layer_4/name = "Layer4"
 layer_4/modulate = Color(1, 0, 0, 1)
-layer_4/z_index = 1
 script = ExtResource("2_0cso3")
-
-[node name="player" parent="." instance=ExtResource("4_be0no")]
-attacks = Array[ExtResource("5_blm8a")]([SubResource("Resource_cg04q"), SubResource("Resource_anxp1"), SubResource("Resource_ouocn")])

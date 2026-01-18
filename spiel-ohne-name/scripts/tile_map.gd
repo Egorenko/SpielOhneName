@@ -174,14 +174,15 @@ func _ready() -> void:
 			if (abs(GrassTileDimension[3] - GrassTileDimension[1]) - maxStructureHeight + 1 < 6): continue;
 	
 	if (Seed.player_has_pos):
-		$"../player".position = Seed.player_past_Overworld_position;
+		Seed.player_scene.position = Seed.player_past_Overworld_position;
 		return;
 					
 	var pos: Vector2i = Vector2i(0, 0);
 	while(Tilemap.get_cell_atlas_coords(0, pos) != PathTile):
 		pos = Vector2i(random.randi() % 50 - 25, random.randi() % 50 - 25);
 	PlayerSpawnTile = pos;
-	$"../player".global_position = Vector2(Tilemap.to_global(map_to_local(PlayerSpawnTile)));
+	Seed.player_scene.global_position = Vector2(Tilemap.to_global(map_to_local(PlayerSpawnTile)));
+	print(PlayerSpawnTile);
 
 func _process(_delta: float) -> void:
 	pass;

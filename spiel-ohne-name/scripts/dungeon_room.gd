@@ -1,7 +1,7 @@
 class_name Dungeon_Room extends Node2D
 
 @onready var tileMap: TileMap = $TileMap;
-@onready var player: player1 = $"../player";
+@onready var player: player1 = Seed.player_scene;
 
 @export var num_entities: int = 5
 @export var nav_layer: int = 0

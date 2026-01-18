@@ -1,6 +1,6 @@
 extends Camera2D
 
-@onready var Player: player1 = $"../player";
+@onready var Player: player1 = Seed.player_scene;
 var cameraWorldSize: Vector2i;
 var roomRect: Vector4;
 

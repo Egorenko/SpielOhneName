@@ -4,8 +4,11 @@
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="1_dn5aj"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_dn5aj")
 health = ExtResource("1_13s7w")
 damage = 1
+cooldown = 0.0
 speed = 10000
+attack_speed = 0.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"

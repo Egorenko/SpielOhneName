@@ -8,6 +8,10 @@ func ready() -> void:
 	for i in range(items.size()):
 		if not items[i]:
 			items[i] = Inventory_stack.new()
+			
+func clear() -> void:
+	for i in range(items.size()):
+		items[i] = Inventory_stack.new();
 
 ##return if stack completley added
 func add_stack(new_stack:Inventory_stack) -> bool:

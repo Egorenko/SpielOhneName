@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var TextBox: Node2D = $"./player/DialogBox";
+@onready var TextBox: Node2D = Seed.player_scene.get_node("DialogBox");
+@onready var player: Node2D = Seed.player_scene;
 @export var chest: PackedScene = preload("res://scenes/chest1.tscn");
 @export var crat: PackedScene = preload("res://scenes/crate1.tscn");
 @export var enemys: PackedScene = preload("res://scenes/skelleton.tscn");
@@ -26,6 +27,8 @@ func _ready() -> void:
 	TextBox.visible = true;
 	TextBox.reset();
 	TextBox.Prompt = "Welcome to the tutorial. Press enter to continue";
+	Seed.player_scene.get_node("Camera2D").make_current();
+	print(Seed.player_scene.get_node("Camera2D").zoom);
 	pass
 	
 func _process(delta: float) -> void:
@@ -63,7 +66,7 @@ func phase_1() -> void:
 		TextBox.reset();
 		TextBox.Prompt = text[textnum];
 		textnum += 1;
-		if (textnum == 1):
+		if (textnum == 2):
 			chestInstance = chest.instantiate();
 			get_tree().current_scene.add_child(chestInstance);
 			chestInstance.position = $TileMap.map_to_local(Vector2i(-7, -4));
@@ -148,8 +151,6 @@ func phase_6() -> void:
 		phase += 1;
 		textnum = 0;
 		key_pressed_enter = true;
-		$player.sprint_on = false;
-		$player.stats.speed = 15000;
 		key_pressed_shift = false;
 		
 func phase_7() -> void:
@@ -184,7 +185,7 @@ func phase_8() -> void:
 		knight.position = $TileMap.map_to_local(Vector2i(8 ,1));
 		knight.z_index = 1;
 		TextBox.visible = false;
-		$"./player/Hurtbox".collision_layer = 1 << 4;
+		Seed.player_scene.get_node("Hurtbox").collision_layer = 1 << 4;
 		
 func phase_9() -> void:
 	if (skeleton == null and knight == null):
@@ -197,7 +198,7 @@ func phase_9() -> void:
 func phase_10() -> void:
 	if (can_finish):
 		print("Door enabled");
-		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map($player.position));
+		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(Seed.player_scene.position));
 		if (a == Vector2i(8, 0)):
 			get_tree().change_scene_to_file("res://scenes/titlescreen.tscn");
 	var text: Array[String] = ["You are lucky that you are invincible in here. Never the less, well done.", "The second i mentioned is right in front of you. You see that House? Move up to it and you shall be set free.", "Have fun \nc:"];

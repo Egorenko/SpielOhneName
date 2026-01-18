@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="1_ppytd"]
 [ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="2_48565"]
 [ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="3_ebjhg"]
-[ext_resource type="Texture2D" uid="uid://d34cq3n1xoi0t" path="res://assets/20260117test_berrys_red.png" id="3_gn2xm"]
+[ext_resource type="Texture2D" uid="uid://deeuupmqyli4k" path="res://assets/20260117test_berrys_red.png" id="3_gn2xm"]
 
 [sub_resource type="Resource" id="Resource_enym5"]
 resource_local_to_scene = true
