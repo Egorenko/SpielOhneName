@@ -9,10 +9,13 @@ resource_local_to_scene = true
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_b1uow")
+damage = 0
 cooldown = 3.0
 attack_time = 1.0
 hitbox = SubResource("RectangleShape2D_4wvyv")
 weapon = ExtResource("2_25gwq")
 offset = Vector2(15, 0)
 sprite_rotation = -1.571
+hitbox_rotation = 0.0
+rotation = 0.0
 metadata/_custom_type_script = "uid://g3ewxx0o313"

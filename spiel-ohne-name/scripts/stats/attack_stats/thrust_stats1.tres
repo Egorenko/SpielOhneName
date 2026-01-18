@@ -19,4 +19,6 @@ anim = ExtResource("1_xdxuq")
 weapon = ExtResource("3_xdxuq")
 offset = Vector2(20, 0)
 sprite_rotation = 0.785
+hitbox_rotation = 0.0
+rotation = 0.0
 metadata/_custom_type_script = "uid://g3ewxx0o313"

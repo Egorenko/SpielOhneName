@@ -124,7 +124,10 @@ func on_hit(_damage:float, attacker:Node2D) -> void:
 	pass
 
 func on_death() -> void:
-	$Sprite2D_test.modulate = Color(255.0, 255.0, 255.0, 0.2)
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED;
+
+	var deathscreen: Node = preload("res://scenes/deathscreen.tscn").instantiate();
+	get_tree().root.add_child(deathscreen);
 	pass
 
 ## tryes to find fitting attack for shape

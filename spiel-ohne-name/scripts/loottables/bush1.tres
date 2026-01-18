@@ -9,6 +9,7 @@
 resource_local_to_scene = true
 script = ExtResource("2_48565")
 heal = 2.0
+key_string = "E"
 name = "Berry"
 texture = ExtResource("3_gn2xm")
 stack_size = 10
@@ -18,5 +19,6 @@ metadata/_custom_type_script = "uid://dwefkhid8qmy0"
 script = ExtResource("3_ebjhg")
 loot = Array[ExtResource("1_ppytd")]([SubResource("Resource_enym5")])
 quantity = Array[int]([1])
+fill_propability = true
 propability = Array[float]([100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"
