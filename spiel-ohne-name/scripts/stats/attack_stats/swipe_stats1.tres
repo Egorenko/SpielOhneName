@@ -14,4 +14,7 @@ attack_time = 0.3
 hitbox = SubResource("CapsuleShape2D_ecivy")
 weapon = ExtResource("2_xhunc")
 offset = Vector2(15, 0)
+sprite_rotation = 0.0
+hitbox_rotation = 0.0
+rotation = 0.0
 metadata/_custom_type_script = "uid://g3ewxx0o313"

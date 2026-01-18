@@ -3,13 +3,16 @@ class_name Chest
 
 var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
 @export var items:Loot_Table
+var is_open: bool = false;
 
 func _ready() -> void:
 	items.ready()
 
 func on_interact(_activator:Node) -> void:
+	if (is_open): return;
 	open()
 	spawn_item()
+	is_open = true;
 
 #change from atlas to region_rect
 #because changeing position on atlas is done everywhere

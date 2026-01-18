@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcifeck4kexsg"]
+[gd_scene load_steps=14 format=3 uid="uid://bcifeck4kexsg"]
 
 [ext_resource type="Texture2D" uid="uid://ckhyy5gkmjjg4" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
-[ext_resource type="Script" uid="uid://dpi2xdmbtjh0r" path="res://scripts/tile_map.gd" id="2_0cso3"]
+[ext_resource type="Script" uid="uid://dvgyq4b2jtt8w" path="res://scripts/map.gd" id="1_jh32y"]
+[ext_resource type="Script" uid="uid://hq7h2v55f26r" path="res://scripts/tile_map.gd" id="2_0cso3"]
 [ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="3_2klcf"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="4_nakos"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="5_jh32y"]
@@ -153,7 +154,11 @@ sources/1 = SubResource("TileSetAtlasSource_urblq")
 [sub_resource type="Resource" id="Resource_mlgqr"]
 resource_local_to_scene = true
 script = ExtResource("4_nakos")
+max_hp = 10.0
 hp = 1.0
+min_hp = 0.0
+_max = 39.0
+_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
 [sub_resource type="Resource" id="Resource_wslke"]
@@ -161,7 +166,9 @@ resource_local_to_scene = true
 script = ExtResource("5_jh32y")
 health = SubResource("Resource_mlgqr")
 damage = 1
+cooldown = 0.0
 speed = 15000
+attack_speed = 0.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
 [sub_resource type="Resource" id="Resource_gw3fx"]
@@ -171,6 +178,7 @@ items = Array[ExtResource("6_be0no")]([null, null, null, null, null, null, null,
 metadata/_custom_type_script = "uid://cp3ar7nkt1tpt"
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_jh32y")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
