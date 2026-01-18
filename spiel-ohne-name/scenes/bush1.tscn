@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/bush.gd" id="1_dab6e"]
 [ext_resource type="Resource" uid="uid://fex3nccvasya" path="res://scripts/loottables/bush1.tres" id="2_b2qnu"]
-[ext_resource type="Texture2D" uid="uid://cakl3u5kvvqce" path="res://assets/20251204test_bush2.png" id="3_12x1x"]
+[ext_resource type="Texture2D" uid="uid://bgip37o518hq3" path="res://assets/20251204test_bush2.png" id="3_12x1x"]
 [ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="3_b2qnu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrik4"]
@@ -11,7 +11,7 @@ radius = 8.062258
 [node name="bush" type="CharacterBody2D"]
 script = ExtResource("1_dab6e")
 items = ExtResource("2_b2qnu")
-max_fill = 3
+max_fill = 5
 fill = 1
 spawn_time = 2.0
 metadata/_custom_type_script = "uid://bbjc0iyrs0msr"

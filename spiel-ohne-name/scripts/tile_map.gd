@@ -85,7 +85,7 @@ func _ready() -> void:
 						var bush_test:PackedScene = preload("res://scenes/bush1.tscn")
 						var bush_spawn:CharacterBody2D = bush_test.instantiate()
 						bush_spawn.position = to_global(map_to_local(Vector2i(x,y)))
-						bush_spawn.z_index = 20
+						bush_spawn.z_index = 1
 						get_tree().root.call_deferred_thread_group("add_child", bush_spawn)
 	
 	#find all empty spaces where structures can potentially be placed

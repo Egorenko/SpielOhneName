@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="healing_item_flat" load_steps=3 format=3 uid="uid://dwjbw5e343pva"]
 
 [ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="1_x12km"]
-[ext_resource type="Texture2D" uid="uid://bfo6m4jx6xglq" path="res://assets/20260113test_apple_red.png" id="2_jte5e"]
+[ext_resource type="Texture2D" uid="uid://2sp7v82mrdlq" path="res://assets/20260113test_apple_red.png" id="2_jte5e"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_x12km")
-heal = 2.0
+heal = 5.0
 name = "Apple"
 texture = ExtResource("2_jte5e")
 stack_size = 5
