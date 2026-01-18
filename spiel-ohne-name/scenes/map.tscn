@@ -108,20 +108,40 @@ texture = ExtResource("1_gldc4")
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 0:8/size_in_atlas = Vector2i(3, 4)
 0:8/0 = 0
+0:8/0/texture_origin = Vector2i(0, 24)
 0:8/0/y_sort_origin = 28
-0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 28, 6, 28, 6, 32, -6, 32)
+0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, 4, -8, 4)
 3:8/size_in_atlas = Vector2i(3, 4)
 3:8/0 = 0
+3:8/0/texture_origin = Vector2i(0, 24)
 3:8/0/y_sort_origin = 28
-3:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 32, -6, 28, 6, 28, 6, 32)
+3:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 8, 6, 8, 6, 4, -6, 4)
 6:8/size_in_atlas = Vector2i(3, 4)
 6:8/0 = 0
+6:8/0/texture_origin = Vector2i(0, 24)
 6:8/0/y_sort_origin = 28
-6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 32, -6, 28, 6, 28, 6, 32)
+6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 8, -6, 4, 6, 4, 6, 8)
 9:8/size_in_atlas = Vector2i(1, 4)
 9:8/0 = 0
+9:8/0/texture_origin = Vector2i(0, 24)
 9:8/0/y_sort_origin = 28
-9:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, 32, -2, 30, 2, 30, 2, 32)
+9:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, 8, 2, 8, 2, 4, -2, 4)
+0:12/size_in_atlas = Vector2i(3, 4)
+0:12/0 = 0
+0:12/0/texture_origin = Vector2i(0, 24)
+0:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+3:12/size_in_atlas = Vector2i(3, 4)
+3:12/0 = 0
+3:12/0/texture_origin = Vector2i(0, 24)
+3:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+6:12/size_in_atlas = Vector2i(3, 4)
+6:12/0 = 0
+6:12/0/texture_origin = Vector2i(0, 24)
+6:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+9:12/size_in_atlas = Vector2i(1, 4)
+9:12/0 = 0
+9:12/0/texture_origin = Vector2i(0, 24)
+9:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
 
 [sub_resource type="TileSet" id="TileSet_71pa8"]
 physics_layer_0/collision_layer = 1
@@ -133,7 +153,11 @@ sources/1 = SubResource("TileSetAtlasSource_urblq")
 [sub_resource type="Resource" id="Resource_mlgqr"]
 resource_local_to_scene = true
 script = ExtResource("4_nakos")
+max_hp = 10.0
 hp = 1.0
+min_hp = 0.0
+_max = 39.0
+_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
 [sub_resource type="Resource" id="Resource_wslke"]
@@ -141,7 +165,9 @@ resource_local_to_scene = true
 script = ExtResource("5_jh32y")
 health = SubResource("Resource_mlgqr")
 damage = 1
+cooldown = 0.0
 speed = 15000
+attack_speed = 0.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
 [sub_resource type="Resource" id="Resource_gw3fx"]
@@ -157,32 +183,11 @@ texture_filter = 1
 position = Vector2(-6, 0)
 tile_set = SubResource("TileSet_71pa8")
 format = 2
+layer_1/name = "Layer1"
+layer_2/name = "Layer2"
+layer_3/name = "Layer3"
+layer_4/name = "Layer4"
 script = ExtResource("2_0cso3")
-
-[node name="Layer0" type="TileMapLayer" parent="TileMap"]
-texture_filter = 1
-use_parent_material = true
-tile_set = SubResource("TileSet_71pa8")
-
-[node name="Layer1" type="TileMapLayer" parent="TileMap"]
-z_index = 1
-use_parent_material = true
-tile_set = SubResource("TileSet_71pa8")
-
-[node name="Layer2" type="TileMapLayer" parent="TileMap"]
-z_index = 2
-use_parent_material = true
-tile_set = SubResource("TileSet_71pa8")
-
-[node name="Layer3" type="TileMapLayer" parent="TileMap"]
-z_index = 4
-use_parent_material = true
-tile_set = SubResource("TileSet_71pa8")
-
-[node name="foliage" type="TileMapLayer" parent="TileMap"]
-y_sort_enabled = true
-use_parent_material = true
-tile_set = SubResource("TileSet_71pa8")
 
 [node name="player" parent="." instance=ExtResource("3_2klcf")]
 z_index = 2

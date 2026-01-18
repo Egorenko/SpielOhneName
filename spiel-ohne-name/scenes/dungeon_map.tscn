@@ -40,7 +40,11 @@ sources/0 = SubResource("TileSetAtlasSource_nolvg")
 [sub_resource type="Resource" id="Resource_gfbno"]
 resource_local_to_scene = true
 script = ExtResource("5_juv50")
+max_hp = 10.0
 hp = 1.0
+min_hp = 0.0
+_max = 39.0
+_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
 [sub_resource type="Resource" id="Resource_me4xs"]
@@ -48,7 +52,9 @@ resource_local_to_scene = true
 script = ExtResource("6_n2o5k")
 health = SubResource("Resource_gfbno")
 damage = 1
+cooldown = 0.0
 speed = 15000
+attack_speed = 0.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
 [sub_resource type="Resource" id="Resource_uihlw"]

@@ -18,12 +18,16 @@ hitbox = SubResource("RectangleShape2D_ybg27")
 weapon = ExtResource("2_6n2d8")
 offset = Vector2(20, 0)
 sprite_rotation = 1.571
+hitbox_rotation = 0.0
+rotation = 0.0
 metadata/_custom_type_script = "uid://g3ewxx0o313"
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_ybg27")
 attacks = Array[ExtResource("1_klqph")]([null, SubResource("Resource_coyxc")])
+key_string = "E"
 name = "attack_Staff"
 texture = ExtResource("4_leppt")
+stack_size = 1
 metadata/_custom_type_script = "uid://cf6ikgs8e2om6"

@@ -52,9 +52,9 @@ func _ready() -> void:
 		for y in range(-Overworld_map_radius - 16, Overworld_map_radius + 16):
 			if (sqrt(x * x + y * y) > Overworld_map_radius + 7 * (noise.get_noise_3d(x * 0.7, y * 0.7, 10) + 0.3)):
 				if (noise.get_noise_2d(x* 10, y * 10) < -0.8 + (noise.get_noise_2d(x * 0.2, y * 0.2) + 1.0) * 0.6):
-					Tilemap.set_cell(1, Vector2i(x, y), 1, TreeTileWide, 0);
+					Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 12), 0);
 				else:
-					Tilemap.set_cell(1, Vector2i(x, y), 1, TreeTileSlim, 0);
+					Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 12), 0);
 				Tilemap.set_cell(0, Vector2i(x, y), 1, GrassTile, 0);
 				continue;
 				
@@ -75,16 +75,16 @@ func _ready() -> void:
 			if (noise.get_noise_3d(0, x * 100, y * 100) > 0.4 and Tilemap.get_cell_atlas_coords(0, Vector2i(x, y)) != PathTile):
 				match (int((noise.get_noise_3d(100, x, y) + 1.0) * 7) % 3):
 					#thin tree
-					0: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 8), 0);
+					0: pass #Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 8), 0);
 					#wide tree
-					1: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 8), 0);
+					1: pass #Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 8), 0);
 					#bush
 					2: 
-						Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(7, 5), 0)
+						Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(7, 6), 0)
 						#test -> changed to calm_grass and instantice bush scene there
 						var bush_test:PackedScene = preload("res://scenes/bush1.tscn")
 						var bush_spawn:CharacterBody2D = bush_test.instantiate()
-						bush_spawn.position = Vector2i(x,y)
+						bush_spawn.position = to_global(map_to_local(Vector2i(x,y)))
 						bush_spawn.z_index = 20
 						get_tree().root.call_deferred_thread_group("add_child", bush_spawn)
 	

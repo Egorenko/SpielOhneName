@@ -94,7 +94,8 @@ func _input(event: InputEvent) -> void:
 		pass
 
 func _process(_delta: float) -> void:
-	teleport();
+	#teleport();
+	pass
 
 @onready var new_texture:AtlasTexture = $Sprite2D_test.texture as AtlasTexture
 ##movement
@@ -165,30 +166,20 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 			$attack.attack(attacks[2])
 	return
 
-#-------------------------------------------------------------------------------
-func teleport()-> bool:
-	var tile_pos = $"../TileMap".local_to_map(global_position)
-	var cell_data = $"../TileMap".get_cell_tile_data(0, tile_pos)
-	var cell_data_door = $"../TileMap".get_cell_tile_data(2, tile_pos)
-	
-	if (!can_teleport):
-		if (cell_data.get_custom_data("teleport_tile")): return false;
-		if (cell_data_door != null): if (cell_data_door.get_custom_data("Teleporter")): return false;
-		can_teleport = true;
-		return false;
-	
-	if cell_data and cell_data.get_custom_data("teleport_tile"):
-		print("teleport");
-		for a: Vector4i in $"../TileMap".teleport_tiles:
-			if (a[0] == tile_pos[0] and a[1] == tile_pos[1]):
-				var b = $"../TileMap".map_to_local(Vector2i(a[2], a[3]));
-				global_position = b;
-				can_teleport = false;
-				return true;
-	
-	if cell_data_door and cell_data_door.get_custom_data("Teleporter"):
-		print("Door Teleport");
-		can_teleport = false;
-		get_tree().change_scene_to_file("res://scenes/dungeon_map.tscn");
-		return true;
-	return false;
+##-------------------------------------------------------------------------------
+#func teleport()-> bool:
+#	var tile_pos = $"../TileMap".local_to_map(global_position)
+#	var cell_data_door = $"../TileMap".get_cell_tile_data(2, tile_pos)
+#	
+#	if (!can_teleport):
+#		if (cell_data_door != null): if (cell_data_door.get_custom_data("Teleporter")): return false;
+#		can_teleport = true;
+#		return false;
+#	
+#	if cell_data_door and cell_data_door.get_custom_data("Teleporter"):
+#		print("Door Teleport");
+#		can_teleport = false;
+#		get_tree().change_scene_to_file("res://scenes/dungeon_map.tscn");
+#		return true;
+#	return false;
+#

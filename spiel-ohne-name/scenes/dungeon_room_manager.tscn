@@ -1,0 +1,50 @@
+[gd_scene load_steps=12 format=3 uid="uid://bjt3eb88df415"]
+
+[ext_resource type="Script" uid="uid://cmhiqtxjslmrt" path="res://scripts/dungeon_room_manager.gd" id="1_5v5g0"]
+[ext_resource type="PackedScene" uid="uid://b27jq4l6aaqel" path="res://scripts/dungeon_room.tscn" id="2_mik8i"]
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="3_5ufkp"]
+[ext_resource type="Script" uid="uid://d10okv4w46kns" path="res://scripts/DungeonRoom_camera_2d.gd" id="4_f4p2h"]
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="5_ssne1"]
+[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="6_cecul"]
+[ext_resource type="Script" uid="uid://dn51gbsepixer" path="res://scripts/inventory/Inventory_stack.gd" id="7_pnj2b"]
+[ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="8_t318d"]
+
+[sub_resource type="Resource" id="Resource_d6yat"]
+resource_local_to_scene = true
+script = ExtResource("5_ssne1")
+max_hp = 10.0
+hp = 1.0
+min_hp = 0.0
+_max = 39.0
+_min = 0.0
+metadata/_custom_type_script = "uid://doxodrbw6wbd6"
+
+[sub_resource type="Resource" id="Resource_5yl5f"]
+resource_local_to_scene = true
+script = ExtResource("6_cecul")
+health = SubResource("Resource_d6yat")
+damage = 1
+cooldown = 0.0
+speed = 15000
+attack_speed = 0.0
+metadata/_custom_type_script = "uid://0ccklkhvugtt"
+
+[sub_resource type="Resource" id="Resource_ddir4"]
+resource_local_to_scene = true
+script = ExtResource("8_t318d")
+items = Array[ExtResource("7_pnj2b")]([null, null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://cp3ar7nkt1tpt"
+
+[node name="DungeonRoomManager" type="Node2D"]
+script = ExtResource("1_5v5g0")
+RoomsOptions = Array[PackedScene]([ExtResource("2_mik8i")])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(472, 293)
+zoom = Vector2(3, 3)
+script = ExtResource("4_f4p2h")
+
+[node name="player" parent="." instance=ExtResource("3_5ufkp")]
+position = Vector2(279, 139)
+stats = SubResource("Resource_5yl5f")
+inventory = SubResource("Resource_ddir4")

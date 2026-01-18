@@ -22,7 +22,11 @@
 [sub_resource type="Resource" id="Resource_cbp6q"]
 resource_local_to_scene = true
 script = ExtResource("3_pkg7o")
+max_hp = 10.0
 hp = 1.0
+min_hp = 0.0
+_max = 39.0
+_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
 [sub_resource type="Resource" id="Resource_26xuy"]
@@ -30,7 +34,9 @@ resource_local_to_scene = true
 script = ExtResource("4_gbfbk")
 health = SubResource("Resource_cbp6q")
 damage = 1
+cooldown = 0.0
 speed = 15000
+attack_speed = 0.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
 [sub_resource type="Resource" id="Resource_bc84e"]
@@ -47,11 +53,16 @@ resource_local_to_scene = true
 gradient = SubResource("Gradient_aqk2v")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8224299, 0.17757009)
+fill_to = Vector2(0.82243, 0.17757)
 
 [sub_resource type="Resource" id="Resource_wukud"]
 resource_local_to_scene = true
 script = ExtResource("3_pkg7o")
+max_hp = 10.0
+hp = 10.0
+min_hp = 0.0
+_max = 39.0
+_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
 [sub_resource type="Resource" id="Resource_il2jm"]
@@ -69,6 +80,7 @@ resource_local_to_scene = true
 script = ExtResource("10_ic0uy")
 loot = Array[ExtResource("7_pkg7o")]([ExtResource("6_pkg7o"), ExtResource("9_wse8f"), ExtResource("12_udxuc"), ExtResource("13_ikiii")])
 quantity = Array[int]([1, 1, 1, 1])
+fill_propability = true
 propability = Array[float]([0.0, 0.0, 0.0, 100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"
 
@@ -76,6 +88,7 @@ metadata/_custom_type_script = "uid://dqhg12h35d4au"
 resource_local_to_scene = true
 script = ExtResource("17_ikiii")
 heal = 2.0
+key_string = "E"
 name = "Berrys"
 texture = ExtResource("18_cbp6q")
 stack_size = 10
@@ -86,6 +99,7 @@ resource_local_to_scene = true
 script = ExtResource("10_ic0uy")
 loot = Array[ExtResource("7_pkg7o")]([SubResource("Resource_wjb0r")])
 quantity = Array[int]([1])
+fill_propability = true
 propability = Array[float]([100.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"
 
@@ -101,7 +115,7 @@ inventory = SubResource("Resource_bc84e")
 [node name="PointLight2D" type="PointLight2D" parent="player"]
 visible = false
 position = Vector2(0.5, 0)
-color = Color(1, 0.654902, 0.34117648, 1)
+color = Color(1, 0.654902, 0.341176, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_036b0")
 texture_scale = 2.5
@@ -109,7 +123,7 @@ height = 3.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
-color = Color(0.34901962, 0.42352942, 0.7764706, 1)
+color = Color(0.34902, 0.423529, 0.776471, 1)
 
 [node name="enemy" parent="." instance=ExtResource("3_aqk2v")]
 position = Vector2(-57, 47)
