@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="attack_stats" load_steps=5 format=3 uid="uid://c6fte7rcts0m2"]
 
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_68002"]
-[ext_resource type="Texture2D" uid="uid://u3fqv5h7e6c5" path="res://assets/20251126test_swort_small+diagonal.png" id="2_6rdsk"]
+[ext_resource type="Texture2D" uid="uid://c574drgncsggw" path="res://assets/20251126test_swort_small+diagonal.png" id="2_6rdsk"]
 
 [sub_resource type="Animation" id="Animation_3fnxt"]
 

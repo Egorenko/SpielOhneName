@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcifeck4kexsg"]
+[gd_scene load_steps=17 format=3 uid="uid://bcifeck4kexsg"]
 
 [ext_resource type="Texture2D" uid="uid://betmwcxvxhd" path="res://assets/Overworldspriteatlas.png" id="1_gldc4"]
-[ext_resource type="Script" uid="uid://c0vjgh4iu5jjw" path="res://scripts/map.gd" id="1_jh32y"]
 [ext_resource type="Script" uid="uid://hq7h2v55f26r" path="res://scripts/tile_map.gd" id="2_0cso3"]
 [ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="3_2klcf"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_jh32y"]
@@ -204,7 +203,6 @@ metadata/_custom_type_script = "uid://g3ewxx0o313"
 
 [node name="Map" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_jh32y")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -217,7 +215,7 @@ layer_0/z_index = -1
 layer_1/name = "Foliage"
 layer_1/y_sort_enabled = true
 layer_2/name = "Dungeons"
-layer_2/y_sort_enabled = true
+layer_2/z_index = 1
 layer_3/name = "Roof"
 layer_3/z_index = 1
 layer_4/name = "Layer4"

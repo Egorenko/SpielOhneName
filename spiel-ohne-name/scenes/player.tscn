@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct3370r55isra" path="res://scripts/entitys/player.gd" id="1_ur7pv"]
 [ext_resource type="Resource" uid="uid://41p1g61qqiiq" path="res://scripts/stats/entity_stats/player_stats.tres" id="2_3v2ag"]
-[ext_resource type="Texture2D" uid="uid://bb7qj638ba6io" path="res://assets/20260103test_farmer.png" id="2_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://cgrraffyajcnn" path="res://assets/20260103test_farmer.png" id="2_d2wvv"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_d2wvv"]
 [ext_resource type="Resource" uid="uid://d0jflqhon5bg0" path="res://scripts/inventory/inventory_types/inventory_12slots.tres" id="3_f1ej7"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="3_jej6c"]
@@ -109,7 +109,6 @@ shape = SubResource("CapsuleShape2D_2ue4q")
 debug_color = Color(1, 0, 0, 0.313726)
 
 [node name="Interact_Area" type="Area2D" parent="."]
-visible = false
 monitoring = false
 script = ExtResource("10_y4r1p")
 
@@ -118,7 +117,6 @@ shape = SubResource("CircleShape2D_d2wvv")
 disabled = true
 
 [node name="Pickup_Area" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("10_y4r1p")

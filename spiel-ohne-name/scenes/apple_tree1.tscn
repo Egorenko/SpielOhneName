@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/bush.gd" id="1_nxl5a"]
 [ext_resource type="Resource" uid="uid://cqb5a0cl57n4" path="res://scripts/loottables/apple_tree1.tres" id="2_nxl5a"]
 [ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="4_14hcx"]
-[ext_resource type="Texture2D" uid="uid://ckhyy5gkmjjg4" path="res://assets/Overworldspriteatlas.png" id="5_0hlfe"]
+[ext_resource type="Texture2D" uid="uid://betmwcxvxhd" path="res://assets/Overworldspriteatlas.png" id="5_0hlfe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14hcx"]
 atlas = ExtResource("5_0hlfe")

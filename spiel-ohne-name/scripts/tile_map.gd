@@ -12,11 +12,11 @@ var PathTile: Vector2i = Vector2i(6, 5);
 var MossyPathTile: Vector2i = Vector2i(8, 3);
 var TreeTileSlim: Vector2i = Vector2i(9, 8);
 var TreeTileWide: Vector2i = Vector2i(0, 8);
-<<<<<<< HEAD
+
 var BushTile: Vector2i = Vector2i(7, 6);
-=======
+
 var random = RandomNumberGenerator.new();
->>>>>>> fcbcf1d9e220aa60bcafd3a02afdcccfd8face16
+
 
 var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"], 
 								[Vector3i(1, 7, 6), "res://structures/House_2"], 
@@ -94,7 +94,6 @@ func _ready() -> void:
 					#healing plant
 					2: 
 						#test -> changed to calm_grass and instantice bush scene there
-<<<<<<< HEAD
 						Tilemap.set_cell(1, Vector2i(x, y), 1, GrassTile, 0)
 						var plant:PackedScene
 						#40% appletrees 60% bushes
@@ -106,15 +105,7 @@ func _ready() -> void:
 						
 						var plant_spawn:CharacterBody2D = plant.instantiate()
 						plant_spawn.position = to_global(map_to_local(Vector2i(x,y)))
-						plant_spawn.z_index = 1
-						get_tree().root.call_deferred_thread_group("add_child", plant_spawn)
-=======
-						var bush_test:PackedScene = preload("res://scenes/bush1.tscn")
-						var bush_spawn:CharacterBody2D = bush_test.instantiate()
-						bush_spawn.position = to_global(map_to_local(Vector2i(x,y)))
-						bush_spawn.z_index = 1
-						#get_tree().root.call_deferred_thread_group("add_child", bush_spawn)
->>>>>>> fcbcf1d9e220aa60bcafd3a02afdcccfd8face16
+						get_parent().call_deferred_thread_group("add_child", plant_spawn)
 	
 	#find all empty spaces where structures can potentially be placed
 	for x in range((-Overworld_map_radius - 16.0) / float(ChunkSize) - 1, (Overworld_map_radius + 16.0) / float(ChunkSize)): 

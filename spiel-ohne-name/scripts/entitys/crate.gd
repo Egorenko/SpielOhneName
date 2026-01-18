@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_to_group("item")
 	items.ready()
 
-func on_hit() -> void:
+func on_hit(_damage:float, attacker:Node) -> void:
 	hits -= 1
 	if hits <= 0:
 		destroy()

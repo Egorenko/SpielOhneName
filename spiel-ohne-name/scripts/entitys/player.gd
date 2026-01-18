@@ -92,9 +92,6 @@ func _input(event: InputEvent) -> void:
 @onready var new_texture:AtlasTexture = $Sprite2D_test.texture as AtlasTexture
 ##movement
 func _physics_process(delta: float) -> void:
-	'###'
-	teleport()
-	'###'
 # Get the input direction and handle the movement/deceleration.
 # As good practice, you should replace UI actions with custom gameplay actions.
 	velocity = Input.get_vector("move_left","move_right", "move_up", "move_down")
@@ -171,26 +168,3 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 			$attack.rotation = mid.angle_to_point($find_shape.max_dis_vertex)
 			$attack.attack(attacks[2])
 	return
-<<<<<<< HEAD
-
-##-------------------------------------------------------------------------------
-func teleport()-> bool:
-	var tile_pos = $"../TileMap".local_to_map(global_position)
-	var cell_data_door = $"../TileMap".get_cell_tile_data(2, tile_pos)
-	
-	if (!can_teleport):
-		if (cell_data_door != null): if (cell_data_door.get_custom_data("Teleporter")): return false;
-		can_teleport = true;
-		return false;
-	
-	if cell_data_door and cell_data_door.get_custom_data("Teleporter"):
-		print("Door Teleport");
-		can_teleport = false;
-		get_tree().change_scene_to_file("res://scenes/dungeon_map.tscn");
-		'await get_tree().process_frame
-		get_tree().current_scene.add_child(self)'
-		return true;
-	return false;
-#
-=======
->>>>>>> fcbcf1d9e220aa60bcafd3a02afdcccfd8face16

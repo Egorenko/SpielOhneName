@@ -1,42 +1,83 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjt3eb88df415"]
+[gd_scene load_steps=23 format=3 uid="uid://bjt3eb88df415"]
 
 [ext_resource type="Script" uid="uid://cu8ys0toqg4xw" path="res://scripts/dungeon_room_manager.gd" id="1_5v5g0"]
-[ext_resource type="Script" uid="uid://c2srylk467bbh" path="res://scripts/dungeon_room.gd" id="2_t318d"]
+[ext_resource type="PackedScene" uid="uid://b27jq4l6aaqel" path="res://scenes/dungeon_room.tscn" id="2_ssne1"]
 [ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="3_5ufkp"]
-[ext_resource type="Texture2D" uid="uid://8plo8k28rkaf" path="res://assets/DungeonSpriteAtlas.png" id="3_d6yat"]
-[ext_resource type="Script" uid="uid://w1l243mnafeh" path="res://scripts/DungeonRoom_tile_map.gd" id="4_5yl5f"]
 [ext_resource type="Script" uid="uid://bleqjs8untup8" path="res://scripts/DungeonRoom_camera_2d.gd" id="4_f4p2h"]
-[ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest1.tscn" id="5_ddir4"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="5_ssne1"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="6_cecul"]
 [ext_resource type="Script" uid="uid://dn51gbsepixer" path="res://scripts/inventory/Inventory_stack.gd" id="7_pnj2b"]
 [ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="8_t318d"]
+[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="9_5yl5f"]
+[ext_resource type="Texture2D" uid="uid://kfk6runc5ses" path="res://assets/20251126test_shield_smallF.png" id="10_ddir4"]
+[ext_resource type="Animation" uid="uid://d4jy5tocquctc" path="res://animations/attack_test.res" id="11_qgydc"]
+[ext_resource type="Texture2D" uid="uid://ba1abrfptyaho" path="res://assets/20251201test_sword_small+diagonal_thrust.png" id="12_cg04q"]
+[ext_resource type="Texture2D" uid="uid://fakbooy8udfj" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="13_23bqe"]
 
-[sub_resource type="Resource" id="Resource_d6yat"]
+[sub_resource type="Resource" id="Resource_anxp1"]
 resource_local_to_scene = true
 script = ExtResource("5_ssne1")
-max_hp = 10.0
 hp = 1.0
-min_hp = 0.0
-_max = 39.0
-_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
-[sub_resource type="Resource" id="Resource_5yl5f"]
+[sub_resource type="Resource" id="Resource_ouocn"]
 resource_local_to_scene = true
 script = ExtResource("6_cecul")
-health = SubResource("Resource_d6yat")
+health = SubResource("Resource_anxp1")
 damage = 1
-cooldown = 0.0
 speed = 15000
-attack_speed = 0.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
-[sub_resource type="Resource" id="Resource_ddir4"]
+[sub_resource type="Resource" id="Resource_n8mno"]
 resource_local_to_scene = true
 script = ExtResource("8_t318d")
 items = Array[ExtResource("7_pnj2b")]([null, null, null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://cp3ar7nkt1tpt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5sr4"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_oo20j"]
+resource_local_to_scene = true
+script = ExtResource("9_5yl5f")
+cooldown = 3.0
+attack_time = 1.0
+hitbox = SubResource("RectangleShape2D_l5sr4")
+weapon = ExtResource("10_ddir4")
+offset = Vector2(15, 0)
+sprite_rotation = -1.571
+metadata/_custom_type_script = "uid://g3ewxx0o313"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8whwp"]
+resource_local_to_scene = true
+size = Vector2(25, 6)
+
+[sub_resource type="Resource" id="Resource_g4thc"]
+resource_local_to_scene = true
+script = ExtResource("9_5yl5f")
+damage = 3
+cooldown = 2.0
+attack_time = 0.3
+hitbox = SubResource("RectangleShape2D_8whwp")
+anim = ExtResource("11_qgydc")
+weapon = ExtResource("12_cg04q")
+offset = Vector2(20, 0)
+sprite_rotation = 0.785
+metadata/_custom_type_script = "uid://g3ewxx0o313"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecivy"]
+height = 40.0
+
+[sub_resource type="Resource" id="Resource_1v6g5"]
+resource_local_to_scene = true
+script = ExtResource("9_5yl5f")
+damage = 1
+cooldown = 0.5
+attack_time = 0.3
+hitbox = SubResource("CapsuleShape2D_ecivy")
+weapon = ExtResource("13_23bqe")
+offset = Vector2(15, 0)
+metadata/_custom_type_script = "uid://g3ewxx0o313"
 
 [node name="DungeonRoomManager" type="Node2D"]
 script = ExtResource("1_5v5g0")
@@ -48,6 +89,8 @@ zoom = Vector2(3, 3)
 script = ExtResource("4_f4p2h")
 
 [node name="player" parent="." instance=ExtResource("3_5ufkp")]
+z_index = 1
 position = Vector2(279, 139)
-stats = SubResource("Resource_5yl5f")
-inventory = SubResource("Resource_ddir4")
+stats = SubResource("Resource_ouocn")
+inventory = SubResource("Resource_n8mno")
+attacks = Array[ExtResource("9_5yl5f")]([SubResource("Resource_oo20j"), SubResource("Resource_g4thc"), SubResource("Resource_1v6g5")])
