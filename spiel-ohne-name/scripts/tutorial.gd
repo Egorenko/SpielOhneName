@@ -153,7 +153,7 @@ func phase_6() -> void:
 		key_pressed_shift = false;
 		
 func phase_7() -> void:
-	var text: Array[String] = ["Oh, before i forget it... you can also sprint by pressing Shift once. To disable it just press it once more afterwards."];
+	var text: Array[String] = ["Oh, before i forget it... you can also sprint by pressing and holding Shift."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
 		TextBox.reset();
 		TextBox.Prompt = text[textnum];
