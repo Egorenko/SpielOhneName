@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://btctntehuprsv" path="res://scripts/loottables/crate1.tres" id="2_3fnxt"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
-[ext_resource type="Texture2D" uid="uid://4m8jpfrvb48m" path="res://assets/20251209test_knight.png" id="2_lov5v"]
+[ext_resource type="Texture2D" uid="uid://dgjthe8piaohd" path="res://assets/20251209test_knight.png" id="2_lov5v"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="2_vdsa7"]
 [ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/ritter.gd" id="2_y08xt"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dda1aatq0u6cu" path="res://scripts/healthbar.gd" id="8_3q0ad"]
 
 [sub_resource type="Resource" id="Resource_cyrqf"]
+resource_local_to_scene = true
 script = ExtResource("2_4n3et")
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 

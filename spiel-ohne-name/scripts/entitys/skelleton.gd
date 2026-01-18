@@ -13,6 +13,7 @@ var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
 
 
 func _ready():
+	add_to_group("enemy")
 	items.ready()
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
