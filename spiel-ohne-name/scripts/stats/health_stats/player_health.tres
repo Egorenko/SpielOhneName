@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Health" load_steps=2 format=3 uid="uid://ddbujl4cmsoho"]
+
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="1_w5fsg"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_w5fsg")
+max_hp = 10.0
+hp = 10.0
+min_hp = 0.0
+_max = 100.0
+_min = 0.0
+metadata/_custom_type_script = "uid://doxodrbw6wbd6"

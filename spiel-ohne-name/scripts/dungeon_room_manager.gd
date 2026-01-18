@@ -10,34 +10,28 @@ var MaxRoomSize: Vector2i = Vector2i(30, 30);
 var MinRoomSize: Vector2i = Vector2i(6, 8);
 
 func _ready() -> void:
-	var player = PlayerManager.get_player()
-	if player.get_parent():
-		player.get_parent().remove_child(player)
-	await get_tree().process_frame
-	add_child(player)
-	
 	var Matrix: Array[bool] = generate_dungeon_layout(dungeon_size, dungeon_density);
 	var Matrix2: Array[int] = assign_indices_to_rooms(Matrix);
 	generate_rooms(Matrix2);
 	change_room(0);
-	$player.can_teleport = false;
-	$player.global_position = Rooms[0].get_teleport_tile_global_pos(2);
+	Seed.player_scene.can_teleport = false;
+	Seed.player_scene.global_position = Rooms[0].get_teleport_tile_global_pos(2);
 	$Camera2D.make_current();
 	
-func _process(_delta: float) -> void:
-	var teleportIndex: int = current_room.is_pos_on_teleporter($player.global_position);	
+func _process(delta: float) -> void:
+	var teleportIndex: int = current_room.is_pos_on_teleporter(Seed.player_scene.global_position);	
 	if (teleportIndex < 0): 
-		$player.can_teleport = true;
+		Seed.player_scene.can_teleport = true;
 		return;
-	if ($player.can_teleport and teleportIndex == 4):
-		$player.can_teleport = false;
+	if (Seed.player_scene.can_teleport and teleportIndex == 4):
+		Seed.player_scene.can_teleport = false;
 		get_tree().change_scene_to_file("res://scenes/map.tscn");
 		return;
-	if ($player.can_teleport && teleportIndex >= 0):
+	if (Seed.player_scene.can_teleport && teleportIndex >= 0):
 		var playerNewPos: Vector2i = Rooms[current_room.tileMap.NeigbourRoomIndices[teleportIndex]].get_teleport_tile_global_pos(teleportIndex);
 		change_room(current_room.tileMap.NeigbourRoomIndices[teleportIndex]);
-		$player.global_position = playerNewPos;
-		$player.can_teleport = false;
+		Seed.player_scene.global_position = playerNewPos;
+		Seed.player_scene.can_teleport = false;
 
 func random(SEED: int) -> int:
 	randomIteration += 1;
@@ -52,7 +46,7 @@ func change_room(RoomIndex: int) -> void:
 	$Camera2D.roomRect = current_room.tileMap.get_room_rect();
 
 
-func _input(_event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if (Input.is_key_pressed(KEY_Q)):
 		change_room(1);
 		
@@ -61,9 +55,9 @@ func generate_dungeon_layout(size: int, density: float) -> Array[bool]:
 	var Matrix: Array[bool];
 	Matrix.resize(size * size);
 	var room_count: int = 1;
-	Matrix[float(size * size) / 2] = true;
+	Matrix[size * size / 2] = true;
 	while (room_count < size * size * density):
-		var index: int = random($player.SEED) % (size * size);
+		var index: int = random(Seed.SEED) % (size * size);
 		if (Matrix[index]): continue;
 		var has_direct_neigbour = false;
 		var pos: Vector2i = Vector2i(index % size, index / size);
@@ -111,10 +105,10 @@ func generate_rooms(Matrix: Array[int])-> void:
 		var neibours: Vector4i = Vector4i(-1, -1, -1, -1);
 		if (i % dungeon_size > 0): neibours[3] = Matrix[i - 1];
 		if (i % dungeon_size < dungeon_size - 1): neibours[1] = Matrix[i + 1];
-		if (float(i) / dungeon_size > 0): neibours[0] = Matrix[i - dungeon_size];
-		if (float(i) / dungeon_size < dungeon_size - 1): neibours[2] = Matrix[i + dungeon_size];
+		if (i / dungeon_size > 0): neibours[0] = Matrix[i - dungeon_size];
+		if (i / dungeon_size < dungeon_size - 1): neibours[2] = Matrix[i + dungeon_size];
 		if (Matrix[i] == 0): Rooms[Matrix[i]].tileMap.hasLadder = true;
-		Rooms[Matrix[i]].tileMap.generate(Vector2i(random($player.SEED) % (MaxRoomSize.x - MinRoomSize.x) + MinRoomSize.x, random($player.SEED) % (MaxRoomSize.y - MinRoomSize.y) + MinRoomSize.y), Vector2i(0, Matrix[i] * (MaxRoomSize.x + 6)), Matrix[i], neibours);
-		Rooms[Matrix[i]].spawn_enemys(random($player.SEED) % 10);
-	var finalRoom: int = random($player.SEED) % (Rooms.size() - 3) + 3;
+		Rooms[Matrix[i]].tileMap.generate(Vector2i(random(Seed.SEED) % (MaxRoomSize.x - MinRoomSize.x) + MinRoomSize.x, random(Seed.SEED) % (MaxRoomSize.y - MinRoomSize.y) + MinRoomSize.y), Vector2i(0, Matrix[i] * (MaxRoomSize.x + 6)), Matrix[i], neibours);
+		Rooms[Matrix[i]].spawn_enemys(random(Seed.SEED) % 10);
+	var finalRoom: int = random(Seed.SEED) % (Rooms.size() - 3) + 3;
 	Rooms[finalRoom].tileMap.generate_specialCrate();

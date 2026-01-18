@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://b87guxik3ufos"]
+
+[ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/bush.gd" id="1_dab6e"]
+[ext_resource type="Resource" uid="uid://fex3nccvasya" path="res://scripts/loottables/bush1.tres" id="2_b2qnu"]
+[ext_resource type="Texture2D" uid="uid://bgip37o518hq3" path="res://assets/20251204test_bush2.png" id="3_12x1x"]
+[ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="3_b2qnu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrik4"]
+radius = 8.062258
+
+[node name="refill_container" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_dab6e")
+items = ExtResource("2_b2qnu")
+max_fill = 5
+fill = 1
+spawn_time = 2.0
+metadata/_custom_type_script = "uid://bbjc0iyrs0msr"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_12x1x")
+offset = Vector2(0, -8)
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_b2qnu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_lrik4")
+debug_color = Color(0.20143, 0.6292087, 0.3618726, 0.41960785)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 35.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1

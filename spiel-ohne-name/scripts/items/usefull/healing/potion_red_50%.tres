@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="healing_item_percent" load_steps=3 format=3 uid="uid://dynt2q6ugdpj2"]
+
+[ext_resource type="Script" uid="uid://v50iy6f43pug" path="res://scripts/items/usefull/healing/healing_item_percent.gd" id="1_q6onk"]
+[ext_resource type="Texture2D" uid="uid://bqaxl84vo7fgb" path="res://assets/20260113test_potion_long_red.png" id="2_pwvfe"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_q6onk")
+healing_percent = 50.0
+name = "Healingpotion"
+texture = ExtResource("2_pwvfe")
+stack_size = 3
+metadata/_custom_type_script = "uid://v50iy6f43pug"

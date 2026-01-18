@@ -18,14 +18,8 @@ func _ready() -> void:
 		#if not existend searches in tree
 		for node:Object in owner.get_children():
 			if node is Healthbar:
-<<<<<<< Updated upstream
-				print(node.name)
 				print(owner, " got new healthbar")
-=======
-				#print(owner, " found healthbar")
->>>>>>> Stashed changes
 				owner_healthbar = node
-				print(owner_healthbar)
 				has_healthbar = true
 				break
 	'#if not "healthbar" not existend and no heltbar in tree -> create new
@@ -35,9 +29,9 @@ func _ready() -> void:
 		#help.owner = owner
 		owner_healthbar = help'
 
-func on_hit(_damage:float) -> void:
+func on_hit(_damage:float, attacker:Node) -> void:
 	if owner.has_method("on_hit"):
-		owner.on_hit()
+		owner.on_hit(_damage, attacker)
 	else:
 		owner.stats.health.decrease_hp(_damage)
 		if has_healthbar and owner.stats.health.got_changed():
@@ -45,20 +39,19 @@ func on_hit(_damage:float) -> void:
 				owner_healthbar.update()
 			else:
 				owner.healthbar.update()
-		#print(owner, ", has no on_hit")
+		print(owner, ", has no on_hit")
 	pass
 
 func on_death() -> void:
 	if owner.has_method("on_death"):
 		owner.on_death()
 	else:
-		#print(owner, ", has no on_death")
-		pass
+		print(owner, ", has no on_death")
 	pass
 
 ##returns if object dead (true) or alife (false)
-func take_damage(_damage:float) -> bool:
-	on_hit(_damage)
+func take_damage(_damage:float, attacker:Node) -> bool:
+	on_hit(_damage, attacker)
 	if "stats" in owner and owner.stats.health.is_dead():
 		on_death()
 		return true

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Loot_Table" load_steps=6 format=3 uid="uid://fex3nccvasya"]
+
+[ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="1_ppytd"]
+[ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="2_48565"]
+[ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="3_ebjhg"]
+[ext_resource type="Texture2D" uid="uid://deeuupmqyli4k" path="res://assets/20260117test_berrys_red.png" id="3_gn2xm"]
+
+[sub_resource type="Resource" id="Resource_enym5"]
+resource_local_to_scene = true
+script = ExtResource("2_48565")
+heal = 2.0
+key_string = "E"
+name = "Berry"
+texture = ExtResource("3_gn2xm")
+stack_size = 10
+metadata/_custom_type_script = "uid://dwefkhid8qmy0"
+
+[resource]
+script = ExtResource("3_ebjhg")
+loot = Array[ExtResource("1_ppytd")]([SubResource("Resource_enym5")])
+quantity = Array[int]([1])
+fill_propability = true
+propability = Array[float]([100.0])
+metadata/_custom_type_script = "uid://dqhg12h35d4au"

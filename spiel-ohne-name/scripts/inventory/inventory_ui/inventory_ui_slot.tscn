@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnasgrjdrv3uc"]
+
+[ext_resource type="Script" uid="uid://cga3e0qlxpa8i" path="res://scripts/inventory/inventory_ui/inventory_ui_slot.gd" id="1_784ec"]
+[ext_resource type="Texture2D" uid="uid://cm2v2npuspwkf" path="res://assets/20260112test_inventory_base.png" id="2_784ec"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_784ec"]
+resource_local_to_scene = true
+
+[node name="slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(12, 12)
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_784ec")
+
+[node name="backround" type="Sprite2D" parent="."]
+modulate = Color(0.9867516, 0.9867516, 0.9867516, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_784ec")
+position = Vector2(6, 6)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_784ec")
+
+[node name="CenterContainer" type="CenterContainer" parent="backround"]
+custom_minimum_size = Vector2(12, 12)
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+
+[node name="Panel" type="Panel" parent="backround/CenterContainer"]
+layout_mode = 2
+
+[node name="Item_dysplay" type="Sprite2D" parent="backround/CenterContainer/Panel"]
+texture_filter = 1
+scale = Vector2(0.62, 0.62)
+
+[node name="text" type="Label" parent="backround/CenterContainer/Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -5.9999986
+offset_top = 1.0
+offset_right = 53.999992
+offset_bottom = 24.0
+scale = Vector2(0.2, 0.2)
+text = "0"
+horizontal_alignment = 2

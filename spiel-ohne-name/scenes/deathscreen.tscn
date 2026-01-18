@@ -1,0 +1,68 @@
+[gd_scene load_steps=14 format=3 uid="uid://bdkmjj4oa8b6"]
+
+[ext_resource type="Script" uid="uid://dl0iefgndygc" path="res://scripts/Deathscreen.gd" id="1_uurjc"]
+[ext_resource type="Texture2D" uid="uid://bdcloieitjnh5" path="res://assets/Button.png" id="2_eye5d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tad7x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nvjxv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mtusd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ls53"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqvbh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5hj6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2y1j8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2u40r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gi2j6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0t7v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5gr1b"]
+
+[node name="Deathscreen" type="CanvasLayer"]
+script = ExtResource("1_uurjc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 2000.0
+offset_bottom = 2000.0
+color = Color(0.219608, 0.219608, 0.219608, 0.752941)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -120.0
+offset_top = -107.0
+offset_right = 121.0
+offset_bottom = -52.0
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER!"
+
+[node name="TITLESCREEN_BUTTON" type="Button" parent="."]
+texture_filter = 1
+offset_left = -65.0
+offset_top = 70.0
+offset_right = 61.0
+offset_bottom = 112.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tad7x")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_nvjxv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mtusd")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2ls53")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iqvbh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_j5hj6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2y1j8")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_2u40r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gi2j6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_l0t7v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5gr1b")
+text = "TITLESCREEN"
+icon = ExtResource("2_eye5d")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="button_up" from="TITLESCREEN_BUTTON" to="." method="_on_titlescreen_button_button_up"]

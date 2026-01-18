@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Inventory_item" load_steps=3 format=3 uid="uid://cx11h2wqxweto"]
+
+[ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="1_jcy18"]
+[ext_resource type="Texture2D" uid="uid://dvk8rg7dl0mt8" path="res://assets/20251126test_wand_nature_blue_small+diagonal.png" id="2_apuau"]
+
+[resource]
+script = ExtResource("1_jcy18")
+name = "Staff"
+texture = ExtResource("2_apuau")
+metadata/_custom_type_script = "uid://cpyw5us3w6jtf"

@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu0vdyocefwut"]
+
+[ext_resource type="PackedScene" uid="uid://tbjvmotu5cvj" path="res://scenes/player.tscn" id="2_uiyxu"]
+
+[sub_resource type="GDScript" id="GDScript_iltar"]
+script/source = "extends Node2D
+
+@export var num_entities: int = 35
+@export var nav_layer: int = 0
+
+@onready var ritter: PackedScene = preload(\"res://scenes/ritter.tscn\")
+@onready var skeleton : PackedScene = preload(\"res://scenes/skelleton.tscn\")
+@onready var tile_map: TileMap = $TileMap
+
+var navigation_cells: Array[Vector2i] = []
+
+func _ready() -> void:
+	randomize()
+	cache_navigation_cells()
+	spawn_entities()
+
+func spawn_entities() -> void:
+	for i in num_entities:
+		spawn_entity()
+
+func spawn_entity() -> void:
+	if navigation_cells.is_empty():
+		push_warning(\"Keine gültigen Navigation-Zellen gefunden.\")
+		return
+
+	var entitis = [ritter, skeleton]
+	var entity := entitis.pick_random().instantiate() as Node2D
+	
+	entity.global_position = get_random_navigation_position()
+	add_child(entity)
+
+func cache_navigation_cells() -> void:
+	navigation_cells.clear()
+
+	for cell in tile_map.get_used_cells(nav_layer):
+		var data := tile_map.get_cell_tile_data(nav_layer, cell)
+		if data and data.get_navigation_polygon(0):
+			navigation_cells.append(cell)
+
+func get_random_navigation_position() -> Vector2:
+	var cell: Vector2i = navigation_cells.pick_random()
+	print(cell)
+	return tile_map.map_to_local(cell)
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uiyxu"]
+vertices = PackedVector2Array(1142, 622.203, 9.99219, 645.781, 10, 10, 1142, 10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 1152, 0, 1152, 632, 0, 656)])
+
+[node name="AIBotSpawn" type="Node2D"]
+script = SubResource("GDScript_iltar")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_uiyxu")
+
+[node name="player" parent="." instance=ExtResource("2_uiyxu")]

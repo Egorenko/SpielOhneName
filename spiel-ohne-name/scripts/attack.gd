@@ -26,7 +26,7 @@ func load_stats(stats:attack_stats) -> void:
 	hitbox.rotation = 0.0
 	hitbox_shape.shape = stats.hitbox
 	hitbox.off()
-	hitbox.rotate(stats.hitbox_rotation)
+	hitbox.rotation = stats.hitbox_rotation
 	
 	#prepare sprite
 	weapon.position = Vector2(0.0, 0.0)
@@ -34,7 +34,7 @@ func load_stats(stats:attack_stats) -> void:
 	weapon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	weapon.z_index = -1
 	weapon.texture = stats.weapon
-	weapon.rotate(stats.sprite_rotation)
+	weapon.rotation = stats.sprite_rotation
 	weapon.visible = false
 	
 	move_attack(stats.offset)
@@ -44,20 +44,17 @@ func make_invisible()->void:
 	weapon.visible = false
 
 func attack(stats:attack_stats) -> void:
-<<<<<<< Updated upstream
-=======
 	if not hitbox.cooldown_over:
-		#print("on cooldown")
+		print("on cooldown")
 		return
->>>>>>> Stashed changes
 	load_stats(stats)
-	hitbox.attack(stats.damage * owner_stats.damage, stats.attack_time, effect, stats.cooldown)
+	hitbox.attack(stats.damage * owner_stats.damage, stats.attack_time, stats.cooldown)
 	weapon.visible = true
-	var help:Timer = Timer.new()
-	add_child(help)
-	help.one_shot = true
-	help.timeout.connect(make_invisible)
-	help.call_deferred("start", stats.attack_time)
+	var visibilitiy:Timer = Timer.new()
+	add_child(visibilitiy)
+	visibilitiy.one_shot = true
+	visibilitiy.timeout.connect(make_invisible)
+	visibilitiy.call_deferred("start", stats.attack_time)
 	
 	'var a_name = anim.find_animation(animation)
 	anim.current_animation = a_name
