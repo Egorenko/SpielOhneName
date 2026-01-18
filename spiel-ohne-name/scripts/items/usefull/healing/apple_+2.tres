@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="healing_item_flat" load_steps=3 format=3 uid="uid://dwjbw5e343pva"]
+
+<<<<<<< Updated upstream:spiel-ohne-name/scripts/items/usefull/healing/apple_+2.tres
+[ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="1_g6bpn"]
+[ext_resource type="Texture2D" uid="uid://bfo6m4jx6xglq" path="res://assets/20260113test_apple_red.png" id="2_nufd0"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_g6bpn")
+heal = 2.0
+=======
+[ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="1_x12km"]
+[ext_resource type="Texture2D" uid="uid://bfo6m4jx6xglq" path="res://assets/20260113test_apple_red.png" id="2_jte5e"]
+
+[resource]
+script = ExtResource("1_x12km")
+heal = 5.0
+>>>>>>> Stashed changes:spiel-ohne-name/scripts/items/usefull/healing/apple_+5.tres
+name = "Apple"
+texture = ExtResource("2_nufd0")
+stack_size = 5
+metadata/_custom_type_script = "uid://dwefkhid8qmy0"
