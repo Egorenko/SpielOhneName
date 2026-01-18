@@ -1,15 +1,9 @@
-<<<<<<< .merge_file_JxZIyX
 [gd_scene load_steps=23 format=3 uid="uid://buqu4u5q10vbs"]
 
 [ext_resource type="Script" uid="uid://ct3370r55isra" path="res://scripts/entitys/player.gd" id="1_ur7pv"]
 [ext_resource type="Resource" uid="uid://41p1g61qqiiq" path="res://scripts/stats/entity_stats/player_stats.tres" id="2_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://cgrraffyajcnn" path="res://assets/20260103test_farmer.png" id="2_d2wvv"]
-=======
-[gd_scene load_steps=18 format=3 uid="uid://tbjvmotu5cvj"]
 
-[ext_resource type="Script" uid="uid://ct3370r55isra" path="res://scripts/entitys/player.gd" id="1_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://duynsh7n8cic8" path="res://assets/20251209test_knight.png" id="2_y4r1p"]
->>>>>>> .merge_file_nVWyA1
 [ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="3_d2wvv"]
 [ext_resource type="Resource" uid="uid://d0jflqhon5bg0" path="res://scripts/inventory/inventory_types/inventory_12slots.tres" id="3_f1ej7"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="3_jej6c"]
@@ -24,11 +18,9 @@
 [ext_resource type="Script" uid="uid://vtkv24ig5neo" path="res://scripts/healthbar.gd" id="12_oprun"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
-<<<<<<< .merge_file_JxZIyX
+
 atlas = ExtResource("2_d2wvv")
-=======
-atlas = ExtResource("2_y4r1p")
->>>>>>> .merge_file_nVWyA1
+
 region = Rect2(40, 1, 17, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
@@ -144,8 +136,6 @@ metadata/_custom_type_script = "uid://buvoikjjriw57"
 position = Vector2(0, 11)
 shape = SubResource("CircleShape2D_y4r1p")
 
-<<<<<<< Updated upstream
-<<<<<<< .merge_file_JxZIyX
 [node name="Inventory_UI" parent="." instance=ExtResource("11_d2wvv")]
 visible = false
 z_index = 4
@@ -162,17 +152,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 metadata/_edit_use_anchors_ = true
-=======
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
->>>>>>> .merge_file_nVWyA1
-=======
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Inventory_UI" parent="." instance=ExtResource("11_d2wvv")]
-offset_left = -40.0
-offset_top = -32.0
-offset_right = 40.0
-offset_bottom = 28.0
->>>>>>> Stashed changes
