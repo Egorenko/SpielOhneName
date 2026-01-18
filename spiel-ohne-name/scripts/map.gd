@@ -1,9 +1,18 @@
 extends Node2D
 
-@onready var player: player1 = $player;
+@onready var player: player1;
 @onready var tileMap: TileMap = $TileMap;
 
+func _ready() -> void:
+	var player_ = PlayerManager.get_player()
+	if player_.get_parent():
+		player_.get_parent().remove_child(player_)
+	await get_tree().process_frame
+	add_child(player_)
+	print(get_tree().root.get_tree_string_pretty())
+
 func _process(delta: float) -> void:
+	
 	var tileData: TileData = tileMap.get_cell_tile_data(2, tileMap.local_to_map(player.position));
 	if (tileData == null):
 		player.can_teleport = true;

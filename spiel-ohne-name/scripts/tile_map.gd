@@ -31,12 +31,6 @@ var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"],
 
 
 func _ready() -> void:
-	var player = PlayerManager.get_player()
-	if player.get_parent():
-		player.get_parent().remove_child(player)
-	await get_tree().process_frame
-	get_tree().current_scene.add_child(player)
-	
 	#save_structure(Vector4i(0, 1, 6, 8), "res://structures/House_1");
 	#save_structure(Vector4i(7, 1, 7, 7), "res://structures/House_2");
 	#save_structure(Vector4i(15, 1, 8, 8), "res://structures/House_3");
@@ -188,7 +182,7 @@ func _ready() -> void:
 		pos = Vector2i(random.randi() % 50 - 25, random.randi() % 50 - 25);
 	PlayerSpawnTile = pos;
 	$"../player".global_position = Vector2(Tilemap.to_global(map_to_local(PlayerSpawnTile)));
-	
+
 func _process(_delta: float) -> void:
 	pass;
 	

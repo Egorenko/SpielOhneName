@@ -10,6 +10,12 @@ var MaxRoomSize: Vector2i = Vector2i(30, 30);
 var MinRoomSize: Vector2i = Vector2i(6, 8);
 
 func _ready() -> void:
+	var player = PlayerManager.get_player()
+	if player.get_parent():
+		player.get_parent().remove_child(player)
+	await get_tree().process_frame
+	add_child(player)
+	
 	var Matrix: Array[bool] = generate_dungeon_layout(dungeon_size, dungeon_density);
 	var Matrix2: Array[int] = assign_indices_to_rooms(Matrix);
 	generate_rooms(Matrix2);
