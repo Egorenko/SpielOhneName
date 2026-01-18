@@ -13,6 +13,12 @@ var arrayWithDoorInformation = [];
 
 
 func _ready() -> void:
+	var player = PlayerManager.get_player()
+	if player.get_parent():
+		player.get_parent().remove_child(player)
+	await get_tree().process_frame
+	get_tree().current_scene.add_child(player)
+	
 	noise = init_SimplexNoise($"../player".SEED);
 	
 	for i in range(0, dungeon_size.x): 

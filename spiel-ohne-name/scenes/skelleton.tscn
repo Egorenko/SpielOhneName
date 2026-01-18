@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="3_gmh41"]
 [ext_resource type="Script" uid="uid://s0ddp1cmrgfc" path="res://scripts/attack.gd" id="4_a0jgs"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_gmh41"]
-[ext_resource type="Texture2D" uid="uid://drp7wucg7s4ab" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
-[ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts/stats/attack_stats/thrust_stat1.tres" id="5_qe266"]
+[ext_resource type="Texture2D" uid="uid://jcalr63vc3p" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
+[ext_resource type="Resource" uid="uid://yjuw1wyhe8d1" path="res://scripts/stats/attack_stats/fist_thrust.tres" id="6_qe266"]
 [ext_resource type="Script" uid="uid://dda1aatq0u6cu" path="res://scripts/healthbar.gd" id="8_gmh41"]
 
 [sub_resource type="Resource" id="Resource_qe266"]
@@ -96,7 +96,7 @@ script = ExtResource("1_viovb")
 patrol_radius = 50.0
 items = ExtResource("2_qe266")
 stats = SubResource("Resource_2yj5u")
-attacks = Array[ExtResource("4_gmh41")]([ExtResource("5_qe266")])
+attacks = Array[ExtResource("4_gmh41")]([ExtResource("6_qe266")])
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -146,4 +146,5 @@ position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_dlwrl")
 
 [node name="attack" type="Node2D" parent="."]
+z_index = 1
 script = ExtResource("4_a0jgs")

@@ -7,9 +7,10 @@
 height = 40.0
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_hj255")
 damage = 1
-cooldown = 0.3
+cooldown = 0.5
 attack_time = 0.3
 hitbox = SubResource("CapsuleShape2D_ecivy")
 weapon = ExtResource("2_xhunc")

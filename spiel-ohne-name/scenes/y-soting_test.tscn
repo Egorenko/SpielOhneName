@@ -1,0 +1,111 @@
+[gd_scene load_steps=24 format=3 uid="uid://dvbkveb5d3jgy"]
+
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="1_xoyjx"]
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_hqjbk"]
+[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="3_b5412"]
+[ext_resource type="Script" uid="uid://dn51gbsepixer" path="res://scripts/inventory/Inventory_stack.gd" id="4_lr6sm"]
+[ext_resource type="Script" uid="uid://cp3ar7nkt1tpt" path="res://scripts/inventory/Inventory.gd" id="5_g4s73"]
+[ext_resource type="PackedScene" uid="uid://b2lsae8gy01d4" path="res://scenes/crate1.tscn" id="6_g4s73"]
+[ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest1.tscn" id="7_s78av"]
+[ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="8_nayra"]
+[ext_resource type="Resource" uid="uid://cl0imnwq3q37h" path="res://scripts/items/useless/test_items/sword1.tres" id="9_f7tep"]
+[ext_resource type="Resource" uid="uid://cx11h2wqxweto" path="res://scripts/items/useless/test_items/staff1.tres" id="10_uljw5"]
+[ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="11_6psi1"]
+[ext_resource type="PackedScene" uid="uid://b87guxik3ufos" path="res://scenes/bush1.tscn" id="12_f7tep"]
+[ext_resource type="Script" uid="uid://dwefkhid8qmy0" path="res://scripts/items/usefull/healing/healing_item_flat.gd" id="13_uljw5"]
+[ext_resource type="Texture2D" uid="uid://bi4m8t8bcngqa" path="res://assets/20260117test_berrys_red.png" id="14_6psi1"]
+[ext_resource type="PackedScene" uid="uid://dhayvymu0tspn" path="res://scenes/apple_tree1.tscn" id="15_uljw5"]
+
+[sub_resource type="Resource" id="Resource_uljw5"]
+resource_local_to_scene = true
+script = ExtResource("2_hqjbk")
+hp = 1.0
+_max = 100.0
+metadata/_custom_type_script = "uid://doxodrbw6wbd6"
+
+[sub_resource type="Resource" id="Resource_vpq8h"]
+resource_local_to_scene = true
+script = ExtResource("3_b5412")
+health = SubResource("Resource_uljw5")
+damage = 1
+speed = 10000
+metadata/_custom_type_script = "uid://0ccklkhvugtt"
+
+[sub_resource type="Resource" id="Resource_6psi1"]
+resource_local_to_scene = true
+script = ExtResource("5_g4s73")
+items = Array[ExtResource("4_lr6sm")]([null, null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://cp3ar7nkt1tpt"
+
+[sub_resource type="Resource" id="Resource_mua6k"]
+resource_local_to_scene = true
+script = ExtResource("11_6psi1")
+loot = Array[ExtResource("8_nayra")]([ExtResource("9_f7tep"), ExtResource("10_uljw5")])
+quantity = Array[int]([1, 1])
+propability = Array[float]([0.0])
+metadata/_custom_type_script = "uid://dqhg12h35d4au"
+
+[sub_resource type="Resource" id="Resource_33umj"]
+resource_local_to_scene = true
+script = ExtResource("11_6psi1")
+loot = Array[ExtResource("8_nayra")]([ExtResource("9_f7tep"), ExtResource("10_uljw5")])
+quantity = Array[int]([1, 1])
+propability = Array[float]([0.0])
+metadata/_custom_type_script = "uid://dqhg12h35d4au"
+
+[sub_resource type="Resource" id="Resource_enym5"]
+resource_local_to_scene = true
+script = ExtResource("13_uljw5")
+heal = 2.0
+name = "Berry"
+texture = ExtResource("14_6psi1")
+stack_size = 10
+metadata/_custom_type_script = "uid://dwefkhid8qmy0"
+
+[sub_resource type="Resource" id="Resource_v7k7b"]
+resource_local_to_scene = true
+script = ExtResource("11_6psi1")
+loot = Array[ExtResource("8_nayra")]([SubResource("Resource_enym5")])
+quantity = Array[int]([1])
+propability = Array[float]([100.0])
+metadata/_custom_type_script = "uid://dqhg12h35d4au"
+
+[sub_resource type="Resource" id="Resource_dor5d"]
+resource_local_to_scene = true
+script = ExtResource("11_6psi1")
+loot = Array[ExtResource("8_nayra")]([SubResource("Resource_enym5")])
+quantity = Array[int]([1])
+propability = Array[float]([100.0])
+metadata/_custom_type_script = "uid://dqhg12h35d4au"
+
+[node name="Node2D" type="Node2D"]
+y_sort_enabled = true
+
+[node name="refill_container3" parent="." instance=ExtResource("15_uljw5")]
+position = Vector2(26, 73)
+
+[node name="player" parent="." instance=ExtResource("1_xoyjx")]
+position = Vector2(0, 49)
+stats = SubResource("Resource_vpq8h")
+inventory = SubResource("Resource_6psi1")
+
+[node name="crate" parent="." instance=ExtResource("6_g4s73")]
+
+[node name="crate2" parent="." instance=ExtResource("6_g4s73")]
+position = Vector2(0, 17)
+
+[node name="chest" parent="." instance=ExtResource("7_s78av")]
+position = Vector2(-45, 0)
+items = SubResource("Resource_mua6k")
+
+[node name="chest2" parent="." instance=ExtResource("7_s78av")]
+position = Vector2(-45, 22)
+items = SubResource("Resource_33umj")
+
+[node name="refill_container" parent="." instance=ExtResource("12_f7tep")]
+position = Vector2(47, -1)
+items = SubResource("Resource_v7k7b")
+
+[node name="refill_container2" parent="." instance=ExtResource("12_f7tep")]
+position = Vector2(48, 22)
+items = SubResource("Resource_dor5d")

@@ -15,6 +15,10 @@ run/main_scene="uid://cd1xkl8mcunfh"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerManager="*res://scripts/playerManager.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -33,7 +37,7 @@ folder_colors={
 "res://scripts/effects/": "blue",
 "res://scripts/entitys/": "green",
 "res://scripts/inventory/": "green",
-"res://scripts/items/": "red",
+"res://scripts/items/": "yellow",
 "res://scripts/items/usefull/": "yellow",
 "res://scripts/items/usefull/equipable/": "yellow",
 "res://scripts/items/useless/": "yellow",

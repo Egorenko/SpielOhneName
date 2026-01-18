@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct3370r55isra" path="res://scripts/entitys/player.gd" id="1_ur7pv"]
 [ext_resource type="Resource" uid="uid://41p1g61qqiiq" path="res://scripts/stats/entity_stats/player_stats.tres" id="2_3v2ag"]
-[ext_resource type="Texture2D" uid="uid://dfl3cimgg5yil" path="res://assets/20260103test_farmer.png" id="2_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://bb7qj638ba6io" path="res://assets/20260103test_farmer.png" id="2_d2wvv"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_d2wvv"]
 [ext_resource type="Resource" uid="uid://d0jflqhon5bg0" path="res://scripts/inventory/inventory_types/inventory_12slots.tres" id="3_f1ej7"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="3_jej6c"]
@@ -18,10 +18,10 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_d2wvv")
-region = Rect2(40, 1, 17, 26)
+region = Rect2(40, 5, 17, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
-size = Vector2(16, 3)
+size = Vector2(14, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ged13"]
 resource_local_to_scene = true
@@ -51,9 +51,10 @@ anti_aliasing = false
 radius = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y4r1p"]
-radius = 20.0
+radius = 15.0
 
 [node name="player" type="CharacterBody2D"]
+y_sort_enabled = true
 disable_mode = 2
 motion_mode = 1
 script = ExtResource("1_ur7pv")
@@ -62,10 +63,9 @@ inventory = ExtResource("3_f1ej7")
 attacks = Array[ExtResource("3_jej6c")]([ExtResource("9_qfm1y"), ExtResource("7_oprun"), ExtResource("8_a8ls1")])
 
 [node name="Sprite2D_test" type="Sprite2D" parent="."]
-z_index = 1
 texture_filter = 1
-position = Vector2(0, -6)
 texture = SubResource("AtlasTexture_y4r1p")
+offset = Vector2(0, -12)
 
 [node name="find_shape" type="Line2D" parent="."]
 position = Vector2(0, -11)
@@ -74,22 +74,21 @@ default_color = Color(1, 1, 1, 0.2)
 script = ExtResource("4_3v2ag")
 shape_stats = ExtResource("5_jej6c")
 
-[node name="attack" type="Node2D" parent="."]
-position = Vector2(0, -3)
-script = ExtResource("6_f1ej7")
-
 [node name="phys" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_ij6vw")
+
+[node name="attack" type="Node2D" parent="."]
+position = Vector2(0, -8)
+script = ExtResource("6_f1ej7")
 
 [node name="healthbar" type="ProgressBar" parent="."]
 light_mask = 2
 z_index = 1
 texture_filter = 1
 offset_left = -9.0
-offset_top = -21.0
+offset_top = -26.0
 offset_right = 63.0
-offset_bottom = -5.0
+offset_bottom = -10.0
 scale = Vector2(0.25, 0.25)
 theme_override_styles/background = SubResource("StyleBoxFlat_ged13")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ad58j")
@@ -101,16 +100,16 @@ script = ExtResource("12_oprun")
 metadata/_edit_use_anchors_ = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
-position = Vector2(0, -11)
 script = ExtResource("3_d2wvv")
 
 [node name="hurt_shape" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 7)
+position = Vector2(0, -11)
 scale = Vector2(0.9, 0.7)
 shape = SubResource("CapsuleShape2D_2ue4q")
 debug_color = Color(1, 0, 0, 0.313726)
 
 [node name="Interact_Area" type="Area2D" parent="."]
+visible = false
 monitoring = false
 script = ExtResource("10_y4r1p")
 
@@ -119,13 +118,13 @@ shape = SubResource("CircleShape2D_d2wvv")
 disabled = true
 
 [node name="Pickup_Area" type="Area2D" parent="."]
-position = Vector2(0, -11)
+visible = false
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("10_y4r1p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_Area"]
-position = Vector2(0, 11)
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_y4r1p")
 
 [node name="Inventory_UI" parent="." instance=ExtResource("11_d2wvv")]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="1_w5fsg"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_w5fsg")
 hp = 1.0
+_max = 100.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"

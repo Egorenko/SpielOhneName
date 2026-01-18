@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b27jq4l6aaqel"]
 
-[ext_resource type="Texture2D" uid="uid://p1uem56e60q7" path="res://assets/DungeonSpriteAtlas.png" id="1_6166o"]
-[ext_resource type="Script" uid="uid://blaelgafjafkx" path="res://scripts/dungeon_room.gd" id="1_egc48"]
-[ext_resource type="Script" uid="uid://bnp2vb7gxmc37" path="res://scripts/DungeonRoom_tile_map.gd" id="2_d41s6"]
-[ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest.tscn" id="4_d41s6"]
+[ext_resource type="Texture2D" uid="uid://8plo8k28rkaf" path="res://assets/DungeonSpriteAtlas.png" id="1_6166o"]
+[ext_resource type="Script" uid="uid://c2srylk467bbh" path="res://scripts/dungeon_room.gd" id="1_egc48"]
+[ext_resource type="Script" uid="uid://w1l243mnafeh" path="res://scripts/DungeonRoom_tile_map.gd" id="2_d41s6"]
+[ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest1.tscn" id="4_d41s6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d41s6"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

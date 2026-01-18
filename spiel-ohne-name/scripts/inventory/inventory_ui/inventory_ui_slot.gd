@@ -18,16 +18,16 @@ func update(new_stack:Inventory_stack) -> void:
 	if not new_stack.item:
 		stack = null
 		item_visual.visible = false
-		$backround/text.visible = false
-		$backround/text.text = str(0)
+		$backround/CenterContainer/Panel/text.visible = false
+		$backround/CenterContainer/Panel/text.text = str(0)
 	else:
 		stack = new_stack
 		item_visual.visible = true
 		item_visual.texture = new_stack.item.texture
 		
 		if new_stack.item.stack_size > 1:
-			$backround/text.visible = true
-			$backround/text.text = str(new_stack.current_stack)
+			$backround/CenterContainer/Panel/text.visible = true
+			$backround/CenterContainer/Panel/text.text = str(new_stack.current_stack)
 
 func inside() -> void:
 	$backround.scale = default_scale * 1.2

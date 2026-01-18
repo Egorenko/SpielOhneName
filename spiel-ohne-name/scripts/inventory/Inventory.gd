@@ -9,12 +9,14 @@ func ready() -> void:
 		if not items[i]:
 			items[i] = Inventory_stack.new()
 
-func add_stack(new_stack:Inventory_stack) -> void:
+##return if stack completley added
+func add_stack(new_stack:Inventory_stack) -> bool:
 	while new_stack.item != null:
 			if not add_item(new_stack.item):
-				print("can't adda all of stack")
-				break
+				print("can't add all of stack")
+				return false
 			new_stack.decrease_stack()
+	return true
 
 ##returns if item could be added
 func add_item(new_item:Inventory_item) -> bool:
@@ -23,6 +25,9 @@ func add_item(new_item:Inventory_item) -> bool:
 	for i in range(items.size()-1, -1, -1):
 		if not items[i].item:
 			_1st_empty_pos = i
+		#TODO why not equal when from different bushes?
+		if items[i].item and not items[i].item == new_item:
+			pass
 		#search for not full stacks of same item
 		if items[i] and not items[i].is_full() and items[i].item == new_item:
 			'print(items[i].current_stack, " / ", items[i].stack_max)'

@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhayvymu0tspn"]
+
+[ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/bush.gd" id="1_nxl5a"]
+[ext_resource type="Resource" uid="uid://cqb5a0cl57n4" path="res://scripts/loottables/apple_tree1.tres" id="2_nxl5a"]
+[ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="4_14hcx"]
+[ext_resource type="Texture2D" uid="uid://ckhyy5gkmjjg4" path="res://assets/Overworldspriteatlas.png" id="5_0hlfe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14hcx"]
+atlas = ExtResource("5_0hlfe")
+region = Rect2(48, 128, 48, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrik4"]
+radius = 8.062258
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hlfe"]
+size = Vector2(12, 4)
+
+[node name="refill_container" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_nxl5a")
+items = ExtResource("2_nxl5a")
+max_fill = 5
+fill = 1
+spawn_time = 5.0
+metadata/_custom_type_script = "uid://bbjc0iyrs0msr"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_14hcx")
+offset = Vector2(0, -32)
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_14hcx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_lrik4")
+debug_color = Color(0.20143, 0.6292087, 0.3618726, 0.41960785)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 35.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0hlfe")

@@ -8,13 +8,13 @@ var can_teleport:bool = true
 var SEED:int = randi();
 '###'
 
-var SPEED = 15000.0
+@export var speed_mult:float = 1.5
+@onready var SPEED:float = stats.speed
 var sprint_on:bool = true
 var display_mid:Vector2 = Vector2(0.0, 0.0)
 # |PI| left ; 0 right ; PI/2 down ; -PI/2 up
 # [3 .. -3]
 var rotation_noise:float = 1.0
-
 var healthbar:Healthbar = Healthbar.new()
 
 func _ready() -> void:
@@ -53,55 +53,46 @@ func end() -> void:
 	$find_shape.clear_points()
 
 func _input(event: InputEvent) -> void:
+	#open inventory
 	if event.is_action_pressed("Alt") and not event.is_echo():
-		if $Inventory_UI.is_open:
-			$Inventory_UI.close()
+		if inventory_ui.is_open:
+			inventory_ui.close()
 		else:
-			$Inventory_UI.open()
-	
-	if event.is_action_pressed("LMB") and not event.is_echo() and not $Inventory_UI.mouse_inside:
+			inventory_ui.open()
+	#start hold to attack
+	if event.is_action_pressed("LMB") and not event.is_echo() and not inventory_ui.mouse_inside:
 		draw_timer.start(draw_time)
 		vertex_timer.start(vertex_time)
-	
+	#hold to draw attack
 	if event.is_action_pressed("LMB"):
 		hold = true
-	
+	#release to cancel
 	if event.is_action_released("LMB"):
 		hold = false
-	
 	#TODO dodge / press
 	if event.is_action_pressed("Ctrl") and not event.is_echo():
 		print("DODGE")
 		pass
-	
 	#TODO sprint / hold
 	if event.is_action_pressed("Shift"):
-		if sprint_on:
-			print("SPRINT")
-			#$Sprite2D_test.material.shader = load("res://shaders/test_shader.gdshader")
-			stats.speed = 45000
-			sprint_on = false
-		else:
-			print("STOP SPRINT")
-			#$Sprite2D_test.material.shader = null
-			stats.speed = 15000
-			sprint_on = true
-		pass
-	
+		print("SPRINT")
+		#$Sprite2D_test.material.shader = load("res://shaders/test_shader.gdshader")
+		SPEED = stats.speed * speed_mult
+		sprint_on = false
+	if event.is_action_released("Shift"):
+		print("STOP SPRINT")
+		#$Sprite2D_test.material.shader = null
+		SPEED = stats.speed
 	#TODO use RMB i guess
 	if event.is_action_pressed("RMB"):
 		print("RMB")
 		pass
 
-func _process(_delta: float) -> void:
-	#teleport();
-	pass
-
 @onready var new_texture:AtlasTexture = $Sprite2D_test.texture as AtlasTexture
 ##movement
 func _physics_process(delta: float) -> void:
 	'###'
-	#teleport()
+	teleport()
 	'###'
 # Get the input direction and handle the movement/deceleration.
 # As good practice, you should replace UI actions with custom gameplay actions.
@@ -119,10 +110,24 @@ func _physics_process(delta: float) -> void:
 	if new_texture and $Sprite2D_test.texture != new_texture:
 		$Sprite2D_test.texture = new_texture
 	if velocity:
-		velocity = velocity * stats.speed * delta
+		velocity = velocity * SPEED * delta
 	else:
-		velocity = Vector2(move_toward(velocity.x, 0, stats.speed), move_toward(velocity.y, 0, stats.speed))
+		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
 	move_and_slide()
+
+var knock_back:float = 100.0
+
+func on_hit(_damage:float, attacker:Node2D) -> void:
+	var attack_dir = position - attacker.position
+	velocity = attack_dir / attack_dir.length() * knock_back
+	move_and_slide()
+	stats.health.decrease_hp(_damage)
+	healthbar.update()
+	pass
+
+func on_death() -> void:
+	$Sprite2D_test.modulate = Color(255.0, 255.0, 255.0, 0.2)
+	pass
 
 ## tryes to find fitting attack for shape
 func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
@@ -167,19 +172,21 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 	return
 
 ##-------------------------------------------------------------------------------
-#func teleport()-> bool:
-#	var tile_pos = $"../TileMap".local_to_map(global_position)
-#	var cell_data_door = $"../TileMap".get_cell_tile_data(2, tile_pos)
-#	
-#	if (!can_teleport):
-#		if (cell_data_door != null): if (cell_data_door.get_custom_data("Teleporter")): return false;
-#		can_teleport = true;
-#		return false;
-#	
-#	if cell_data_door and cell_data_door.get_custom_data("Teleporter"):
-#		print("Door Teleport");
-#		can_teleport = false;
-#		get_tree().change_scene_to_file("res://scenes/dungeon_map.tscn");
-#		return true;
-#	return false;
+func teleport()-> bool:
+	var tile_pos = $"../TileMap".local_to_map(global_position)
+	var cell_data_door = $"../TileMap".get_cell_tile_data(2, tile_pos)
+	
+	if (!can_teleport):
+		if (cell_data_door != null): if (cell_data_door.get_custom_data("Teleporter")): return false;
+		can_teleport = true;
+		return false;
+	
+	if cell_data_door and cell_data_door.get_custom_data("Teleporter"):
+		print("Door Teleport");
+		can_teleport = false;
+		get_tree().change_scene_to_file("res://scenes/dungeon_map.tscn");
+		'await get_tree().process_frame
+		get_tree().current_scene.add_child(self)'
+		return true;
+	return false;
 #

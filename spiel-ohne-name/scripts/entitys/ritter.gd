@@ -7,7 +7,6 @@ class_name Enemy
 @export var items:Loot_Table
 var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
 
-
 var player: Node = null
 var can_attack := true
 
@@ -35,6 +34,7 @@ func _physics_process(delta):
 
 
 func _attack_player():
+	$attack.rotation = position.angle_to_point(player.position)
 	$attack.attack(attacks[0])
 
 

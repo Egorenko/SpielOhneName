@@ -1,21 +1,22 @@
 [gd_resource type="Resource" script_class="attack_stats" load_steps=5 format=3 uid="uid://c6fte7rcts0m2"]
 
-[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_28f8i"]
-[ext_resource type="Texture2D" uid="uid://cf0bglspqjj02" path="res://assets/20251126test_swort_small+diagonal.png" id="2_ghj5k"]
+[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_68002"]
+[ext_resource type="Texture2D" uid="uid://u3fqv5h7e6c5" path="res://assets/20251126test_swort_small+diagonal.png" id="2_6rdsk"]
 
 [sub_resource type="Animation" id="Animation_3fnxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6ogb"]
+size = Vector2(25, 6)
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_28f8i")
+script = ExtResource("1_68002")
 damage = 2
-cooldown = 0.6
+cooldown = 10.0
 attack_time = 0.3
 hitbox = SubResource("RectangleShape2D_a6ogb")
 anim = SubResource("Animation_3fnxt")
-weapon = ExtResource("2_ghj5k")
+weapon = ExtResource("2_6rdsk")
 offset = Vector2(20, 0)
 sprite_rotation = 0.785
 metadata/_custom_type_script = "uid://g3ewxx0o313"

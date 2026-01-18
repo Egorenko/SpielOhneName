@@ -12,6 +12,7 @@ var PathTile: Vector2i = Vector2i(6, 5);
 var MossyPathTile: Vector2i = Vector2i(8, 3);
 var TreeTileSlim: Vector2i = Vector2i(9, 8);
 var TreeTileWide: Vector2i = Vector2i(0, 8);
+var BushTile: Vector2i = Vector2i(7, 6);
 
 var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"], 
 								[Vector3i(1, 7, 6), "res://structures/House_2"], 
@@ -26,6 +27,11 @@ var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"],
 
 
 func _ready() -> void:
+	var player = PlayerManager.get_player()
+	if player.get_parent():
+		player.get_parent().remove_child(player)
+	await get_tree().process_frame
+	get_tree().current_scene.add_child(player)
 	
 	#save_structure(Vector4i(0, 1, 6, 8), "res://structures/House_1");
 	#save_structure(Vector4i(7, 1, 7, 7), "res://structures/House_2");
@@ -47,14 +53,16 @@ func _ready() -> void:
 	var maxWayWidth: float = 0.1; # maximum width of the path in percent of tiles. full width is two times this value for it can be added below and above the path
 	
 	#generate map
-		#trees
+		#trees/border
+	var BorderTilesA:Vector2i = Vector2i(0, 12)
+	var BorderTilesB:Vector2i = Vector2i(9, 12)
 	for x in range(-Overworld_map_radius - 32, Overworld_map_radius + 16):
 		for y in range(-Overworld_map_radius - 16, Overworld_map_radius + 16):
 			if (sqrt(x * x + y * y) > Overworld_map_radius + 7 * (noise.get_noise_3d(x * 0.7, y * 0.7, 10) + 0.3)):
 				if (noise.get_noise_2d(x* 10, y * 10) < -0.8 + (noise.get_noise_2d(x * 0.2, y * 0.2) + 1.0) * 0.6):
-					Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 12), 0);
+					Tilemap.set_cell(1, Vector2i(x, y), 1, BorderTilesA, 0);
 				else:
-					Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 12), 0);
+					Tilemap.set_cell(1, Vector2i(x, y), 1, BorderTilesB, 0);
 				Tilemap.set_cell(0, Vector2i(x, y), 1, GrassTile, 0);
 				continue;
 				
@@ -64,7 +72,7 @@ func _ready() -> void:
 			var posYWay: float = (noise.get_noise_1d(posChunk.y + 9431254) + 1.0) * (0.5 - minDistanceFromBorder);
 			var XwayAmplitude: float = noise.get_noise_2d(x * 0.3 + 8421, posChunk.y * 32) * maxWayAmplitude;
 			var YwayAmplitude: float = noise.get_noise_2d(posChunk.x * 32, y * 0.3 + 8421) * maxWayAmplitude;
-			var posWay: Vector2i = Vector2i((posXWay + posChunk.x + YwayAmplitude) * ChunkSize, (posYWay + posChunk.y + XwayAmplitude) * ChunkSize);
+			var posWay: Vector2i = Vector2i(int((posXWay + posChunk.x + YwayAmplitude) * ChunkSize), int((posYWay + posChunk.y + XwayAmplitude) * ChunkSize));
 						
 			if ((x >= posWay.x + maxWayWidth * ChunkSize or x <= posWay.x - maxWayWidth * ChunkSize) && (y >= posWay.y + maxWayWidth * ChunkSize or y <= posWay.y - maxWayWidth * ChunkSize)):
 				Tilemap.set_cell(0, Vector2i(x, y), 1, GrassTile, 0);
@@ -75,18 +83,25 @@ func _ready() -> void:
 			if (noise.get_noise_3d(0, x * 100, y * 100) > 0.4 and Tilemap.get_cell_atlas_coords(0, Vector2i(x, y)) != PathTile):
 				match (int((noise.get_noise_3d(100, x, y) + 1.0) * 7) % 3):
 					#thin tree
-					0: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(9, 8), 0);
+					0: Tilemap.set_cell(1, Vector2i(x, y), 1, TreeTileSlim, 0);
 					#wide tree
-					1: Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(0, 8), 0);
-					#bush
+					1: Tilemap.set_cell(1, Vector2i(x, y), 1, TreeTileWide, 0);
+					#healing plant
 					2: 
-						Tilemap.set_cell(1, Vector2i(x, y), 1, Vector2i(7, 6), 0)
 						#test -> changed to calm_grass and instantice bush scene there
-						var bush_test:PackedScene = preload("res://scenes/bush1.tscn")
-						var bush_spawn:CharacterBody2D = bush_test.instantiate()
-						bush_spawn.position = to_global(map_to_local(Vector2i(x,y)))
-						bush_spawn.z_index = 1
-						get_tree().root.call_deferred_thread_group("add_child", bush_spawn)
+						Tilemap.set_cell(1, Vector2i(x, y), 1, GrassTile, 0)
+						var plant:PackedScene
+						#40% appletrees 60% bushes
+						var chance:int = randi()%100
+						if chance < 60:
+							plant = preload("res://scenes/bush1.tscn")
+						else:
+							plant = preload("res://scenes/apple_tree1.tscn")
+						
+						var plant_spawn:CharacterBody2D = plant.instantiate()
+						plant_spawn.position = to_global(map_to_local(Vector2i(x,y)))
+						plant_spawn.z_index = 1
+						get_tree().root.call_deferred_thread_group("add_child", plant_spawn)
 	
 	#find all empty spaces where structures can potentially be placed
 	for x in range((-Overworld_map_radius - 16.0) / float(ChunkSize) - 1, (Overworld_map_radius + 16.0) / float(ChunkSize)): 
@@ -166,7 +181,7 @@ func _ready() -> void:
 	PlayerSpawnTile = pos;
 	$"../player".global_position = Vector2(Tilemap.to_global(map_to_local(PlayerSpawnTile)));
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass;
 	
 	
@@ -192,11 +207,11 @@ func load_structure(pos: Vector2i, path: String)-> void:
 
 	
 func init_SimplexNoise(Seed: int)-> FastNoiseLite:
-	var Noise = FastNoiseLite.new();
-	Noise.noise_type = FastNoiseLite.TYPE_SIMPLEX;
-	Noise.seed = Seed;
-	Noise.frequency = 0.05;
-	Noise.fractal_type = FastNoiseLite.FRACTAL_FBM;
-	Noise.fractal_octaves = 5;	
-	return Noise;
+	var noise_ex:Noise = FastNoiseLite.new();
+	noise_ex.noise_type = FastNoiseLite.TYPE_SIMPLEX;
+	noise_ex.seed = Seed;
+	noise_ex.frequency = 0.05;
+	noise_ex.fractal_type = FastNoiseLite.FRACTAL_FBM;
+	noise_ex.fractal_octaves = 5;
+	return noise_ex;
 	

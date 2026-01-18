@@ -2,29 +2,28 @@ extends Cooldown_Area
 class_name pHitbox 
 
 
-var damage:int
+var damage:float
 var effect:Array[effects]
 
-func attack(_damage:int, hitbox_lifetime = null, _cooldown = null, _effect = null) -> void:
+func attack(_damage:float, hitbox_lifetime = null, _cooldown = null, _effect = null) -> void:
 	damage = _damage
 	if hitbox_lifetime and hitbox_lifetime is float:
 		lifetime = hitbox_lifetime
-	
 	if _cooldown and _cooldown is float:
 		cooldown = _cooldown
 	else:
 		cooldown = 0.0
 	
 	#=========================_W_I_P_==========================================#
-	if _effect:
+	'if _effect:
 		if _effect is not Array:
 			_effect = [_effect] 
 		if _effect is Array[effects]:
-			effect = _effect
+			effect = _effect'
 	#=========================_W_I_P_==========================================#
 	
 	if not cooldown_over:
-		#print("still on cooldown")
+		print("still on cooldown")
 		return
 	
 	#print("attack")
@@ -59,7 +58,7 @@ func _on_area_entered(area:Area2D) -> bool:
 	if not area.has_method("take_damage"):#equals "check if hurtbox"
 		return false
 	print(area.owner, " got hit")
-	area.take_damage(damage)
+	area.take_damage(damage, self)
 	'if effect:
 		area.take_damage(effect)'
 	return true

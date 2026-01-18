@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Chest 
 
 var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
-@export var items:Loot_Table
+@export var items:Loot_Table = preload("res://scripts/loottables/chest1.tres")
 
 func _ready() -> void:
 	items.ready()

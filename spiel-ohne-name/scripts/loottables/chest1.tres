@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://cx11h2wqxweto" path="res://scripts/items/useless/test_items/staff1.tres" id="3_5rs1j"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("2_8ryoh")
 loot = Array[ExtResource("1_h7p2w")]([ExtResource("2_wu8ed"), ExtResource("3_5rs1j")])
 quantity = Array[int]([1, 1])

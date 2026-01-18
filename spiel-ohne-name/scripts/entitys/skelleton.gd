@@ -48,6 +48,7 @@ func _set_new_patrol_point():
 	patrol_target = start_position + Vector2(cos(angle), sin(angle)) * radius
 
 func _attack_player():
+	$attack.rotation = position.angle_to_point(player.position)
 	$attack.attack(attacks[0])
 
 func on_death():

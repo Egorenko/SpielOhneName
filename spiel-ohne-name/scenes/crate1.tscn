@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2lsae8gy01d4"]
+[gd_scene load_steps=8 format=3 uid="uid://b2lsae8gy01d4"]
 
-[ext_resource type="Texture2D" uid="uid://duonqxl5e13em" path="res://assets/20260103test_crate_atlas.png" id="1_b66cd"]
+[ext_resource type="Texture2D" uid="uid://bcejbj4eqabkg" path="res://assets/20260103test_crate_atlas.png" id="1_b66cd"]
 [ext_resource type="Script" uid="uid://cciix68hijokg" path="res://scripts/entitys/crate.gd" id="1_kn6iu"]
-[ext_resource type="Resource" uid="uid://btctntehuprsv" path="res://scripts/loottables/crate1.tres" id="2_74u5o"]
-[ext_resource type="Script" uid="uid://2ljga3vpjswk" path="res://scripts/hurtbox.gd" id="2_dwt0d"]
+[ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="2_dwt0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pji31"]
 resource_local_to_scene = true
@@ -19,27 +18,22 @@ size = Vector2(12, 12)
 size = Vector2(12, 3)
 
 [node name="crate" type="CharacterBody2D"]
-z_index = -1
+y_sort_enabled = true
 script = ExtResource("1_kn6iu")
-items = ExtResource("2_74u5o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_pji31")
-position = Vector2(0, -6)
 texture = SubResource("AtlasTexture_kn6iu")
+offset = Vector2(0, -4.5)
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 script = ExtResource("2_dwt0d")
-metadata/_custom_type_script = "uid://2ljga3vpjswk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -6)
+position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_kn6iu")
 debug_color = Color(0.85246366, 0.32385716, 0.47745985, 0.41960785)
 
 [node name="phys" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_dwt0d")
