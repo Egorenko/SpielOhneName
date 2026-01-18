@@ -9,9 +9,12 @@
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_gmh41"]
 [ext_resource type="Texture2D" uid="uid://jcalr63vc3p" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
 [ext_resource type="Resource" uid="uid://yjuw1wyhe8d1" path="res://scripts/stats/attack_stats/fist_thrust.tres" id="6_qe266"]
+
+
 [ext_resource type="Script" uid="uid://dda1aatq0u6cu" path="res://scripts/healthbar.gd" id="8_gmh41"]
 
 [sub_resource type="Resource" id="Resource_qe266"]
+resource_local_to_scene = true
 script = ExtResource("2_j6eg8")
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 

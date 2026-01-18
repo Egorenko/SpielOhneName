@@ -58,7 +58,16 @@ func _on_area_entered(area:Area2D) -> bool:
 	if not area.has_method("take_damage"):#equals "check if hurtbox"
 		return false
 	print(area.owner, " got hit")
+<<<<<<< HEAD
 	area.take_damage(damage, self)
+=======
+	print(self.owner.get_groups())
+	print(area.owner.get_groups())
+	for group in self.owner.get_groups():
+		if area.owner.is_in_group(group):
+			return false
+>>>>>>> fcbcf1d9e220aa60bcafd3a02afdcccfd8face16
 	'if effect:
 		area.take_damage(effect)'
+	area.take_damage(damage)
 	return true

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bcejbj4eqabkg" path="res://assets/20260103test_crate_atlas.png" id="1_b66cd"]
 [ext_resource type="Script" uid="uid://cciix68hijokg" path="res://scripts/entitys/crate.gd" id="1_kn6iu"]
+[ext_resource type="Resource" uid="uid://btctntehuprsv" path="res://scripts/loottables/crate1.tres" id="2_74u5o"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="2_dwt0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pji31"]
@@ -33,7 +34,7 @@ script = ExtResource("2_dwt0d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_kn6iu")
-debug_color = Color(0.85246366, 0.32385716, 0.47745985, 0.41960785)
+debug_color = Color(0.852464, 0.323857, 0.47746, 0.419608)
 
 [node name="phys" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dwt0d")

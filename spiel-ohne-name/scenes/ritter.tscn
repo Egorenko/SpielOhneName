@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dda1aatq0u6cu" path="res://scripts/healthbar.gd" id="8_3q0ad"]
 
 [sub_resource type="Resource" id="Resource_cyrqf"]
+resource_local_to_scene = true
 script = ExtResource("2_4n3et")
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 

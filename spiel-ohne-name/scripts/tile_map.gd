@@ -12,7 +12,11 @@ var PathTile: Vector2i = Vector2i(6, 5);
 var MossyPathTile: Vector2i = Vector2i(8, 3);
 var TreeTileSlim: Vector2i = Vector2i(9, 8);
 var TreeTileWide: Vector2i = Vector2i(0, 8);
+<<<<<<< HEAD
 var BushTile: Vector2i = Vector2i(7, 6);
+=======
+var random = RandomNumberGenerator.new();
+>>>>>>> fcbcf1d9e220aa60bcafd3a02afdcccfd8face16
 
 var Structures: Array[Array] = [[Vector3i(0, 6, 7), "res://structures/House_1"], 
 								[Vector3i(1, 7, 6), "res://structures/House_2"], 
@@ -45,7 +49,8 @@ func _ready() -> void:
 	#save_structure(Vector4i(27, 15, 4, 5), "res://structures/Dungeon_2");
 	#save_structure(Vector4i(35, 13, 11, 7), "res://structures/Dungeon_3");
 	
-	noise = init_SimplexNoise($"../player".SEED);
+	noise = init_SimplexNoise(Seed.SEED);
+	random.seed = Seed.SEED;
 	
 	var ChunkSize: int = 25; # Chunksize in Tiles
 	var minDistanceFromBorder: float = 0.15; # distance the middle of the path should have to the border of the chunk in percent of tiles
@@ -89,6 +94,7 @@ func _ready() -> void:
 					#healing plant
 					2: 
 						#test -> changed to calm_grass and instantice bush scene there
+<<<<<<< HEAD
 						Tilemap.set_cell(1, Vector2i(x, y), 1, GrassTile, 0)
 						var plant:PackedScene
 						#40% appletrees 60% bushes
@@ -102,6 +108,13 @@ func _ready() -> void:
 						plant_spawn.position = to_global(map_to_local(Vector2i(x,y)))
 						plant_spawn.z_index = 1
 						get_tree().root.call_deferred_thread_group("add_child", plant_spawn)
+=======
+						var bush_test:PackedScene = preload("res://scenes/bush1.tscn")
+						var bush_spawn:CharacterBody2D = bush_test.instantiate()
+						bush_spawn.position = to_global(map_to_local(Vector2i(x,y)))
+						bush_spawn.z_index = 1
+						#get_tree().root.call_deferred_thread_group("add_child", bush_spawn)
+>>>>>>> fcbcf1d9e220aa60bcafd3a02afdcccfd8face16
 	
 	#find all empty spaces where structures can potentially be placed
 	for x in range((-Overworld_map_radius - 16.0) / float(ChunkSize) - 1, (Overworld_map_radius + 16.0) / float(ChunkSize)): 
@@ -136,18 +149,18 @@ func _ready() -> void:
 			
 			#place structures and paths
 			randomize();	
-			var StructureIndex: int = randi() % len(Structures);
+			var StructureIndex: int = random.randi() % len(Structures);
 			var maxStructureHeight: int = 0;
 			if (GrassTileDimension[2] - GrassTileDimension[0] > 6 and GrassTileDimension[3] - GrassTileDimension[1] > 6):
 				while (Structures[StructureIndex][0][1] > GrassTileDimension[2] - GrassTileDimension[0] or Structures[StructureIndex][0][2] > GrassTileDimension[3] - GrassTileDimension[1]):
-					StructureIndex = randi() % len(Structures);
+					StructureIndex = random.randi() % len(Structures);
 				load_structure(Vector2i(GrassTileDimension[0], GrassTileDimension[3] - Structures[StructureIndex][0][2]), Structures[StructureIndex][1]);
 				maxStructureHeight = Structures[StructureIndex][0][2];
 			var maxStructureWidth: int = GrassTileDimension[2] - GrassTileDimension[0] - Structures[StructureIndex][0][1] - 1
-			StructureIndex = randi() % len(Structures);
+			StructureIndex = random.randi() % len(Structures);
 			if (maxStructureWidth > 6 and GrassTileDimension[2] - GrassTileDimension[0] > 6):
 				while (Structures[StructureIndex][0][1] > maxStructureWidth or Structures[StructureIndex][0][2] > GrassTileDimension[3] - GrassTileDimension[1]):
-					StructureIndex = randi() % len(Structures);
+					StructureIndex = random.randi() % len(Structures);
 				load_structure(Vector2i(GrassTileDimension[2] - Structures[StructureIndex][0][1], GrassTileDimension[3] - Structures[StructureIndex][0][2]), Structures[StructureIndex][1]);
 				if (maxStructureHeight < Structures[StructureIndex][0][2]):
 					maxStructureHeight = Structures[StructureIndex][0][2];
@@ -162,22 +175,26 @@ func _ready() -> void:
 			GrassTileDimension[3] = GrassTileDimension[3] - maxStructureHeight - 1;
 			
 			#generate two more structures
-			StructureIndex = randi() % len(Structures);
+			StructureIndex = random.randi() % len(Structures);
 			if (GrassTileDimension[3] - GrassTileDimension[1] > 6 and GrassTileDimension[2] - GrassTileDimension[0] > 6):
 				while (Structures[StructureIndex][0][1] > GrassTileDimension[2] - GrassTileDimension[0] or Structures[StructureIndex][0][2] > GrassTileDimension[3] - GrassTileDimension[1]):
-					StructureIndex = randi() % len(Structures);
+					StructureIndex = random.randi() % len(Structures);
 				load_structure(Vector2i(GrassTileDimension[0], GrassTileDimension[3] - Structures[StructureIndex][0][2]), Structures[StructureIndex][1]);
 				maxStructureWidth = GrassTileDimension[2] - GrassTileDimension[0] - Structures[StructureIndex][0][1] - 1
-			StructureIndex = randi() % len(Structures);
+			StructureIndex = random.randi() % len(Structures);
 			if (maxStructureWidth > 6 and GrassTileDimension[3] - GrassTileDimension[1] > 6):
 				while (Structures[StructureIndex][0][1] > maxStructureWidth or Structures[StructureIndex][0][2] > GrassTileDimension[3] - GrassTileDimension[1]):
-					StructureIndex = randi() % len(Structures);
+					StructureIndex = random.randi() % len(Structures);
 				load_structure(Vector2i(GrassTileDimension[2] - Structures[StructureIndex][0][1], GrassTileDimension[3] - Structures[StructureIndex][0][2]), Structures[StructureIndex][1]);
 			if (abs(GrassTileDimension[3] - GrassTileDimension[1]) - maxStructureHeight + 1 < 6): continue;
+	
+	if (Seed.player_has_pos):
+		$"../player".position = Seed.player_past_Overworld_position;
+		return;
 					
 	var pos: Vector2i = Vector2i(0, 0);
 	while(Tilemap.get_cell_atlas_coords(0, pos) != PathTile):
-		pos = Vector2i(randi() % 50 - 25, randi() % 50 - 25);
+		pos = Vector2i(random.randi() % 50 - 25, random.randi() % 50 - 25);
 	PlayerSpawnTile = pos;
 	$"../player".global_position = Vector2(Tilemap.to_global(map_to_local(PlayerSpawnTile)));
 	

@@ -3,6 +3,7 @@ extends TileMap
 @onready var player:player1 = $"../../player";
 
 @export var chest: PackedScene;
+@export var crate: PackedScene;
 var NeigbourRoomIndices: Vector4i = Vector4i(1, 1, 1, 1); # up, right, down, left
 var doorPositions: Array[Vector2i] = [Vector2i(), Vector2i(), Vector2i(), Vector2i()];
 var RoomSize: Vector2i = Vector2i(10, 10);
@@ -54,16 +55,13 @@ func generate(Room_Size: Vector2i, Room_pos: Vector2i, Room_ID: int, NeigRoInd: 
 		var a = random(RoomID + player.SEED + 3) % (RoomRect[3] - 2) + 1;
 		set_cell(1, Vector2i(RoomRect[0], RoomRect[1] + a), 0, Vector2i(4, 2), 0);
 		doorPositions[3] = Vector2i(RoomRect[0], RoomRect[1] + a);
-		
-	var a = chest.instantiate();
-	get_tree().root.call_deferred_thread_group("add_child", a)
-	a.position = map_to_local(Vector2i(RoomRect[0],RoomRect[1]));
-	a.z_index = 10000;
-	#if (random(player.SEED) % 50 < 20):
-	generate_random_pillars();
-	#if (random(player.SEED) % 50 < 20):
-	#generate_random_holes();
-		
+	
+	if (random(player.SEED) % 50 < 30):
+		generate_random_pillars();
+	if (random(player.SEED) % 50 < 30):
+		generate_random_holes();
+	generate_chest();
+	generate_crate();		
 			
 func determine_canvas_size() -> Vector2i:
 	var output: Vector2i = RoomSize;
@@ -93,14 +91,41 @@ func generate_random_pillars() -> void:
 			if (random(player.SEED) % 50 < 5):
 				set_cell(0, pos, 0, Vector2i(1, 2), 0);
 				continue
+			if (random(player.SEED) % 50 < 5):
+				continue
 			set_cell(0, pos, 0, Vector2i(0, 2), 0);
 			set_cell(2, Vector2i(pos.x, pos.y - 1), 0, Vector2i(0, 1), 0);
 			set_cell(2, Vector2i(pos.x, pos.y - 2), 0, Vector2i(1, 1), 0);
-
-	pass
 	
 func generate_random_holes() -> void:
-	var count: int = random(player.SEED) % 5 + 1;
-	for i in range(0, count):
-		while (true):
-			pass;
+	var count: int = 100;
+	var placed: int = 0;
+	while (count > 0 and placed < 4):
+		var pos: Vector2i = Vector2i(random(player.SEED) % (RoomRect[2] - 2) + RoomRect[0] + 1, random(player.SEED) % (RoomRect[3] - 2) + RoomRect[1] + 1);
+		if (get_cell_atlas_coords(0, pos) == Vector2i(1, 0)):
+			set_cell(0, pos, 0, Vector2i(2, 1), 0);
+			placed += 1;
+		count -= 1;
+		
+func generate_chest() -> void:
+	var pos: Vector2i = Vector2i(random(player.SEED) % RoomRect[2] + RoomRect[0], random(player.SEED) % RoomRect[3] + RoomRect[1]);
+	if (get_cell_atlas_coords(0, pos) == Vector2i(1, 0) and get_cell_atlas_coords(1, pos) == Vector2i(-1, -1)):
+		var a = chest.instantiate();
+		get_tree().root.call_deferred_thread_group("add_child", a)
+		a.position = map_to_local(pos);
+		a.z_index = 3;
+		
+func generate_crate() -> void:
+	var cluster: int = random(player.SEED) % 5;
+	for i in range(0, cluster):
+		var crateCount: int = random(player.SEED) % 5;
+		var pos: Vector2i = Vector2i(random(player.SEED) % RoomRect[2] + RoomRect[0], random(player.SEED) % RoomRect[3] + RoomRect[1]);
+		for j in range(0, crateCount):
+			var a = crate.instantiate();
+			get_tree().root.call_deferred_thread_group("add_child", a)
+			a.position = map_to_local(pos);
+			a.position += Vector2(random(player.SEED) % 40 - 20, random(player.SEED) % 40 - 20);
+			a.z_index = 3;
+			
+func generate_specialCrate() -> void:
+	pass

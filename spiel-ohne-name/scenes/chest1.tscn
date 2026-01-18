@@ -4,6 +4,11 @@
 [ext_resource type="Script" uid="uid://boxvduyxkp6q4" path="res://scripts/entitys/chest.gd" id="1_bp1or"]
 [ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="2_bp1or"]
 
+[ext_resource type="Resource" uid="uid://p2p154yrvnym" path="res://scripts/loottables/chest1.tres" id="2_yue2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv3sb"]
+size = Vector2(14, 11)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trlyu"]
 size = Vector2(14, 3)
 

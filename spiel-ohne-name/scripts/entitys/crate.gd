@@ -6,6 +6,7 @@ var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
 @export var hits:int = 1
 
 func _ready() -> void:
+	add_to_group("item")
 	items.ready()
 
 func on_hit() -> void:

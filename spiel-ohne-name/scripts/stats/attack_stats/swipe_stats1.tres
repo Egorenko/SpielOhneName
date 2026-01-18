@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="attack_stats" load_steps=4 format=3 uid="uid://rhbeywp2o4ul"]
 
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_hj255"]
-[ext_resource type="Texture2D" uid="uid://cc3648rws1x2k" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="2_xhunc"]
+[ext_resource type="Texture2D" uid="uid://fakbooy8udfj" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="2_xhunc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecivy"]
 height = 40.0

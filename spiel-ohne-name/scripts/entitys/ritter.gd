@@ -11,6 +11,7 @@ var player: Node = null
 var can_attack := true
 
 func _ready():
+	add_to_group("enemy")
 	agent.navigation_layers = 0
 	items.ready()
 	player = get_tree().get_first_node_in_group("player")

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="attack_stats" load_steps=4 format=3 uid="uid://cq5p0vr4v6ebo"]
 
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="1_b1uow"]
-[ext_resource type="Texture2D" uid="uid://cwb0tujn5ff6u" path="res://assets/20251126test_shield_smallF.png" id="2_25gwq"]
+[ext_resource type="Texture2D" uid="uid://kfk6runc5ses" path="res://assets/20251126test_shield_smallF.png" id="2_25gwq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wvyv"]
 resource_local_to_scene = true

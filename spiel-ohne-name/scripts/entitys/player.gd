@@ -4,8 +4,9 @@ class_name player1
 @onready var inventory_ui:Control = $Inventory_UI
 
 '###'
-var can_teleport:bool = true
-var SEED:int = randi();
+var can_teleport:bool = false;
+var SEED:int = Seed.SEED;
+var past_Overworld_position: Vector2i = Vector2i(0, 0);
 '###'
 
 @export var speed_mult:float = 1.5
@@ -170,6 +171,7 @@ func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:
 			$attack.rotation = mid.angle_to_point($find_shape.max_dis_vertex)
 			$attack.attack(attacks[2])
 	return
+<<<<<<< HEAD
 
 ##-------------------------------------------------------------------------------
 func teleport()-> bool:
@@ -190,3 +192,5 @@ func teleport()-> bool:
 		return true;
 	return false;
 #
+=======
+>>>>>>> fcbcf1d9e220aa60bcafd3a02afdcccfd8face16
