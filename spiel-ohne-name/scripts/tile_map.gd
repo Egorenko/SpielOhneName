@@ -88,7 +88,6 @@ func _ready() -> void:
 					#healing plant
 					2: 
 						#test -> changed to calm_grass and instantice bush scene there
-						Tilemap.set_cell(1, Vector2i(x, y), 1, GrassTile, 0)
 						var plant:PackedScene
 						#40% appletrees 60% bushes
 						var chance:int = randi()%100

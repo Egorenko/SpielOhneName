@@ -109,6 +109,6 @@ func generate_rooms(Matrix: Array[int])-> void:
 		if (i / dungeon_size < dungeon_size - 1): neibours[2] = Matrix[i + dungeon_size];
 		if (Matrix[i] == 0): Rooms[Matrix[i]].tileMap.hasLadder = true;
 		Rooms[Matrix[i]].tileMap.generate(Vector2i(random(Seed.SEED) % (MaxRoomSize.x - MinRoomSize.x) + MinRoomSize.x, random(Seed.SEED) % (MaxRoomSize.y - MinRoomSize.y) + MinRoomSize.y), Vector2i(0, Matrix[i] * (MaxRoomSize.x + 6)), Matrix[i], neibours);
-		Rooms[Matrix[i]].spawn_enemys(random(Seed.SEED) % 10);
+		Rooms[Matrix[i]].spawn_enemys(random(Seed.SEED) % 7 + 2);
 	var finalRoom: int = random(Seed.SEED) % (Rooms.size() - 3) + 3;
 	Rooms[finalRoom].tileMap.generate_specialCrate();

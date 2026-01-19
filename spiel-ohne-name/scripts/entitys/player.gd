@@ -54,6 +54,12 @@ func end() -> void:
 	$find_shape.clear_points()
 
 func _input(event: InputEvent) -> void:
+	#pause menu
+	if (Input.is_key_pressed(KEY_ESCAPE)):
+		get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED;
+		var pausescreen: Node = preload("res://scenes/pause_screen.tscn").instantiate();
+		get_tree().root.add_child(pausescreen);
+		
 	#open inventory
 	if event.is_action_pressed("Alt") and not event.is_echo():
 		if inventory_ui.is_open:
@@ -113,11 +119,11 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
 	move_and_slide()
 
-var knock_back:float = 100.0
+var knock_back:float = 1000.0
 
 func on_hit(_damage:float, attacker:Node2D) -> void:
 	var attack_dir = position - attacker.position
-	velocity = attack_dir / attack_dir.length() * knock_back
+	velocity = attack_dir.normalized() * knock_back
 	move_and_slide()
 	stats.health.decrease_hp(_damage)
 	healthbar.update()
@@ -125,10 +131,8 @@ func on_hit(_damage:float, attacker:Node2D) -> void:
 
 func on_death() -> void:
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED;
-
 	var deathscreen: Node = preload("res://scenes/deathscreen.tscn").instantiate();
 	get_tree().root.add_child(deathscreen);
-	pass
 
 ## tryes to find fitting attack for shape
 func process_attack(char_pos:Vector2, atk_type:int, atk_shape:Line2D)-> void:

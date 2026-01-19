@@ -1,0 +1,111 @@
+[gd_scene load_steps=25 format=3 uid="uid://djk8qefiw2b7p"]
+
+[ext_resource type="Script" uid="uid://hfhcx4t8sddj" path="res://scripts/pause_screen.gd" id="1_qeunj"]
+[ext_resource type="Texture2D" uid="uid://bdcloieitjnh5" path="res://assets/Button.png" id="2_hr2n2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_27awe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_duq8p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k26m1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o31j6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_213y4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lubob"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d274"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hp6hx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u617w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o01av"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pmt02"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mq14w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfokp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ln4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d3rx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n385f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qcxdg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qfvc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qsf5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bkck0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j1di4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgrm7"]
+
+[node name="PauseScreen" type="CanvasLayer"]
+script = ExtResource("1_qeunj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 2000.0
+offset_bottom = 2000.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="CONTINUE" type="Button" parent="."]
+offset_left = -55.0
+offset_top = 13.0
+offset_right = 54.0
+offset_bottom = 45.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_27awe")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_duq8p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k26m1")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_o31j6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_213y4")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lubob")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3d274")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_hp6hx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u617w")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_o01av")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pmt02")
+text = "CONTINUE"
+icon = ExtResource("2_hr2n2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TITLESCREEN" type="Button" parent="."]
+offset_left = -57.0
+offset_top = 59.0
+offset_right = 56.0
+offset_bottom = 89.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mq14w")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mfokp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6ln4u")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_5d3rx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_n385f")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qcxdg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6qfvc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_6qsf5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bkck0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_j1di4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kgrm7")
+text = "TITLESCREEN"
+icon = ExtResource("2_hr2n2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -47.0
+offset_top = -90.0
+offset_right = 47.0
+offset_bottom = -48.0
+theme_override_font_sizes/font_size = 30
+text = "PAUSE"
+
+[connection signal="button_down" from="CONTINUE" to="." method="_on_continue_button_down"]
+[connection signal="button_down" from="TITLESCREEN" to="." method="_on_titlescreen_button_down"]
