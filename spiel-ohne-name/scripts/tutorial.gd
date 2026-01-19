@@ -200,7 +200,9 @@ func phase_10() -> void:
 		print("Door enabled");
 		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(Seed.player_scene.position));
 		if (a == Vector2i(8, 0)):
+			Seed.player_scene.free();
 			get_tree().change_scene_to_file("res://scenes/titlescreen.tscn");
+			return;
 	var text: Array[String] = ["You are lucky that you are invincible in here. Never the less, well done.", "The second i mentioned is right in front of you. You see that House? Move up to it and you shall be set free.", "Have fun \nc:"];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
 		TextBox.reset();
