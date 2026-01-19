@@ -5,8 +5,8 @@ class_name player1
 
 '###'
 var can_teleport:bool = false;
-var SEED:int = Seed.SEED;
-var past_Overworld_position: Vector2i = Vector2i(0, 0);
+var SEED:int = randi();
+var past_Overworld_position: Vector2i = Vector2i.MAX;
 '###'
 
 @export var speed_mult:float = 1.5

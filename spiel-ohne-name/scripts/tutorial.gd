@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var TextBox: Node2D = Seed.player_scene.get_node("DialogBox");
-@onready var player: Node2D = Seed.player_scene;
+@onready var TextBox: Node2D = Player.player_scene.get_node("DialogBox");
+@onready var player: Node2D = Player.player_scene;
 @export var chest: PackedScene = preload("res://scenes/chest1.tscn");
 @export var crat: PackedScene = preload("res://scenes/crate1.tscn");
 @export var enemys: PackedScene = preload("res://scenes/skelleton.tscn");
@@ -27,8 +27,8 @@ func _ready() -> void:
 	TextBox.visible = true;
 	TextBox.reset();
 	TextBox.Prompt = "Welcome to the tutorial. Press enter to continue";
-	Seed.player_scene.get_node("Camera2D").make_current();
-	print(Seed.player_scene.get_node("Camera2D").zoom);
+	Player.player_scene.get_node("Camera2D").make_current();
+	print(Player.player_scene.get_node("Camera2D").zoom);
 	pass
 	
 func _process(delta: float) -> void:
@@ -185,7 +185,7 @@ func phase_8() -> void:
 		knight.position = $TileMap.map_to_local(Vector2i(8 ,1));
 		knight.z_index = 1;
 		TextBox.visible = false;
-		Seed.player_scene.get_node("Hurtbox").collision_layer = 1 << 4;
+		Player.player_scene.get_node("Hurtbox").collision_layer = 1 << 4;
 		
 func phase_9() -> void:
 	if (skeleton == null and knight == null):
@@ -198,9 +198,9 @@ func phase_9() -> void:
 func phase_10() -> void:
 	if (can_finish):
 		print("Door enabled");
-		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(Seed.player_scene.position));
+		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(Player.player_scene.position));
 		if (a == Vector2i(8, 0)):
-			Seed.player_scene.free();
+			Player.player_scene.free();
 			get_tree().change_scene_to_file("res://scenes/titlescreen.tscn");
 			return;
 	var text: Array[String] = ["You are lucky that you are invincible in here. Never the less, well done.", "The second i mentioned is right in front of you. You see that House? Move up to it and you shall be set free.", "Have fun \nc:"];

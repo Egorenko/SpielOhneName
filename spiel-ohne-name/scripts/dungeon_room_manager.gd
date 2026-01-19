@@ -14,24 +14,25 @@ func _ready() -> void:
 	var Matrix2: Array[int] = assign_indices_to_rooms(Matrix);
 	generate_rooms(Matrix2);
 	change_room(0);
-	Seed.player_scene.can_teleport = false;
-	Seed.player_scene.global_position = Rooms[0].get_teleport_tile_global_pos(2);
+	Player.player_scene.can_teleport = false;
+	Player.player_scene.past_Overworld_position = Player.player_scene.global_position;
+	Player.player_scene.global_position = Rooms[0].get_teleport_tile_global_pos(2);
 	$Camera2D.make_current();
 	
 func _process(delta: float) -> void:
-	var teleportIndex: int = current_room.is_pos_on_teleporter(Seed.player_scene.global_position);	
+	var teleportIndex: int = current_room.is_pos_on_teleporter(Player.player_scene.global_position);	
 	if (teleportIndex < 0): 
-		Seed.player_scene.can_teleport = true;
+		Player.player_scene.can_teleport = true;
 		return;
-	if (Seed.player_scene.can_teleport and teleportIndex == 4):
-		Seed.player_scene.can_teleport = false;
+	if (Player.player_scene.can_teleport and teleportIndex == 4):
+		Player.player_scene.can_teleport = false;
 		get_tree().change_scene_to_file("res://scenes/map.tscn");
 		return;
-	if (Seed.player_scene.can_teleport && teleportIndex >= 0):
+	if (Player.player_scene.can_teleport && teleportIndex >= 0):
 		var playerNewPos: Vector2i = Rooms[current_room.tileMap.NeigbourRoomIndices[teleportIndex]].get_teleport_tile_global_pos(teleportIndex);
 		change_room(current_room.tileMap.NeigbourRoomIndices[teleportIndex]);
-		Seed.player_scene.global_position = playerNewPos;
-		Seed.player_scene.can_teleport = false;
+		Player.player_scene.global_position = playerNewPos;
+		Player.player_scene.can_teleport = false;
 
 func random(SEED: int) -> int:
 	randomIteration += 1;
@@ -57,7 +58,7 @@ func generate_dungeon_layout(size: int, density: float) -> Array[bool]:
 	var room_count: int = 1;
 	Matrix[size * size / 2] = true;
 	while (room_count < size * size * density):
-		var index: int = random(Seed.SEED) % (size * size);
+		var index: int = random(Player.player_scene.SEED) % (size * size);
 		if (Matrix[index]): continue;
 		var has_direct_neigbour = false;
 		var pos: Vector2i = Vector2i(index % size, index / size);
@@ -108,7 +109,7 @@ func generate_rooms(Matrix: Array[int])-> void:
 		if (i / dungeon_size > 0): neibours[0] = Matrix[i - dungeon_size];
 		if (i / dungeon_size < dungeon_size - 1): neibours[2] = Matrix[i + dungeon_size];
 		if (Matrix[i] == 0): Rooms[Matrix[i]].tileMap.hasLadder = true;
-		Rooms[Matrix[i]].tileMap.generate(Vector2i(random(Seed.SEED) % (MaxRoomSize.x - MinRoomSize.x) + MinRoomSize.x, random(Seed.SEED) % (MaxRoomSize.y - MinRoomSize.y) + MinRoomSize.y), Vector2i(0, Matrix[i] * (MaxRoomSize.x + 6)), Matrix[i], neibours);
-		Rooms[Matrix[i]].spawn_enemys(random(Seed.SEED) % 7 + 2);
-	var finalRoom: int = random(Seed.SEED) % (Rooms.size() - 3) + 3;
+		Rooms[Matrix[i]].tileMap.generate(Vector2i(random(Player.player_scene.SEED) % (MaxRoomSize.x - MinRoomSize.x) + MinRoomSize.x, random(Player.player_scene.SEED) % (MaxRoomSize.y - MinRoomSize.y) + MinRoomSize.y), Vector2i(0, Matrix[i] * (MaxRoomSize.x + 6)), Matrix[i], neibours);
+		Rooms[Matrix[i]].spawn_enemys(random(Player.player_scene.SEED) % 7 + 2);
+	var finalRoom: int = random(Player.player_scene.SEED) % (Rooms.size() - 3) + 3;
 	Rooms[finalRoom].tileMap.generate_specialCrate();

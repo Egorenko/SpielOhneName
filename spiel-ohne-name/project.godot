@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Seed="*res://scripts/SEED.gd"
+Player="*res://scripts/PlayerInstance.gd"
 
 [display]
 

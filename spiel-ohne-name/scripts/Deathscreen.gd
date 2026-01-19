@@ -4,12 +4,11 @@ extends CanvasLayer
 func _ready() -> void:
 	scale = Vector2(1.3, 1.3);
 	offset = get_viewport().get_visible_rect().size / 2;
-	Seed.player_scene.process_mode = Node.PROCESS_MODE_DISABLED;
+	Player.player_scene.process_mode = Node.PROCESS_MODE_DISABLED;
 
 
 func _on_titlescreen_button_button_up() -> void:
-	Seed.SEED = randi();
-	Seed.player_has_pos = false;
-	Seed.player_scene.free();
+	Player.player_scene.SEED = randi();
+	Player.player_scene.free();
 	queue_free();
 	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn");
