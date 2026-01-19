@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://drj5sagc7xpw5"]
+[gd_scene load_steps=38 format=3 uid="uid://drj5sagc7xpw5"]
 
 [ext_resource type="Script" uid="uid://50f5y5d55okp" path="res://scripts/titlescreen.gd" id="1_tt55a"]
 [ext_resource type="Texture2D" uid="uid://blw2nmifbr4f4" path="res://assets/Titlescreen.png" id="2_t7v6v"]
 [ext_resource type="Texture2D" uid="uid://bdcloieitjnh5" path="res://assets/Button.png" id="3_vhbaf"]
+[ext_resource type="PackedScene" uid="uid://bsy4fmuf43ggd" path="res://scenes/button.tscn" id="4_t7v6v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxypl"]
 
@@ -82,6 +83,7 @@ scale = Vector2(0.6125, 0.626852)
 texture = ExtResource("2_t7v6v")
 
 [node name="STRAT_GAME_BUTTON" type="Button" parent="."]
+visible = false
 texture_filter = 1
 offset_left = -72.0
 offset_top = -25.0
@@ -105,6 +107,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CREDIT_BUTTON" type="Button" parent="."]
+visible = false
 texture_filter = 1
 offset_left = -72.0
 offset_top = 105.0
@@ -127,6 +130,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="TUTORIAL_BUTTON" type="Button" parent="."]
+visible = false
 texture_filter = 1
 offset_left = -67.0
 offset_top = 34.0
@@ -147,6 +151,14 @@ text = "TUTORIAL"
 icon = ExtResource("3_vhbaf")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Credits" parent="." instance=ExtResource("4_t7v6v")]
+position = Vector2(0, 120)
+
+[node name="StartGame" parent="." instance=ExtResource("4_t7v6v")]
+
+[node name="Tutorial" parent="." instance=ExtResource("4_t7v6v")]
+position = Vector2(0, 60)
 
 [connection signal="button_down" from="STRAT_GAME_BUTTON" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="CREDIT_BUTTON" to="." method="_on_credit_button_button_down"]
