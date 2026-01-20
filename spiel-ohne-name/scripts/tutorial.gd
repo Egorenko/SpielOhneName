@@ -49,8 +49,7 @@ func _process(delta: float) -> void:
 func phase_0() -> void:
 	var text: Array[String] = ["Using WASD you can move around. Give it a try."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
+		TextBox.set_text(text[textnum], false);
 		textnum += 1;
 		key_pressed_enter = false;
 	if (key_pressed_wasd):
@@ -63,14 +62,15 @@ func phase_1() -> void:
 	var text: Array[String] = ["Fantastic!", "Now... a chest should have just appeared to your top left. Try clicking on it."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
 		key_pressed_enter = false;
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
 		textnum += 1;
 		if (textnum == 2):
 			chestInstance = chest.instantiate();
 			get_tree().current_scene.add_child(chestInstance);
 			chestInstance.position = $TileMap.map_to_local(Vector2i(-7, -4));
 			chestInstance.z_index = 5;
+			TextBox.set_text(text[textnum - 1], false);
+			return;
+		TextBox.set_text(text[textnum - 1]);
 	if (chestInstance != null and chestInstance.is_open):
 		key_pressed_enter = true;
 		phase += 1;
@@ -80,8 +80,8 @@ func phase_1() -> void:
 func phase_2() -> void:
 	var text: Array[String] = ["Awesome.", "An item should have appeared. Pick it up and press Alt to open your inventory"];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
+		TextBox.set_text(text[textnum]);
+		if (textnum == 1): 		TextBox.set_text(text[textnum], false);
 		textnum += 1;
 		key_pressed_enter = false;
 	if (key_pressed_alt):
@@ -93,8 +93,8 @@ func phase_2() -> void:
 func phase_3() -> void:
 	var text: Array[String] = ["Good job.", "We have nothing really important in here as of now but maybe we can find something nice later. Now please press Alt again to close your inventory."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
+		TextBox.set_text(text[textnum]);
+		if (textnum == text.size() - 1): TextBox.set_text(text[textnum], false);
 		textnum += 1;
 		key_pressed_enter = false;
 	if (key_pressed_alt):
@@ -106,8 +106,8 @@ func phase_3() -> void:
 func phase_4() -> void:
 	var text: Array[String] = ["Awesome", "But chests aren't the only thing we have. We also have crates like the one you can see to your top right.", "You will have to attack those in order to destroy them and collect their precious contents.", "You will attack using your mouse. Hold left-clickand draw your attack. Once you have drawn your shape, release left-click", "First a basic one: A straigh forward attack. For that draw a line in the direction you want to attack starting in front of your character."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
+		TextBox.set_text(text[textnum]);
+		if (textnum == text.size() - 1): TextBox.set_text(text[textnum], false);
 		textnum += 1;
 		key_pressed_enter = false;
 		if (textnum == 2):
@@ -125,8 +125,7 @@ func phase_4() -> void:
 func phase_5() -> void:
 	var text: Array[String] = ["Nice", "You can also draw a curve in front of your character in order to execute a swing that can hit multiple enemys for less dammage. I will provide you with another crate so you can try it out if you want to."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
+		TextBox.set_text(text[textnum]);
 		textnum += 1;
 		key_pressed_enter = false;
 		if (textnum == 2):
@@ -143,8 +142,7 @@ func phase_5() -> void:
 func phase_6() -> void:
 	var text: Array[String] = ["Allright. As you can see crates drop items. Mostly healing items.", "You might want to enter your inventoy and select one by pressing left-click while hovering over the item. Once selected you can use the item by pressing E."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
+		TextBox.set_text(text[textnum]);
 		textnum += 1;
 		key_pressed_enter = false;
 	if (key_pressed_e and key_pressed_enter and textnum + 1 >= text.size()):
@@ -156,8 +154,8 @@ func phase_6() -> void:
 func phase_7() -> void:
 	var text: Array[String] = ["Oh, before i forget it... you can also sprint by pressing and holding Shift."];
 	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
-		TextBox.reset();
-		TextBox.Prompt = text[textnum];
+		TextBox.set_text(text[textnum]);
+		if (textnum == text.size() - 1): TextBox.set_text(text[textnum], false);
 		textnum += 1;
 		key_pressed_enter = false;
 	if (key_pressed_shift):

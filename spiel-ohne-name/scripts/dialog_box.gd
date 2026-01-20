@@ -8,6 +8,7 @@ var Allready_displayed_chars: int = 0;
 var Time_per_char_ms: int = 10;
 var eligible_for_next: bool = false;
 var Text_completely_displayed = false;
+var skippable_on_enter: bool = true;
 
 func _process(delta: float) -> void:
 	totalTime += delta * 1000;
@@ -15,8 +16,8 @@ func _process(delta: float) -> void:
 		$labelOne.text = Prompt.substr(Allready_displayed_chars, totalTime / Time_per_char_ms);
 	if ($labelOne.get_line_count() > 3): eligible_for_next = true;
 	if (Prompt.length() <= Allready_displayed_chars + $labelOne.text.length()): Text_completely_displayed = true;
-	if (eligible_for_next or Text_completely_displayed):
-		$AnimatedSprite2D.visible = true;
+	if (eligible_for_next or Text_completely_displayed ):
+		if (skippable_on_enter): $AnimatedSprite2D.visible = true;
 
 func _input(event: InputEvent) -> void:
 	if (Input.is_key_pressed(KEY_ENTER) and eligible_for_next):
@@ -32,7 +33,15 @@ func reset() -> void:
 	Allready_displayed_chars = 0;
 	eligible_for_next = false;
 	Text_completely_displayed = false;
+	skippable_on_enter = true;
+	$AnimatedSprite2D.visible = false;
 	$labelOne.text = "";
+	
+func set_text(Text: String, Skippable_on_enter: bool = true) -> void:
+	reset();
+	Prompt = Text;
+	skippable_on_enter = Skippable_on_enter;
+	
 		
 #wie setzt man einen neuen text in die dialogbox ein? so:
 #func _input(event: InputEvent) -> void:
