@@ -8,8 +8,11 @@ var randomIteration: int = 0;
 var current_room: Dungeon_Room;
 var MaxRoomSize: Vector2i = Vector2i(30, 30);
 var MinRoomSize: Vector2i = Vector2i(6, 8);
+var DungeonIndex: int = 0;
+var SEED = abs(Player.player_scene.SEED * Player.player_scene.past_Overworld_position.x * Player.player_scene.past_Overworld_position.y);
 
 func _ready() -> void:
+	print(SEED);
 	var Matrix: Array[bool] = generate_dungeon_layout(dungeon_size, dungeon_density);
 	var Matrix2: Array[int] = assign_indices_to_rooms(Matrix);
 	generate_rooms(Matrix2);
@@ -58,7 +61,7 @@ func generate_dungeon_layout(size: int, density: float) -> Array[bool]:
 	var room_count: int = 1;
 	Matrix[size * size / 2] = true;
 	while (room_count < size * size * density):
-		var index: int = random(Player.player_scene.SEED) % (size * size);
+		var index: int = random(SEED) % (size * size);
 		if (Matrix[index]): continue;
 		var has_direct_neigbour = false;
 		var pos: Vector2i = Vector2i(index % size, index / size);
@@ -109,7 +112,7 @@ func generate_rooms(Matrix: Array[int])-> void:
 		if (i / dungeon_size > 0): neibours[0] = Matrix[i - dungeon_size];
 		if (i / dungeon_size < dungeon_size - 1): neibours[2] = Matrix[i + dungeon_size];
 		if (Matrix[i] == 0): Rooms[Matrix[i]].tileMap.hasLadder = true;
-		Rooms[Matrix[i]].tileMap.generate(Vector2i(random(Player.player_scene.SEED) % (MaxRoomSize.x - MinRoomSize.x) + MinRoomSize.x, random(Player.player_scene.SEED) % (MaxRoomSize.y - MinRoomSize.y) + MinRoomSize.y), Vector2i(0, Matrix[i] * (MaxRoomSize.x + 6)), Matrix[i], neibours);
-		Rooms[Matrix[i]].spawn_enemys(random(Player.player_scene.SEED) % 7 + 2);
-	var finalRoom: int = random(Player.player_scene.SEED) % (Rooms.size() - 3) + 3;
+		Rooms[Matrix[i]].tileMap.generate(Vector2i(random(SEED) % (MaxRoomSize.x - MinRoomSize.x) + MinRoomSize.x, random(SEED) % (MaxRoomSize.y - MinRoomSize.y) + MinRoomSize.y), Vector2i(0, Matrix[i] * (MaxRoomSize.x + 6)), Matrix[i], neibours);
+		Rooms[Matrix[i]].spawn_enemys(random(SEED) % 7 + 2);
+	var finalRoom: int = random(SEED) % (Rooms.size() - 3) + 3;
 	Rooms[finalRoom].tileMap.generate_specialCrate();

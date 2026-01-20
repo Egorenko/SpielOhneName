@@ -1,6 +1,6 @@
 extends TileMap
 
-var SEED:int = Player.player_scene.SEED;
+var SEED = abs(Player.player_scene.SEED * Player.player_scene.past_Overworld_position.x * Player.player_scene.past_Overworld_position.y);
 
 @export var chest: PackedScene;
 @export var crate: PackedScene;

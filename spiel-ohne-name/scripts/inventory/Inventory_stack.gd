@@ -56,4 +56,4 @@ func on_drop(pos:Vector2, dropper:Node2D, scene = null) -> void:
 		scene_root.stack = self
 	else:
 		print("not found 'stack' in scene")
-	dropper.get_tree().root.call_deferred_thread_group("add_child", scene_root)
+	dropper.get_tree().current_scene.call_deferred_thread_group("add_child", scene_root)
