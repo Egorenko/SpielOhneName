@@ -16,3 +16,6 @@ func on_drop(pos:Vector2, count:int,dropper:Node, scene = null) -> void:
 	var stack:Inventory_stack = Inventory_stack.new(self, count)
 	stack.load_drop(drop_scene)
 	stack.on_drop(pos, dropper, drop_scene)
+
+func on_pick_up(collecter:Node) -> void:
+	pass

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Loot_Table" load_steps=5 format=3 uid="uid://ba0x6lg7l0x35"]
+
+[ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="1_hyx2b"]
+[ext_resource type="Resource" path="res://quest_test/wip_test.tres" id="2_qsbpb"]
+[ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="3_obh5t"]
+[ext_resource type="Resource" path="res://quest_test/test.tres" id="3_qsbpb"]
+
+[resource]
+script = ExtResource("3_obh5t")
+loot = Array[ExtResource("1_hyx2b")]([ExtResource("2_qsbpb"), ExtResource("3_qsbpb")])
+quantity = Array[int]([1, 1])
+metadata/_custom_type_script = "uid://dqhg12h35d4au"

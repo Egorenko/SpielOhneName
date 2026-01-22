@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest_item_give" load_steps=4 format=3 uid="uid://dc53m1n1lxnhq"]
+
+[ext_resource type="Script" uid="uid://3s0osuso8uif" path="res://scripts/items/usefull/quest_items/quest_item.gd" id="1_g6muq"]
+[ext_resource type="Resource" uid="uid://ce534hwgospmk" path="res://scripts/items/usefull/quest_items/wip_quest_item.tres" id="2_4fnp5"]
+[ext_resource type="Script" uid="uid://qxce7srpbpsb" path="res://scripts/quests/item_give/Quest_item_give.gd" id="2_jywdl"]
+
+[resource]
+script = ExtResource("2_jywdl")
+Quest_items = Array[ExtResource("1_g6muq")]([ExtResource("2_4fnp5")])
+Item_count_total = 1
+metadata/_custom_type_script = "uid://qxce7srpbpsb"

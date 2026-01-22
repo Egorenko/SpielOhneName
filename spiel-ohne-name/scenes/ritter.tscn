@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://btctntehuprsv" path="res://scripts/loottables/crate1.tres" id="2_3fnxt"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
-[ext_resource type="Texture2D" uid="uid://dgjthe8piaohd" path="res://assets/20251209test_knight.png" id="2_lov5v"]
+[ext_resource type="Texture2D" uid="uid://bytelpq4ovlkf" path="res://assets/20251209test_knight.png" id="2_lov5v"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="2_vdsa7"]
 [ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/ritter.gd" id="2_y08xt"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
@@ -14,13 +14,18 @@
 [sub_resource type="Resource" id="Resource_cyrqf"]
 resource_local_to_scene = true
 script = ExtResource("2_4n3et")
+max_hp = 10.0
+hp = 10.0
+min_hp = 0.0
+_max = 39.0
+_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
 [sub_resource type="Resource" id="Resource_4n3et"]
 resource_local_to_scene = true
 script = ExtResource("2_vdsa7")
 health = SubResource("Resource_cyrqf")
-damage = 5
+damage = 2
 cooldown = 1.0
 speed = 50
 attack_speed = 50.0
@@ -66,23 +71,23 @@ animations = [{
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30fxi"]
 resource_local_to_scene = true
-bg_color = Color(1, 0, 0, 0.39215687)
+bg_color = Color(1, 0, 0, 0.392157)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.39215687)
+border_color = Color(0, 0, 0, 0.392157)
 corner_detail = 1
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3l5p"]
 resource_local_to_scene = true
-bg_color = Color(0, 1, 0, 0.78431374)
+bg_color = Color(0, 1, 0, 0.784314)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.5882353)
+border_color = Color(0, 0, 0, 0.588235)
 corner_detail = 1
 anti_aliasing = false
 
@@ -138,7 +143,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.5235987755982988, 1.0471975511965976, 1.5707963267948966]
+"values": [0.0, 0.523599, 1.0472, 1.5708]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -162,7 +167,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.8784314, 0.8784314, 0.8784314, 0.972549), Color(1, 1, 1, 0.18039216)]
+"values": [Color(0.878431, 0.878431, 0.878431, 0.972549), Color(1, 1, 1, 0.180392)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ffcvf"]
@@ -194,7 +199,7 @@ script = ExtResource("3_vdsa7")
 [node name="hurt_shape" type="CollisionShape2D" parent="Hurtbox"]
 scale = Vector2(0.9, 0.7)
 shape = SubResource("CapsuleShape2D_4ueoa")
-debug_color = Color(1, 0, 0, 0.3137255)
+debug_color = Color(1, 0, 0, 0.313726)
 
 [node name="healthbar" type="ProgressBar" parent="."]
 light_mask = 2

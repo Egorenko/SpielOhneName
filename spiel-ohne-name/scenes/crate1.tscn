@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2lsae8gy01d4"]
 
-[ext_resource type="Texture2D" uid="uid://duonqxl5e13em" path="res://assets/20260103test_crate_atlas.png" id="1_b66cd"]
+[ext_resource type="Texture2D" uid="uid://vs2gvcg126b4" path="res://assets/20260103test_crate_atlas.png" id="1_b66cd"]
 [ext_resource type="Script" uid="uid://cciix68hijokg" path="res://scripts/entitys/crate.gd" id="1_kn6iu"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="2_dwt0d"]
 

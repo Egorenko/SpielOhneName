@@ -1,11 +1,12 @@
 extends entity
-class_name player1 
+class_name player1
 
 @onready var inventory_ui:Control = $Inventory_UI
 
 '###'
 var can_teleport:bool = false;
-var SEED:int = Seed.SEED;
+#var SEED:int = Seed.SEED;
+@onready var SEED:int = Player.player_scene.SEED
 var past_Overworld_position: Vector2i = Vector2i(0, 0);
 '###'
 
@@ -21,6 +22,7 @@ var healthbar:Healthbar = Healthbar.new()
 func _ready() -> void:
 	add_to_group("player")
 	healthbar = $healthbar
+	inventory.user = self
 	#setup area infinite
 	$Pickup_Area.interact(-1)
 	#start stats for healthbar

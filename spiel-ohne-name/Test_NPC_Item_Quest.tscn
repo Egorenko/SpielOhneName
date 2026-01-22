@@ -1,0 +1,90 @@
+[gd_scene load_steps=22 format=3 uid="uid://dqhbddoay8xfk"]
+
+[ext_resource type="PackedScene" uid="uid://buqu4u5q10vbs" path="res://scenes/player.tscn" id="1_fldwv"]
+[ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_qye0v"]
+[ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="3_h0akw"]
+[ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_6x1em"]
+[ext_resource type="Texture2D" uid="uid://lecpjbv8te7b" path="res://assets/20251126test_shield_smallF.png" id="5_26utg"]
+[ext_resource type="Animation" uid="uid://d4jy5tocquctc" path="res://animations/attack_test.res" id="6_102l0"]
+[ext_resource type="Texture2D" uid="uid://ha3b0ivkabq5" path="res://assets/20251201test_sword_small+diagonal_thrust.png" id="7_g3p6r"]
+[ext_resource type="Texture2D" uid="uid://rnysopjxkhtu" path="res://assets/20251201test_sword_small+diagonal_swipe.png" id="8_tjjw7"]
+[ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest1.tscn" id="9_xax7o"]
+[ext_resource type="Resource" uid="uid://de7ww1ghxannr" path="res://scripts/loottables/wip_item_drop.tres" id="10_h0akw"]
+[ext_resource type="PackedScene" uid="uid://dxqjh6hclyteu" path="res://scenes/wip_npc.tscn" id="11_h0akw"]
+[ext_resource type="Script" uid="uid://bx0r3qcwmly1e" path="res://scripts/quests/quest.gd" id="12_tjjw7"]
+[ext_resource type="Resource" uid="uid://dc53m1n1lxnhq" path="res://scripts/quests/item_give/wip_quest_item_give.tres" id="13_26utg"]
+
+[sub_resource type="Resource" id="Resource_3vic2"]
+resource_local_to_scene = true
+script = ExtResource("2_qye0v")
+_max = 100.0
+metadata/_custom_type_script = "uid://doxodrbw6wbd6"
+
+[sub_resource type="Resource" id="Resource_fy0r1"]
+resource_local_to_scene = true
+script = ExtResource("3_h0akw")
+health = SubResource("Resource_3vic2")
+damage = 1
+speed = 10000
+metadata/_custom_type_script = "uid://0ccklkhvugtt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26utg"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_102l0"]
+resource_local_to_scene = true
+script = ExtResource("4_6x1em")
+cooldown = 3.0
+attack_time = 1.0
+hitbox = SubResource("RectangleShape2D_26utg")
+weapon = ExtResource("5_26utg")
+offset = Vector2(15, 0)
+sprite_rotation = -1.571
+metadata/_custom_type_script = "uid://g3ewxx0o313"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3p6r"]
+resource_local_to_scene = true
+size = Vector2(25, 6)
+
+[sub_resource type="Resource" id="Resource_tjjw7"]
+resource_local_to_scene = true
+script = ExtResource("4_6x1em")
+damage = 3
+cooldown = 2.0
+attack_time = 0.3
+hitbox = SubResource("RectangleShape2D_g3p6r")
+anim = ExtResource("6_102l0")
+weapon = ExtResource("7_g3p6r")
+offset = Vector2(20, 0)
+sprite_rotation = 0.785
+metadata/_custom_type_script = "uid://g3ewxx0o313"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecivy"]
+height = 40.0
+
+[sub_resource type="Resource" id="Resource_xax7o"]
+resource_local_to_scene = true
+script = ExtResource("4_6x1em")
+damage = 1
+cooldown = 0.5
+attack_time = 0.3
+hitbox = SubResource("CapsuleShape2D_ecivy")
+weapon = ExtResource("8_tjjw7")
+offset = Vector2(15, 0)
+metadata/_custom_type_script = "uid://g3ewxx0o313"
+
+[node name="Node2D" type="Node2D"]
+y_sort_enabled = true
+
+[node name="player" parent="." instance=ExtResource("1_fldwv")]
+position = Vector2(0, -15)
+stats = SubResource("Resource_fy0r1")
+attacks = Array[ExtResource("4_6x1em")]([SubResource("Resource_102l0"), SubResource("Resource_tjjw7"), SubResource("Resource_xax7o")])
+
+[node name="chest" parent="." instance=ExtResource("9_xax7o")]
+items = ExtResource("10_h0akw")
+
+[node name="wip_NPC" parent="." instance=ExtResource("11_h0akw")]
+y_sort_enabled = true
+position = Vector2(57, 0)
+Quests = Array[ExtResource("12_tjjw7")]([ExtResource("13_26utg")])

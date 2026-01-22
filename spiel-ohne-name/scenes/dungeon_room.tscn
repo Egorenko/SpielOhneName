@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b27jq4l6aaqel"]
 
-[ext_resource type="Texture2D" uid="uid://cth62u2wtuuu" path="res://assets/DungeonSpriteAtlas.png" id="1_6166o"]
+[ext_resource type="Texture2D" uid="uid://8qilc7jel8qt" path="res://assets/DungeonSpriteAtlas.png" id="1_6166o"]
 [ext_resource type="Script" uid="uid://c2srylk467bbh" path="res://scripts/dungeon_room.gd" id="1_egc48"]
 [ext_resource type="Script" uid="uid://w1l243mnafeh" path="res://scripts/DungeonRoom_tile_map.gd" id="2_d41s6"]
 [ext_resource type="PackedScene" uid="uid://btlppk87oudyb" path="res://scenes/chest1.tscn" id="4_d41s6"]
@@ -58,7 +58,9 @@ script = ExtResource("1_egc48")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rrjkf")
 format = 2
+layer_0/z_index = -2
 layer_1/name = "Layer1"
+layer_1/z_index = -2
 layer_2/name = "Layer2"
 layer_2/z_index = 5
 script = ExtResource("2_d41s6")

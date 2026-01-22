@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Quest_item" load_steps=3 format=3 uid="uid://ce534hwgospmk"]
+
+[ext_resource type="Script" uid="uid://3s0osuso8uif" path="res://scripts/items/usefull/quest_items/quest_item.gd" id="1_pl66o"]
+[ext_resource type="Texture2D" uid="uid://r4mjp0b1y74k" path="res://assets/20260112test_inventory_map.png" id="2_7al0a"]
+
+[resource]
+script = ExtResource("1_pl66o")
+name = "quest_item"
+texture = ExtResource("2_7al0a")
+metadata/_custom_type_script = "uid://3s0osuso8uif"

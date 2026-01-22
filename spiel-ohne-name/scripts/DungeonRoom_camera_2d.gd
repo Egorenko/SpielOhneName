@@ -1,6 +1,5 @@
 extends Camera2D
 
-@onready var Player: player1 = Seed.player_scene;
 var cameraWorldSize: Vector2i;
 var roomRect: Vector4;
 
@@ -9,7 +8,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	position = Player.position;
+	position = Player.player_scene.position;
 	while(true):
 		if (roomRect[2] + 16 < cameraWorldSize.x):
 			position.x = roomRect[0] + roomRect[2] / 2 - 8;

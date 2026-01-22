@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxqjh6hclyteu"]
+
+[ext_resource type="Script" uid="uid://iqs2nnsmnbbd" path="res://scripts/entitys/character/wip_npc.gd" id="1_ignro"]
+[ext_resource type="Texture2D" uid="uid://c0yc6rfisewl7" path="res://assets/20260121test_old_farmer.png" id="3_cwm5l"]
+[ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="4_mftew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5moew"]
+atlas = ExtResource("3_cwm5l")
+region = Rect2(47, 4, 17, 23)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ce68k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gajmo"]
+size = Vector2(12, 3)
+
+[node name="wip_NPC" type="CharacterBody2D"]
+script = ExtResource("1_ignro")
+metadata/_custom_type_script = "uid://qowk1vu3o76c"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_5moew")
+offset = Vector2(0, -10)
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_mftew")
+metadata/_custom_type_script = "uid://bjcslquejndo8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_ce68k")
+debug_color = Color(0.54325855, 0.56374127, 0.16345647, 0.41960785)
+
+[node name="phys" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gajmo")

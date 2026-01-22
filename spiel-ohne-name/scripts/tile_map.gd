@@ -1,6 +1,5 @@
 extends TileMap
 
-@onready
 var Tilemap: TileMap = self
 var noise: FastNoiseLite;
 var Structure_House: TileMapPattern;
@@ -43,8 +42,8 @@ func _ready() -> void:
 	#save_structure(Vector4i(27, 15, 4, 5), "res://structures/Dungeon_2");
 	#save_structure(Vector4i(35, 13, 11, 7), "res://structures/Dungeon_3");
 	
-	noise = init_SimplexNoise(Seed.SEED);
-	random.seed = Seed.SEED;
+	noise = init_SimplexNoise(Player.player_scene.SEED);
+	random.seed = Player.player_scene.SEED;
 	
 	var ChunkSize: int = 25; # Chunksize in Tiles
 	var minDistanceFromBorder: float = 0.15; # distance the middle of the path should have to the border of the chunk in percent of tiles
@@ -88,7 +87,6 @@ func _ready() -> void:
 					#healing plant
 					2: 
 						#test -> changed to calm_grass and instantice bush scene there
-						Tilemap.set_cell(1, Vector2i(x, y), 1, GrassTile, 0)
 						var plant:PackedScene
 						#40% appletrees 60% bushes
 						var chance:int = randi()%100
@@ -173,15 +171,15 @@ func _ready() -> void:
 				load_structure(Vector2i(GrassTileDimension[2] - Structures[StructureIndex][0][1], GrassTileDimension[3] - Structures[StructureIndex][0][2]), Structures[StructureIndex][1]);
 			if (abs(GrassTileDimension[3] - GrassTileDimension[1]) - maxStructureHeight + 1 < 6): continue;
 	
-	if (Seed.player_has_pos):
-		Seed.player_scene.position = Seed.player_past_Overworld_position;
+	if (Player.player_scene.past_Overworld_position != Vector2i.MAX):
+		Player.player_scene.global_position = Player.player_scene.past_Overworld_position;
 		return;
 					
 	var pos: Vector2i = Vector2i(0, 0);
 	while(Tilemap.get_cell_atlas_coords(0, pos) != PathTile):
 		pos = Vector2i(random.randi() % 50 - 25, random.randi() % 50 - 25);
 	PlayerSpawnTile = pos;
-	Seed.player_scene.global_position = Vector2(Tilemap.to_global(map_to_local(PlayerSpawnTile)));
+	Player.player_scene.global_position = Vector2(Tilemap.to_global(map_to_local(PlayerSpawnTile)));
 	print(PlayerSpawnTile);
 
 func _process(_delta: float) -> void:

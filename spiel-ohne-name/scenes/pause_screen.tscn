@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://djk8qefiw2b7p"]
+
+[ext_resource type="Script" uid="uid://hfhcx4t8sddj" path="res://scripts/pause_screen.gd" id="1_qeunj"]
+[ext_resource type="PackedScene" uid="uid://bsy4fmuf43ggd" path="res://scenes/button.tscn" id="2_qeunj"]
+
+[node name="PauseScreen" type="CanvasLayer"]
+script = ExtResource("1_qeunj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 2000.0
+offset_bottom = 2000.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -47.0
+offset_top = -90.0
+offset_right = 47.0
+offset_bottom = -48.0
+theme_override_font_sizes/font_size = 30
+text = "PAUSE"
+
+[node name="continue" parent="." instance=ExtResource("2_qeunj")]
+
+[node name="titlescreen" parent="." instance=ExtResource("2_qeunj")]
+position = Vector2(0, 60)
