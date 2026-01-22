@@ -1,13 +1,25 @@
-[gd_resource type="Resource" script_class="Loot_Table" load_steps=5 format=3 uid="uid://p2p154yrvnym"]
+[gd_resource type="Resource" script_class="Loot_Table" load_steps=7 format=3 uid="uid://p2p154yrvnym"]
 
 [ext_resource type="Script" uid="uid://cpyw5us3w6jtf" path="res://scripts/items/Inventory_item.gd" id="1_h7p2w"]
 [ext_resource type="Script" uid="uid://dqhg12h35d4au" path="res://scripts/loottables/loottable.gd" id="2_8ryoh"]
-[ext_resource type="Resource" uid="uid://cl0imnwq3q37h" path="res://scripts/items/useless/test_items/sword1.tres" id="2_wu8ed"]
-[ext_resource type="Resource" uid="uid://cx11h2wqxweto" path="res://scripts/items/useless/test_items/staff1.tres" id="3_5rs1j"]
+[ext_resource type="Texture2D" uid="uid://u3fqv5h7e6c5" path="res://assets/20251126test_swort_small+diagonal.png" id="2_wu8ed"]
+[ext_resource type="Texture2D" uid="uid://dvk8rg7dl0mt8" path="res://assets/20251126test_wand_nature_blue_small+diagonal.png" id="3_5rs1j"]
+
+[sub_resource type="Resource" id="Resource_khdks"]
+script = ExtResource("1_h7p2w")
+name = "Sword"
+texture = ExtResource("2_wu8ed")
+metadata/_custom_type_script = "uid://cpyw5us3w6jtf"
+
+[sub_resource type="Resource" id="Resource_3enix"]
+script = ExtResource("1_h7p2w")
+name = "Staff"
+texture = ExtResource("3_5rs1j")
+metadata/_custom_type_script = "uid://cpyw5us3w6jtf"
 
 [resource]
 script = ExtResource("2_8ryoh")
-loot = Array[ExtResource("1_h7p2w")]([ExtResource("2_wu8ed"), ExtResource("3_5rs1j")])
+loot = Array[ExtResource("1_h7p2w")]([SubResource("Resource_khdks"), SubResource("Resource_3enix")])
 quantity = Array[int]([1, 1])
 propability = Array[float]([0.0])
 metadata/_custom_type_script = "uid://dqhg12h35d4au"

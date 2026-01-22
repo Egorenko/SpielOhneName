@@ -2,6 +2,7 @@ extends Resource
 class_name Inventory 
 
 @export var items:Array[Inventory_stack]
+var user:Node
 var full:bool = false
 
 func ready() -> void:
@@ -16,7 +17,7 @@ func clear() -> void:
 ##return if stack completley added
 func add_stack(new_stack:Inventory_stack) -> bool:
 	while new_stack.item != null:
-			if not add_item(new_stack.item):
+			if add_item(new_stack.item) == false:
 				print("can't add all of stack")
 				return false
 			new_stack.decrease_stack()
@@ -36,12 +37,14 @@ func add_item(new_item:Inventory_item) -> bool:
 		if items[i] and not items[i].is_full() and items[i].item == new_item:
 			'print(items[i].current_stack, " / ", items[i].stack_max)'
 			items[i].increase_stack(new_item)
+			new_item.on_pick_up(user)
 			#cancel if added
 			return true
 	#if no stack found, use new stack
 	if _1st_empty_pos != -1:
 		print("new stack")
 		items[_1st_empty_pos].item = new_item
+		new_item.on_pick_up(user)
 		items[_1st_empty_pos].stack_max = new_item.stack_size
 		items[_1st_empty_pos].current_stack = 1
 		#cancel if new added
@@ -57,7 +60,7 @@ func take_item(search_item:Inventory_item) -> bool:
 			el.decrease_stack()
 			if el.current_stack <= 0:
 				el.item = null
-				#cancle if found and taken
+				#cancle if found and takena
 			return true
 	print("not found")
 	return false

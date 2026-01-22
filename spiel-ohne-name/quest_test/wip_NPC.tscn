@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://73qnxaa1on1m"]
+
+[ext_resource type="Script" uid="uid://bscc8cceyvba1" path="res://quest_test/wip_npc.gd" id="1_ce68k"]
+[ext_resource type="Texture2D" uid="uid://cjtxwjjkq4vuh" path="res://assets/20260121test_old_farmer.png" id="2_ce68k"]
+[ext_resource type="Resource" uid="uid://wwij0ojqsj46" path="res://scripts/quests/item_give/wip_item_quest.tres" id="2_wowkv"]
+[ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="3_5ydjy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5moew"]
+atlas = ExtResource("2_ce68k")
+region = Rect2(47, 4, 17, 23)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ce68k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gajmo"]
+size = Vector2(12, 3)
+
+[node name="wip_NPC" type="CharacterBody2D"]
+script = ExtResource("1_ce68k")
+Quests = [ExtResource("2_wowkv")]
+metadata/_custom_type_script = "uid://qowk1vu3o76c"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_5moew")
+offset = Vector2(0, -10)
+
+[node name="Interactable" type="Area2D" parent="."]
+script = ExtResource("3_5ydjy")
+metadata/_custom_type_script = "uid://bjcslquejndo8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_ce68k")
+debug_color = Color(0.54325855, 0.56374127, 0.16345647, 0.41960785)
+
+[node name="phys" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gajmo")

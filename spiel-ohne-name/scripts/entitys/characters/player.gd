@@ -21,6 +21,7 @@ var healthbar:Healthbar = Healthbar.new()
 func _ready() -> void:
 	add_to_group("player")
 	healthbar = $healthbar
+	inventory.user = self
 	#setup area infinite
 	$Pickup_Area.interact(-1)
 	#start stats for healthbar

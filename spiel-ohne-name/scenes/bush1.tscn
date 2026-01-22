@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b87guxik3ufos"]
 
-[ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/bush.gd" id="1_dab6e"]
+[ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/objects/bush.gd" id="1_dab6e"]
 [ext_resource type="Resource" uid="uid://fex3nccvasya" path="res://scripts/loottables/bush1.tres" id="2_b2qnu"]
 [ext_resource type="Texture2D" uid="uid://bgip37o518hq3" path="res://assets/20251204test_bush2.png" id="3_12x1x"]
 [ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="3_b2qnu"]

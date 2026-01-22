@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
 [ext_resource type="Texture2D" uid="uid://dgjthe8piaohd" path="res://assets/20251209test_knight.png" id="2_lov5v"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="2_vdsa7"]
-[ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/ritter.gd" id="2_y08xt"]
+[ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/characters/ritter.gd" id="2_y08xt"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_ffcvf"]
 [ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts/stats/attack_stats/knight_thrust.tres" id="5_3q0ad"]
