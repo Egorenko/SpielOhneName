@@ -63,6 +63,10 @@ func _attack_player():
 	$attack.rotation = position.angle_to_point(player_.position)
 	$attack.attack(attacks[0])
 
+func set_player(p:Node) -> void:
+	if not player_:
+		player_ = p
+
 func on_hit(_damage:Damage, attacker:Node) -> void:
 	#play hit animation
 	$AnimationPlayer.play("hit")

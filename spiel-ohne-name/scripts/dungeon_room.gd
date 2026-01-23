@@ -37,10 +37,11 @@ func spawn_entity() -> void:
 		return
 
 	var entitis = [ritter, skeleton]
-	var entity := entitis.pick_random().instantiate() as Node2D
+	var entity_ := entitis.pick_random().instantiate() as Node2D
 	
-	entity.global_position = get_random_navigation_position()
-	add_child(entity)
+	entity_.global_position = get_random_navigation_position()
+	add_child(entity_)
+	entity_.set_player(PlayerManager.player_)
 
 func cache_navigation_cells() -> void:
 	navigation_cells.clear()

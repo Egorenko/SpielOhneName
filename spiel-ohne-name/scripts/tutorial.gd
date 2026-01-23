@@ -1,7 +1,7 @@
 extends Node2D
 
+@onready var player_:player = PlayerManager.player_
 @onready var TextBox: Node2D = PlayerManager.player_.get_node("DialogBox");
-#@onready var player_: player = PlayerManager.player_;
 @export var chest: PackedScene = preload("res://scenes/chest1.tscn");
 @export var crat: PackedScene = preload("res://scenes/crate1.tscn");
 @export var enemys: PackedScene = preload("res://scenes/skelleton.tscn");
@@ -23,27 +23,21 @@ var skeleton: Node;
 var knight: Node;
 
 func _enter_tree() -> void:
-	var player_ = PlayerManager.get_player()
+	player_ = PlayerManager.get_player()
 	if player_.get_parent():
 		player_.get_parent().remove_child(player_)
 	await get_tree().process_frame
 	get_tree().current_scene.add_child(player_)
 
 func _ready() -> void:
-	var player_ = PlayerManager.get_player()
-	if player_.get_parent():
-		player_.get_parent().remove_child(player_)
-	get_parent().add_child(player_)
-	print(player_)
-	
 	TextBox.visible = true;
 	TextBox.reset();
 	TextBox.Prompt = "Welcome to the tutorial. Press enter to continue";
-	$"../player".get_node("Camera2D").make_current();
-	print($"../player".get_node("Camera2D").zoom);
+	player_.get_node("Camera2D").make_current();
+	#print(player_.get_node("Camera2D").zoom);
 	pass
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	match (phase):
 		0: phase_0();
 		1: phase_1();
@@ -56,11 +50,15 @@ func _process(delta: float) -> void:
 		8: phase_8();
 		9: phase_9();
 		10:phase_10();
+		11:phase_11();
 	pass
 	
 func phase_0() -> void:
+	if textnum == 0:
+		player_.stats.health.decrease_hp(2, "durch");
+		player_.healthbar.update();
 	var text: Array[String] = ["Using WASD you can move around. Give it a try."];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.set_text(text[textnum], false);
 		textnum += 1;
 		key_pressed_enter = false;
@@ -71,8 +69,8 @@ func phase_0() -> void:
 	
 	
 func phase_1() -> void:
-	var text: Array[String] = ["Fantastic!", "Now... a chest should have just appeared to your top left. Try clicking on it."];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	var text: Array[String] = ["Fantastic!", "Now... a chest should have just appeared to your top left. Try clicking on it using LEFT-CLICK."];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		key_pressed_enter = false;
 		textnum += 1;
 		if (textnum == 2):
@@ -90,8 +88,8 @@ func phase_1() -> void:
 		key_pressed_alt = false;
 		
 func phase_2() -> void:
-	var text: Array[String] = ["Awesome.", "An item should have appeared. Pick it up and press Alt to open your inventory"];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	var text: Array[String] = ["Awesome.", "An item should have appeared. Pick it up and press ALT to open your inventory"];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.set_text(text[textnum]);
 		if (textnum == 1): 		TextBox.set_text(text[textnum], false);
 		textnum += 1;
@@ -103,8 +101,8 @@ func phase_2() -> void:
 		key_pressed_alt = false;
 		
 func phase_3() -> void:
-	var text: Array[String] = ["Good job.", "We have nothing really important in here as of now but maybe we can find something nice later. Now please press Alt again to close your inventory."];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	var text: Array[String] = ["Good job.", "We have nothing really important in here as of now but maybe we can find something nice later. Now please press ALT again to close your inventory."];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.set_text(text[textnum]);
 		if (textnum == text.size() - 1): TextBox.set_text(text[textnum], false);
 		textnum += 1;
@@ -116,8 +114,8 @@ func phase_3() -> void:
 		key_pressed_alt = false;
 		
 func phase_4() -> void:
-	var text: Array[String] = ["Awesome", "But chests aren't the only thing we have. We also have crates like the one you can see to your top right.", "You will have to attack those in order to destroy them and collect their precious contents.", "You will attack using your mouse. Hold left-clickand draw your attack. Once you have drawn your shape, release left-click", "First a basic one: A straigh forward attack. For that draw a line in the direction you want to attack starting in front of your character."];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	var text: Array[String] = ["Awesome", "But chests aren't the only thing we have. We also have crates like the one you can see to your top right.", "You will have to attack those in order to destroy them and collect their precious contents.", "You will attack using your mouse. Hold LEFT-CLICK and draw your attack. Once you have drawn your shape, release left-click", "First a basic one: A straigh forward attack. For that draw a line in the direction you want to attack starting in front of your character."];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.set_text(text[textnum]);
 		if (textnum == text.size() - 1): TextBox.set_text(text[textnum], false);
 		textnum += 1;
@@ -135,8 +133,8 @@ func phase_4() -> void:
 		crate_summoned = false;
 		
 func phase_5() -> void:
-	var text: Array[String] = ["Nice", "You can also draw a curve in front of your character in order to execute a swing that can hit multiple enemys for less dammage. I will provide you with another crate so you can try it out if you want to."];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	var text: Array[String] = ["Nice", "You can also draw a curve in front of your character in order to execute a swing that can hit multiple enemys for less damage. I will provide you with another crate so you can try it out if you want to."];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.set_text(text[textnum]);
 		textnum += 1;
 		key_pressed_enter = false;
@@ -152,8 +150,26 @@ func phase_5() -> void:
 		key_pressed_e = false
 		
 func phase_6() -> void:
-	var text: Array[String] = ["Allright. As you can see crates drop items. Mostly healing items.", "You might want to enter your inventoy and select one by pressing left-click while hovering over the item. Once selected you can use the item by pressing E."];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	var text: Array[String] = ["Trees and bushes such as the ones you see to your left and right right now can also give you some healing items when you approach them"];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
+		if (textnum == 0):
+			var appletree = preload("res://scenes/apple_tree1.tscn").instantiate();
+			get_tree().current_scene.add_child(appletree);
+			appletree.position = $TileMap.map_to_local(Vector2i(7, -1));
+			var berrybush = preload("res://scenes/bush1.tscn").instantiate();
+			get_tree().current_scene.add_child(berrybush);
+			berrybush.position = $TileMap.map_to_local(Vector2i(-8, -1));
+		TextBox.set_text(text[textnum], false);
+		textnum += 1;
+		key_pressed_enter = false;
+	if (key_pressed_enter and textnum >= text.size()):
+		phase += 1;
+		textnum = 0;
+		key_pressed_enter = true;
+		
+func phase_7() -> void:
+	var text: Array[String] = ["Alright. As you can see crates drop items. Mostly healing items.", "You might want to enter your inventoy and select one by pressing LEFT-CLICK while hovering over the item. Once selected you can use the item by pressing E."];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.set_text(text[textnum]);
 		textnum += 1;
 		key_pressed_enter = false;
@@ -163,9 +179,9 @@ func phase_6() -> void:
 		key_pressed_enter = true;
 		key_pressed_shift = false;
 		
-func phase_7() -> void:
+func phase_8() -> void:
 	var text: Array[String] = ["Oh, before i forget it... you can also sprint by pressing and holding Shift."];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.set_text(text[textnum]);
 		if (textnum == text.size() - 1): TextBox.set_text(text[textnum], false);
 		textnum += 1;
@@ -175,9 +191,9 @@ func phase_7() -> void:
 		textnum = 0;
 		key_pressed_enter = true;
 		
-func phase_8() -> void:
-	var text: Array[String] = ["Anyways... We are almost done. There are only two more things.", "First: There will obviously be enemys. You didn't think this was just going to be you alone in here, did you?", "Once you are ready, i will summon two enemys below you. One to your left and one to your right.", "For our defense you can also summon a shield that will protect you from some damage. For that you will have to draw a straight line horizontally in front of your character.","Ready?"];
-	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size()):
+func phase_9() -> void:
+	var text: Array[String] = ["Anyways... We are almost done. There are only two more things.", "First: There will obviously be enemies. You didn't think this was just going to be you alone in here, did you?", "Once you are ready, I will summon two enemies below you. One to your left and one to your right.","Ready?"];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.reset();
 		TextBox.Prompt = text[textnum];
 		textnum += 1;
@@ -190,14 +206,14 @@ func phase_8() -> void:
 		get_tree().current_scene.add_child(skeleton);
 		skeleton.position = $TileMap.map_to_local(Vector2i(-9 ,1));
 		skeleton.z_index = 1;
-		knight = enemys.instantiate();
+		knight = enemyk.instantiate();
 		get_tree().current_scene.add_child(knight);
 		knight.position = $TileMap.map_to_local(Vector2i(8 ,1));
 		knight.z_index = 1;
 		TextBox.visible = false;
-		PlayerManager.player_.get_node("Hurtbox").collision_layer = 1 << 4;
+		player_.get_node("Hurtbox").collision_layer = 1 << 4;
 		
-func phase_9() -> void:
+func phase_10() -> void:
 	if (skeleton == null and knight == null):
 		phase += 1;
 		textnum = 0;
@@ -205,15 +221,15 @@ func phase_9() -> void:
 		TextBox.visible = true;
 
 		
-func phase_10() -> void:
+func phase_11() -> void:
 	if (can_finish):
-		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(PlayerManager.player_.position));
+		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(player_.position));
 		if (a == Vector2i(8, 0)):
-			PlayerManager.player_.free();
+			player_.free();
 			get_tree().change_scene_to_file("res://scenes/titlescreen.tscn");
 			return;
-	var text: Array[String] = ["You are lucky that you are invincible in here. Never the less, well done.", "The second i mentioned is right in front of you. You see that House? Move up to it and you shall be set free.", "Have fun \n ;P"];
-	if (key_pressed_enter and TextBox.Text_completely_displayed):
+	var text: Array[String] = ["You are lucky that you are invincible in here. Never the less, well done.", "The second I mentioned is right in front of you. You see that House? Move up to it and you shall be set free.", "Have fun \n :)"];
+	if (key_pressed_enter and TextBox.Text_completely_displayed and textnum < text.size() or textnum == 0):
 		TextBox.reset();
 		TextBox.Prompt = text[textnum];
 		textnum += 1;
@@ -227,9 +243,10 @@ func phase_10() -> void:
 	
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if (Input.is_key_pressed(KEY_ENTER)):
 		key_pressed_enter = true;
+	else: key_pressed_enter = false;
 	if (Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_D)):
 		key_pressed_wasd = true;
 	if (Input.is_key_pressed(KEY_ALT)):

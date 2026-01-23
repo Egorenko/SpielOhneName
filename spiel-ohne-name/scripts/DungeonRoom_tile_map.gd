@@ -34,15 +34,13 @@ func generate(Room_Size: Vector2i, Room_pos: Vector2i, Room_ID: int, NeigRoInd: 
 				if (y >= RoomRect.y and y < RoomSize.y + RoomRect.y):
 					set_cell(0, Vector2i(x, y), 0, Vector2i(1, 0), 0);
 	
-	
 	generate_doors();
 	if (random(SEED) % 50 < 30):
 		generate_random_pillars();
 	if (random(SEED) % 50 < 30):
 		generate_random_holes();
 	generate_chest();
-	generate_crate();	
-	
+	generate_crate();
 	
 func generate_doors() -> void:
 	if (NeigbourRoomIndices[0] != -1 or hasLadder):
@@ -129,7 +127,11 @@ func generate_crate() -> void:
 			var a = crate.instantiate();
 			get_tree().current_scene.call_deferred_thread_group("add_child", a)
 			a.position = map_to_local(pos);
-			a.position += Vector2(random(SEED) % 40 - 20, random(SEED) % 40 - 20);
+			while(true):
+				var offset = a.position + Vector2(random(SEED) % 40 - 20, random(SEED) % 40 - 20)
+				if (local_to_map(offset).x <= RoomRect[0] or local_to_map(offset).x >= RoomRect[0] + RoomRect[2] or local_to_map(offset).y <= RoomRect[1] or local_to_map(offset).y >= RoomRect[1] + RoomRect[3]): continue;
+				a.position = offset;
+				break;
 			a.z_index = 3;
 			
 func generate_specialCrate() -> void:

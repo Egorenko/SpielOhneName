@@ -20,4 +20,6 @@ func _process(_delta: float) -> void:
 	if (tileData.get_custom_data("Teleporter") and PlayerManager.player_.can_teleport):
 		PlayerManager.player_.can_teleport = false;
 		PlayerManager.player_.past_Overworld_position = PlayerManager.player_.global_position;
+		if PlayerManager.player_.get_parent():
+			PlayerManager.player_.get_parent().remove_child(PlayerManager.player_)
 		get_tree().change_scene_to_file("res://scenes/dungeon_room_manager.tscn");

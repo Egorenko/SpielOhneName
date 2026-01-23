@@ -19,6 +19,10 @@ func _ready():
 	#if not player_:
 	#	push_warning("Kein Player in Gruppe 'player' gefunden!")
 
+func set_player(p:Node) -> void:
+	if not player_:
+		player_ = p
+
 @onready var new_texture:AtlasTexture = $Sprite2D.texture as AtlasTexture
 
 func _physics_process(delta):
@@ -55,7 +59,7 @@ func on_hit(_damage:Damage, attacker:Node) -> void:
 	#knockback
 	var attack_dir = position - attacker.position
 	velocity = attack_dir.normalized() * _damage.knockback
-	#move_and_slide()
+	move_and_slide()
 	#damage
 	stats.health.decrease_hp(_damage.get_damage())
 	$healthbar.update()

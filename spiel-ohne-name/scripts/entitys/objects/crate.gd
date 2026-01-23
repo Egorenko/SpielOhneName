@@ -10,7 +10,8 @@ func _ready() -> void:
 	items.ready()
 
 func on_hit(_damage:Damage, _attacker:Node) -> void:
-	hits -= 1
+	if _damage.get_damage() > 0.0:
+		hits -= 1
 	if hits <= 0:
 		destroy()
 

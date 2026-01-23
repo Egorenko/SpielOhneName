@@ -5,7 +5,7 @@ class_name player
 
 '###'
 var can_teleport:bool = false;
-@onready var SEED:int = randi()
+var SEED:int = 0
 var past_Overworld_position: Vector2i = Vector2i.MAX;
 '###'
 
@@ -19,6 +19,7 @@ var rotation_noise:float = 1.0
 var healthbar:Healthbar = Healthbar.new()
 
 func _ready() -> void:
+	print("======", past_Overworld_position)
 	add_to_group("player")
 	healthbar = $healthbar
 	inventory.user = self
@@ -88,6 +89,12 @@ func _input(event: InputEvent) -> void:
 	#TODO use RMB i guess
 	if event.is_action_pressed("RMB"):
 		print("RMB")
+		pass
+	#pause menu
+	if event.is_action_pressed("Esc"):
+		get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED;
+		var pausescreen: Node = preload("res://scenes/pause_screen.tscn").instantiate();
+		get_tree().root.add_child(pausescreen);
 		pass
 
 @onready var new_texture:AtlasTexture = $Sprite2D_test.texture as AtlasTexture

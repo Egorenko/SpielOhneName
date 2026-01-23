@@ -12,14 +12,12 @@ var DungeonIndex: int = 0;
 var SEED = abs(PlayerManager.player_.SEED * PlayerManager.player_.past_Overworld_position.x * PlayerManager.player_.past_Overworld_position.y);
 
 func _ready() -> void:
-	PlayerManager.get_player()
-	print(SEED);
 	var Matrix: Array[bool] = generate_dungeon_layout(dungeon_size, dungeon_density);
 	var Matrix2: Array[int] = assign_indices_to_rooms(Matrix);
 	generate_rooms(Matrix2);
 	change_room(0);
 	PlayerManager.player_.can_teleport = false;
-	PlayerManager.player_.past_Overworld_position = PlayerManager.player_.global_position;
+	#PlayerManager.player_.past_Overworld_position = PlayerManager.player_.global_position;
 	PlayerManager.player_.global_position = Rooms[0].get_teleport_tile_global_pos(2);
 	$Camera2D.make_current();
 	
@@ -30,6 +28,8 @@ func _process(delta: float) -> void:
 		return;
 	if (PlayerManager.player_.can_teleport and teleportIndex == 4):
 		PlayerManager.player_.can_teleport = false;
+		if PlayerManager.player_.get_parent():
+			PlayerManager.player_.get_parent().remove_child(PlayerManager.player_)
 		get_tree().change_scene_to_file("res://scenes/map.tscn");
 		return;
 	if (PlayerManager.player_.can_teleport && teleportIndex >= 0):
@@ -38,9 +38,9 @@ func _process(delta: float) -> void:
 		PlayerManager.player_.global_position = playerNewPos;
 		PlayerManager.player_.can_teleport = false;
 
-func random(SEED: int) -> int:
+func random(SEED_: int) -> int:
 	randomIteration += 1;
-	return (SEED + randomIteration)	* 16807 % 2147483647;
+	return (SEED_ + randomIteration)	* 16807 % 2147483647;
 	
 func change_room(RoomIndex: int) -> void:
 	if (current_room != null):
