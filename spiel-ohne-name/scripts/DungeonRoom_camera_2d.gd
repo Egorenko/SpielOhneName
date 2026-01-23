@@ -7,8 +7,8 @@ func _ready() -> void:
 	cameraWorldSize = get_camera_world_size();
 
 
-func _process(delta: float) -> void:
-	position = Player.player_scene.position;
+func _process(_delta: float) -> void:
+	position = PlayerManager.player_.position;
 	while(true):
 		if (roomRect[2] + 16 < cameraWorldSize.x):
 			position.x = roomRect[0] + roomRect[2] / 2 - 8;

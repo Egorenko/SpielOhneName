@@ -45,10 +45,11 @@ func make_invisible()->void:
 
 func attack(stats:attack_stats) -> void:
 	if not hitbox.cooldown_over:
-		print("on cooldown")
+		#print("on cooldown")
 		return
 	load_stats(stats)
-	hitbox.attack(stats.damage * owner_stats.damage, stats.attack_time, stats.cooldown)
+	#TODO no connection to attacker
+	hitbox.attack(stats.damage, stats.attack_time, stats.cooldown)
 	weapon.visible = true
 	var visibilitiy:Timer = Timer.new()
 	add_child(visibilitiy)

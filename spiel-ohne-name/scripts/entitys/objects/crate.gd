@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name crate 
+class_name crate1
 
 var pick_up_item:PackedScene = preload("res://scenes/pick_up_item.tscn")
 @export var items:Loot_Table = preload("res://scripts/loottables/crate1.tres")
@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_to_group("item")
 	items.ready()
 
-func on_hit(_damage:float, attacker:Node) -> void:
+func on_hit(_damage:Damage, _attacker:Node) -> void:
 	hits -= 1
 	if hits <= 0:
 		destroy()

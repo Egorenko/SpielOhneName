@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var TextBox: Node2D = Player.player_scene.get_node("DialogBox");
-@onready var player: Node2D = Player.player_scene;
+@onready var TextBox: Node2D = PlayerManager.player_.get_node("DialogBox");
+#@onready var player_: player = PlayerManager.player_;
 @export var chest: PackedScene = preload("res://scenes/chest1.tscn");
 @export var crat: PackedScene = preload("res://scenes/crate1.tscn");
 @export var enemys: PackedScene = preload("res://scenes/skelleton.tscn");
@@ -22,13 +22,25 @@ var crateInstance: Node;
 var skeleton: Node;
 var knight: Node;
 
+func _enter_tree() -> void:
+	var player_ = PlayerManager.get_player()
+	if player_.get_parent():
+		player_.get_parent().remove_child(player_)
+	await get_tree().process_frame
+	get_tree().current_scene.add_child(player_)
 
 func _ready() -> void:
+	var player_ = PlayerManager.get_player()
+	if player_.get_parent():
+		player_.get_parent().remove_child(player_)
+	get_parent().add_child(player_)
+	print(player_)
+	
 	TextBox.visible = true;
 	TextBox.reset();
 	TextBox.Prompt = "Welcome to the tutorial. Press enter to continue";
-	Player.player_scene.get_node("Camera2D").make_current();
-	print(Player.player_scene.get_node("Camera2D").zoom);
+	$"../player".get_node("Camera2D").make_current();
+	print($"../player".get_node("Camera2D").zoom);
 	pass
 	
 func _process(delta: float) -> void:
@@ -183,7 +195,7 @@ func phase_8() -> void:
 		knight.position = $TileMap.map_to_local(Vector2i(8 ,1));
 		knight.z_index = 1;
 		TextBox.visible = false;
-		Player.player_scene.get_node("Hurtbox").collision_layer = 1 << 4;
+		PlayerManager.player_.get_node("Hurtbox").collision_layer = 1 << 4;
 		
 func phase_9() -> void:
 	if (skeleton == null and knight == null):
@@ -195,9 +207,9 @@ func phase_9() -> void:
 		
 func phase_10() -> void:
 	if (can_finish):
-		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(Player.player_scene.position));
+		var a = $TileMap.get_cell_atlas_coords(1, $TileMap.local_to_map(PlayerManager.player_.position));
 		if (a == Vector2i(8, 0)):
-			Player.player_scene.free();
+			PlayerManager.player_.free();
 			get_tree().change_scene_to_file("res://scenes/titlescreen.tscn");
 			return;
 	var text: Array[String] = ["You are lucky that you are invincible in here. Never the less, well done.", "The second i mentioned is right in front of you. You see that House? Move up to it and you shall be set free.", "Have fun \n ;P"];

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhayvymu0tspn"]
+[gd_scene load_steps=9 format=3 uid="uid://dhayvymu0tspn"]
 
-[ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/bush.gd" id="1_nxl5a"]
+[ext_resource type="Script" uid="uid://bmd1vaatif67h" path="res://scripts/entitys/objects/bush.gd" id="1_nxl5a"]
 [ext_resource type="Resource" uid="uid://cqb5a0cl57n4" path="res://scripts/loottables/apple_tree1.tres" id="2_nxl5a"]
 [ext_resource type="Script" uid="uid://bjcslquejndo8" path="res://scripts/interactable.gd" id="4_14hcx"]
-[ext_resource type="Texture2D" uid="uid://betmwcxvxhd" path="res://assets/Overworldspriteatlas.png" id="5_0hlfe"]
+[ext_resource type="Texture2D" uid="uid://lvoxtiplq33i" path="res://assets/Overworldspriteatlas.png" id="5_0hlfe"]
+[ext_resource type="Texture2D" uid="uid://hp3g64m76owc" path="res://assets/20260113test_apple_red.png" id="5_jveu7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14hcx"]
 atlas = ExtResource("5_0hlfe")
@@ -57,3 +58,24 @@ horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0hlfe")
+
+[node name="fruit" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_jveu7")
+offset = Vector2(-20, -50)
+
+[node name="fruit2" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_jveu7")
+offset = Vector2(30, -70)
+
+[node name="fruit3" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_jveu7")
+offset = Vector2(-5, -110)

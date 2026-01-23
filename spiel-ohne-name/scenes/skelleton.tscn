@@ -1,16 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://dtr26ge0tjxnb"]
+[gd_scene load_steps=21 format=3 uid="uid://dtr26ge0tjxnb"]
 
-[ext_resource type="Script" uid="uid://dr67hepvqcr6l" path="res://scripts/entitys/skelleton.gd" id="1_viovb"]
+[ext_resource type="Script" uid="uid://dr67hepvqcr6l" path="res://scripts/entitys/character/skelleton.gd" id="1_viovb"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_j6eg8"]
 [ext_resource type="Resource" uid="uid://btctntehuprsv" path="res://scripts/loottables/crate1.tres" id="2_qe266"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_cglt6"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="3_gmh41"]
 [ext_resource type="Script" uid="uid://s0ddp1cmrgfc" path="res://scripts/attack.gd" id="4_a0jgs"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_gmh41"]
-[ext_resource type="Texture2D" uid="uid://jcalr63vc3p" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
+[ext_resource type="Texture2D" uid="uid://bqhsp4rxrwmii" path="res://assets/20251209test_skelleton(wip).png" id="4_j6eg8"]
 [ext_resource type="Resource" uid="uid://yjuw1wyhe8d1" path="res://scripts/stats/attack_stats/fist_thrust.tres" id="6_qe266"]
-
-
 [ext_resource type="Script" uid="uid://dda1aatq0u6cu" path="res://scripts/healthbar.gd" id="8_gmh41"]
 
 [sub_resource type="Resource" id="Resource_qe266"]
@@ -22,47 +20,14 @@ metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 resource_local_to_scene = true
 script = ExtResource("3_gmh41")
 health = SubResource("Resource_qe266")
-damage = 1
 cooldown = 0.5
 speed = 35
 attack_speed = 0.4
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmh41"]
-atlas = ExtResource("4_j6eg8")
-region = Rect2(40, 0, 20, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qe266"]
 atlas = ExtResource("4_j6eg8")
-region = Rect2(0, 0, 20, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2yj5u"]
-atlas = ExtResource("4_j6eg8")
-region = Rect2(20, 0, 20, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tkma"]
-atlas = ExtResource("4_j6eg8")
-region = Rect2(60, 0, 20, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pce27"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gmh41")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qe266")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2yj5u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2tkma")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+region = Rect2(41, 5, 15, 22)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qe266"]
 height = 31.428572
@@ -89,31 +54,90 @@ border_color = Color(0, 0, 0, 0.5882353)
 corner_detail = 1
 anti_aliasing = false
 
+[sub_resource type="Animation" id="Animation_qe266"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2.454227, 2.454227, 2.454227, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2yj5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ih5h"]
+_data = {
+&"RESET": SubResource("Animation_2yj5u"),
+&"hit": SubResource("Animation_qe266")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlwrl"]
 size = Vector2(16, 3)
 
 [node name="Skelleton" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_viovb")
 patrol_radius = 50.0
 items = ExtResource("2_qe266")
 stats = SubResource("Resource_2yj5u")
 attacks = Array[ExtResource("4_gmh41")]([ExtResource("6_qe266")])
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_pce27")
-frame = 3
-frame_progress = 0.19685407
+texture = SubResource("AtlasTexture_qe266")
+offset = Vector2(0, -10)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 2
 script = ExtResource("3_cglt6")
 
 [node name="hurt_shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -11)
 scale = Vector2(0.9, 0.7)
 shape = SubResource("CapsuleShape2D_qe266")
 debug_color = Color(1, 0, 0, 0.3137255)
@@ -123,9 +147,9 @@ light_mask = 2
 z_index = 1
 texture_filter = 1
 offset_left = -9.0
-offset_top = -14.0
+offset_top = -26.0
 offset_right = 63.0
-offset_bottom = 2.0
+offset_bottom = -10.0
 scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -145,7 +169,6 @@ libraries = {
 }
 
 [node name="pys" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_dlwrl")
 
 [node name="attack" type="Node2D" parent="."]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://dxqspnvyclpdn"]
+[gd_scene load_steps=22 format=3 uid="uid://dxqspnvyclpdn"]
 
 [ext_resource type="Resource" uid="uid://btctntehuprsv" path="res://scripts/loottables/crate1.tres" id="2_3fnxt"]
 [ext_resource type="Script" uid="uid://doxodrbw6wbd6" path="res://scripts/stats/health_stats/health.gd" id="2_4n3et"]
-[ext_resource type="Texture2D" uid="uid://bytelpq4ovlkf" path="res://assets/20251209test_knight.png" id="2_lov5v"]
+[ext_resource type="Texture2D" uid="uid://ikg3i33t0oc7" path="res://assets/20251209test_knight.png" id="2_lov5v"]
 [ext_resource type="Script" uid="uid://0ccklkhvugtt" path="res://scripts/stats/entity_stats/entity_stats.gd" id="2_vdsa7"]
-[ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/ritter.gd" id="2_y08xt"]
+[ext_resource type="Script" uid="uid://lrp0k0dw2bm2" path="res://scripts/entitys/character/ritter.gd" id="2_y08xt"]
 [ext_resource type="Script" uid="uid://b0p3e8r1p1a1f" path="res://scripts/hurtbox.gd" id="3_vdsa7"]
 [ext_resource type="Script" uid="uid://g3ewxx0o313" path="res://scripts/stats/attack_stats/attack_stats.gd" id="4_ffcvf"]
 [ext_resource type="Resource" uid="uid://c6fte7rcts0m2" path="res://scripts/stats/attack_stats/knight_thrust.tres" id="5_3q0ad"]
@@ -14,58 +14,20 @@
 [sub_resource type="Resource" id="Resource_cyrqf"]
 resource_local_to_scene = true
 script = ExtResource("2_4n3et")
-max_hp = 10.0
-hp = 10.0
-min_hp = 0.0
-_max = 39.0
-_min = 0.0
 metadata/_custom_type_script = "uid://doxodrbw6wbd6"
 
 [sub_resource type="Resource" id="Resource_4n3et"]
 resource_local_to_scene = true
 script = ExtResource("2_vdsa7")
 health = SubResource("Resource_cyrqf")
-damage = 2
 cooldown = 1.0
 speed = 50
 attack_speed = 50.0
 metadata/_custom_type_script = "uid://0ccklkhvugtt"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4n3et"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fnxt"]
 atlas = ExtResource("2_lov5v")
-region = Rect2(40, 0, 20, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cyrqf"]
-atlas = ExtResource("2_lov5v")
-region = Rect2(0, 0, 20, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rriqm"]
-atlas = ExtResource("2_lov5v")
-region = Rect2(20, 0, 20, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7734"]
-atlas = ExtResource("2_lov5v")
-region = Rect2(60, 0, 20, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rriqm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4n3et")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cyrqf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rriqm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n7734")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+region = Rect2(40, 1, 17, 26)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ueoa"]
 
@@ -129,6 +91,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_6swco"]
 resource_name = "death"
@@ -170,10 +144,38 @@ tracks/2/keys = {
 "values": [Color(0.878431, 0.878431, 0.878431, 0.972549), Color(1, 1, 1, 0.180392)]
 }
 
+[sub_resource type="Animation" id="Animation_3fnxt"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2.454227, 2.454227, 2.454227, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ffcvf"]
 _data = {
 &"RESET": SubResource("Animation_ffcvf"),
-&"death": SubResource("Animation_6swco")
+&"death": SubResource("Animation_6swco"),
+&"hit": SubResource("Animation_3fnxt")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdsa7"]
@@ -181,22 +183,25 @@ size = Vector2(16, 3)
 
 [node name="ritter" type="CharacterBody2D"]
 y_sort_enabled = true
+motion_mode = 1
 script = ExtResource("2_y08xt")
 items = ExtResource("2_3fnxt")
 stats = SubResource("Resource_4n3et")
 attacks = Array[ExtResource("4_ffcvf")]([ExtResource("5_3q0ad")])
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_rriqm")
+texture = SubResource("AtlasTexture_3fnxt")
+offset = Vector2(0, -11)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 2
 script = ExtResource("3_vdsa7")
 
 [node name="hurt_shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -10)
 scale = Vector2(0.9, 0.7)
 shape = SubResource("CapsuleShape2D_4ueoa")
 debug_color = Color(1, 0, 0, 0.313726)
@@ -206,9 +211,9 @@ light_mask = 2
 z_index = 1
 texture_filter = 1
 offset_left = -9.0
-offset_top = -14.0
+offset_top = -27.0
 offset_right = 63.0
-offset_bottom = 2.0
+offset_bottom = -11.0
 scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -228,7 +233,6 @@ libraries = {
 }
 
 [node name="phys" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_vdsa7")
 
 [node name="attack" type="Node2D" parent="."]

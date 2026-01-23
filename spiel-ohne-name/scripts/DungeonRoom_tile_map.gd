@@ -1,6 +1,6 @@
 extends TileMap
 
-var SEED = abs(Player.player_scene.SEED * Player.player_scene.past_Overworld_position.x * Player.player_scene.past_Overworld_position.y);
+@onready var SEED:int
 
 @export var chest: PackedScene;
 @export var crate: PackedScene;
@@ -15,8 +15,9 @@ var hasLadder: bool = false;
 
 
 func _ready() -> void:
+	SEED = abs(PlayerManager.player_.SEED * PlayerManager.player_.past_Overworld_position.x * PlayerManager.player_.past_Overworld_position.y);
 	pass
-	
+
 func generate(Room_Size: Vector2i, Room_pos: Vector2i, Room_ID: int, NeigRoInd: Vector4i) -> void:
 	RoomSize = Room_Size;
 	RoomID = Room_ID;
@@ -81,9 +82,9 @@ func get_room_rect() -> Vector4:
 	b = to_global(map_to_local(b));
 	return Vector4(a.x, a.y ,b.x, b.y);
 	
-func random(SEED: int) -> int:
+func random(SEED_: int) -> int:
 	randomIteration += 1;
-	return (SEED + randomIteration)	* 16807 % 2147483647;
+	return (SEED_ + randomIteration)	* 16807 % 2147483647;
 	
 func generate_random_pillars() -> void:
 	var num: Vector2i = Vector2i(random(SEED) % 6 + 1, random(SEED) % 6 + 1);

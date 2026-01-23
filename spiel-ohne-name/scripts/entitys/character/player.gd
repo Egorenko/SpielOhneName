@@ -1,13 +1,12 @@
 extends entity
-class_name player1
+class_name player
 
 @onready var inventory_ui:Control = $Inventory_UI
 
 '###'
 var can_teleport:bool = false;
-#var SEED:int = Seed.SEED;
-@onready var SEED:int = Player.player_scene.SEED
-var past_Overworld_position: Vector2i = Vector2i(0, 0);
+@onready var SEED:int = randi()
+var past_Overworld_position: Vector2i = Vector2i.MAX;
 '###'
 
 @export var speed_mult:float = 1.5
@@ -97,8 +96,7 @@ func _physics_process(delta: float) -> void:
 # Get the input direction and handle the movement/deceleration.
 # As good practice, you should replace UI actions with custom gameplay actions.
 	velocity = Input.get_vector("move_left","move_right", "move_up", "move_down")
-	if velocity.x != 0 and velocity.y != 0:
-		velocity = velocity * 0.707107
+	velocity.normalized()
 	if velocity.y < 0:
 		new_texture.region = Rect2(60.0, 5.0, 17.0, 22.0)
 	elif velocity.y > 0:
@@ -115,13 +113,11 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
 	move_and_slide()
 
-var knock_back:float = 100.0
-
-func on_hit(_damage:float, attacker:Node2D) -> void:
+func on_hit(_damage:Damage, attacker:Node2D) -> void:
 	var attack_dir = position - attacker.position
-	velocity = attack_dir / attack_dir.length() * knock_back
+	velocity = attack_dir.normalized() * _damage.knockback
 	move_and_slide()
-	stats.health.decrease_hp(_damage)
+	stats.health.decrease_hp(_damage.get_damage())
 	healthbar.update()
 	pass
 

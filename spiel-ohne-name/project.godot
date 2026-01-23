@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Player="*res://scripts/PlayerInstance.gd"
+PlayerManager="*res://scripts/PlayerManager.gd"
 
 [display]
 

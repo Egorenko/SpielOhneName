@@ -9,33 +9,34 @@ var current_room: Dungeon_Room;
 var MaxRoomSize: Vector2i = Vector2i(30, 30);
 var MinRoomSize: Vector2i = Vector2i(6, 8);
 var DungeonIndex: int = 0;
-var SEED = abs(Player.player_scene.SEED * Player.player_scene.past_Overworld_position.x * Player.player_scene.past_Overworld_position.y);
+var SEED = abs(PlayerManager.player_.SEED * PlayerManager.player_.past_Overworld_position.x * PlayerManager.player_.past_Overworld_position.y);
 
 func _ready() -> void:
+	PlayerManager.get_player()
 	print(SEED);
 	var Matrix: Array[bool] = generate_dungeon_layout(dungeon_size, dungeon_density);
 	var Matrix2: Array[int] = assign_indices_to_rooms(Matrix);
 	generate_rooms(Matrix2);
 	change_room(0);
-	Player.player_scene.can_teleport = false;
-	Player.player_scene.past_Overworld_position = Player.player_scene.global_position;
-	Player.player_scene.global_position = Rooms[0].get_teleport_tile_global_pos(2);
+	PlayerManager.player_.can_teleport = false;
+	PlayerManager.player_.past_Overworld_position = PlayerManager.player_.global_position;
+	PlayerManager.player_.global_position = Rooms[0].get_teleport_tile_global_pos(2);
 	$Camera2D.make_current();
 	
 func _process(delta: float) -> void:
-	var teleportIndex: int = current_room.is_pos_on_teleporter(Player.player_scene.global_position);	
+	var teleportIndex: int = current_room.is_pos_on_teleporter(PlayerManager.player_.global_position);	
 	if (teleportIndex < 0): 
-		Player.player_scene.can_teleport = true;
+		PlayerManager.player_.can_teleport = true;
 		return;
-	if (Player.player_scene.can_teleport and teleportIndex == 4):
-		Player.player_scene.can_teleport = false;
+	if (PlayerManager.player_.can_teleport and teleportIndex == 4):
+		PlayerManager.player_.can_teleport = false;
 		get_tree().change_scene_to_file("res://scenes/map.tscn");
 		return;
-	if (Player.player_scene.can_teleport && teleportIndex >= 0):
+	if (PlayerManager.player_.can_teleport && teleportIndex >= 0):
 		var playerNewPos: Vector2i = Rooms[current_room.tileMap.NeigbourRoomIndices[teleportIndex]].get_teleport_tile_global_pos(teleportIndex);
 		change_room(current_room.tileMap.NeigbourRoomIndices[teleportIndex]);
-		Player.player_scene.global_position = playerNewPos;
-		Player.player_scene.can_teleport = false;
+		PlayerManager.player_.global_position = playerNewPos;
+		PlayerManager.player_.can_teleport = false;
 
 func random(SEED: int) -> int:
 	randomIteration += 1;

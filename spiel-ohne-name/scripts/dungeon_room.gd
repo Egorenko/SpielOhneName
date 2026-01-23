@@ -1,15 +1,25 @@
 class_name Dungeon_Room extends Node2D
 
-@onready var tileMap: TileMap = $TileMap;
+@onready var tileMap: TileMap = $dungeon_room_tilemap;
 
 @export var num_entities: int = 5
 @export var nav_layer: int = 0
 
 @onready var ritter: PackedScene = preload("res://scenes/ritter.tscn")
 @onready var skeleton : PackedScene = preload("res://scenes/skelleton.tscn")
-@onready var tile_map: TileMap = $TileMap
+@onready var tile_map: TileMap = $dungeon_room_tilemap
 
 var navigation_cells: Array[Vector2i] = []
+
+func _enter_tree() -> void:
+	var player_ = PlayerManager.get_player()
+	if player_.get_parent():
+		player_.get_parent().remove_child(player_)
+	await get_tree().process_frame
+	get_tree().current_scene.add_child(player_)
+
+func _ready() -> void:
+	pass
 
 func spawn_enemys(count: int) -> void:
 	num_entities = count;

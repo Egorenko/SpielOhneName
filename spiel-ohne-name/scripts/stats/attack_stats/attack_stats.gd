@@ -1,7 +1,7 @@
 class_name attack_stats extends Resource
 
 ##Basedamage * (this)damage = damage dealt
-@export var damage:int
+@export var damage:Damage
 ##Starts by attacking
 ##If cooldown < attacktime -> spamable
 @export var cooldown:float

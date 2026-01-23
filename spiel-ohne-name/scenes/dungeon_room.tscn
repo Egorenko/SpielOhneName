@@ -55,7 +55,7 @@ sources/0 = SubResource("TileSetAtlasSource_egc48")
 [node name="DungeonRoom" type="Node2D"]
 script = ExtResource("1_egc48")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="dungeon_room_tilemap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rrjkf")
 format = 2
 layer_0/z_index = -2
